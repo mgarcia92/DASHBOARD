@@ -1,0 +1,627 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="b2b_systemModelStoreContainer" CdmEntityContainer="b2b_Entitie">
+    <EntitySetMapping Name="b2b_login_dashboard">
+      <EntityTypeMapping TypeName="b2b_systemModel.b2b_login_dashboard">
+        <MappingFragment StoreEntitySet="b2b_login_dashboard">
+          <ScalarProperty Name="sysid" ColumnName="sysid" />
+          <ScalarProperty Name="login" ColumnName="login" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="failed_login" ColumnName="failed_login" />
+          <ScalarProperty Name="creation_date" ColumnName="creation_date" />
+          <ScalarProperty Name="last_password" ColumnName="last_password" />
+          <ScalarProperty Name="rol_id" ColumnName="rol_id" />
+          <ScalarProperty Name="C_deleted" ColumnName="_deleted" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="b2b_login_dashboard_sap_advisor">
+      <EntityTypeMapping TypeName="b2b_systemModel.b2b_login_dashboard_sap_advisor">
+        <MappingFragment StoreEntitySet="b2b_login_dashboard_sap_advisor">
+          <ScalarProperty Name="sysid" ColumnName="sysid" />
+          <ScalarProperty Name="LOGIN" ColumnName="LOGIN" />
+          <ScalarProperty Name="advisor_id" ColumnName="advisor_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="b2b_order">
+      <EntityTypeMapping TypeName="b2b_systemModel.b2b_order">
+        <MappingFragment StoreEntitySet="b2b_order">
+          <ScalarProperty Name="sysid" ColumnName="sysid" />
+          <ScalarProperty Name="order_id" ColumnName="order_id" />
+          <ScalarProperty Name="login" ColumnName="login" />
+          <ScalarProperty Name="plant_id" ColumnName="plant_id" />
+          <ScalarProperty Name="order_status_id" ColumnName="order_status_id" />
+          <ScalarProperty Name="sap_customer_id" ColumnName="sap_customer_id" />
+          <ScalarProperty Name="sap_destination_id" ColumnName="sap_destination_id" />
+          <ScalarProperty Name="custom_order_number" ColumnName="custom_order_number" />
+          <ScalarProperty Name="total" ColumnName="total" />
+          <ScalarProperty Name="creation_date" ColumnName="creation_date" />
+          <ScalarProperty Name="data" ColumnName="data" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="b2b_order_item">
+      <EntityTypeMapping TypeName="b2b_systemModel.b2b_order_item">
+        <MappingFragment StoreEntitySet="b2b_order_item">
+          <ScalarProperty Name="sysid" ColumnName="sysid" />
+          <ScalarProperty Name="order_item_id" ColumnName="order_item_id" />
+          <ScalarProperty Name="order_id" ColumnName="order_id" />
+          <ScalarProperty Name="sap_product_id" ColumnName="sap_product_id" />
+          <ScalarProperty Name="quantity" ColumnName="quantity" />
+          <ScalarProperty Name="amount" ColumnName="amount" />
+          <ScalarProperty Name="unit" ColumnName="unit" />
+          <ScalarProperty Name="discount" ColumnName="discount" />
+          <ScalarProperty Name="discount_value" ColumnName="discount_value" />
+          <ScalarProperty Name="tax" ColumnName="tax" />
+          <ScalarProperty Name="tax_value" ColumnName="tax_value" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="b2b_shopping_cart">
+      <EntityTypeMapping TypeName="b2b_systemModel.b2b_shopping_cart">
+        <MappingFragment StoreEntitySet="b2b_shopping_cart">
+          <ScalarProperty Name="sysid" ColumnName="sysid" />
+          <ScalarProperty Name="customer_id" ColumnName="customer_id" />
+          <ScalarProperty Name="login" ColumnName="login" />
+          <ScalarProperty Name="plant_id" ColumnName="plant_id" />
+          <ScalarProperty Name="data" ColumnName="data" />
+          <ScalarProperty Name="creation_date" ColumnName="creation_date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="b2b_wish_list">
+      <EntityTypeMapping TypeName="b2b_systemModel.b2b_wish_list">
+        <MappingFragment StoreEntitySet="b2b_wish_list">
+          <ScalarProperty Name="sysid" ColumnName="sysid" />
+          <ScalarProperty Name="wish_list_id" ColumnName="wish_list_id" />
+          <ScalarProperty Name="login" ColumnName="login" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="product_id" ColumnName="product_id" />
+          <ScalarProperty Name="sap_customer_id" ColumnName="sap_customer_id" />
+          <ScalarProperty Name="sap_plant_id" ColumnName="sap_plant_id" />
+          <ScalarProperty Name="quantity" ColumnName="quantity" />
+          <ScalarProperty Name="forced_quantity" ColumnName="forced_quantity" />
+          <ScalarProperty Name="creation_date" ColumnName="creation_date" />
+          <ScalarProperty Name="notification_date" ColumnName="notification_date" />
+          <ScalarProperty Name="shopping_date" ColumnName="shopping_date" />
+          <ScalarProperty Name="added_shopping_truck_date" ColumnName="added_shopping_truck_date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="b2b_wish_list_priority">
+      <EntityTypeMapping TypeName="b2b_systemModel.b2b_wish_list_priority">
+        <MappingFragment StoreEntitySet="b2b_wish_list_priority">
+          <ScalarProperty Name="sysid" ColumnName="sysid" />
+          <ScalarProperty Name="sap_customer_id" ColumnName="sap_customer_id" />
+          <ScalarProperty Name="priority" ColumnName="priority" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="b2b_wish_list_schedule">
+      <EntityTypeMapping TypeName="b2b_systemModel.b2b_wish_list_schedule">
+        <MappingFragment StoreEntitySet="b2b_wish_list_schedule">
+          <ScalarProperty Name="sysid" ColumnName="sysid" />
+          <ScalarProperty Name="plant_id" ColumnName="plant_id" />
+          <ScalarProperty Name="schedule1" ColumnName="schedule1" />
+          <ScalarProperty Name="schedule2" ColumnName="schedule2" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="b2b_wish_list_status">
+      <EntityTypeMapping TypeName="b2b_systemModel.b2b_wish_list_status">
+        <MappingFragment StoreEntitySet="b2b_wish_list_status">
+          <ScalarProperty Name="sysid" ColumnName="sysid" />
+          <ScalarProperty Name="wish_list_status_id" ColumnName="wish_list_status_id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sap_area_plant">
+      <EntityTypeMapping TypeName="b2b_systemModel.sap_area_plant">
+        <MappingFragment StoreEntitySet="sap_area_plant">
+          <ScalarProperty Name="sysid" ColumnName="sysid" />
+          <ScalarProperty Name="vkorg_id" ColumnName="vkorg_id" />
+          <ScalarProperty Name="channel_id" ColumnName="channel_id" />
+          <ScalarProperty Name="sector_id" ColumnName="sector_id" />
+          <ScalarProperty Name="plant_id" ColumnName="plant_id" />
+          <ScalarProperty Name="blocked" ColumnName="blocked" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sap_channel">
+      <EntityTypeMapping TypeName="b2b_systemModel.sap_channel">
+        <MappingFragment StoreEntitySet="sap_channel">
+          <ScalarProperty Name="sysid" ColumnName="sysid" />
+          <ScalarProperty Name="channel_id" ColumnName="channel_id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sap_corporation">
+      <EntityTypeMapping TypeName="b2b_systemModel.sap_corporation">
+        <MappingFragment StoreEntitySet="sap_corporation">
+          <ScalarProperty Name="sysid" ColumnName="sysid" />
+          <ScalarProperty Name="idcorporation" ColumnName="idcorporation" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="RIF" ColumnName="RIF" />
+          <ScalarProperty Name="namef" ColumnName="namef" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sap_customer">
+      <EntityTypeMapping TypeName="b2b_systemModel.sap_customer">
+        <MappingFragment StoreEntitySet="sap_customer">
+          <ScalarProperty Name="sysid" ColumnName="sysid" />
+          <ScalarProperty Name="custsap_id" ColumnName="custsap_id" />
+          <ScalarProperty Name="customer_type" ColumnName="customer_type" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="rif" ColumnName="rif" />
+          <ScalarProperty Name="nif" ColumnName="nif" />
+          <ScalarProperty Name="phone" ColumnName="phone" />
+          <ScalarProperty Name="sort" ColumnName="sort" />
+          <ScalarProperty Name="address" ColumnName="address" />
+          <ScalarProperty Name="grp_alm_des" ColumnName="grp_alm_des" />
+          <ScalarProperty Name="grp_cust" ColumnName="grp_cust" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sap_customer_area">
+      <EntityTypeMapping TypeName="b2b_systemModel.sap_customer_area">
+        <MappingFragment StoreEntitySet="sap_customer_area">
+          <ScalarProperty Name="sysid" ColumnName="sysid" />
+          <ScalarProperty Name="custsap_id" ColumnName="custsap_id" />
+          <ScalarProperty Name="vkorg_id" ColumnName="vkorg_id" />
+          <ScalarProperty Name="channel_id" ColumnName="channel_id" />
+          <ScalarProperty Name="sector_id" ColumnName="sector_id" />
+          <ScalarProperty Name="shopping" ColumnName="shopping" />
+          <ScalarProperty Name="grpcustid" ColumnName="grpcustid" />
+          <ScalarProperty Name="visday" ColumnName="visday" />
+          <ScalarProperty Name="vistime" ColumnName="vistime" />
+          <ScalarProperty Name="visfrc" ColumnName="visfrc" />
+          <ScalarProperty Name="iddivision" ColumnName="iddivision" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sap_customer_balance">
+      <EntityTypeMapping TypeName="b2b_systemModel.sap_customer_balance">
+        <MappingFragment StoreEntitySet="sap_customer_balance">
+          <ScalarProperty Name="sysid" ColumnName="sysid" />
+          <ScalarProperty Name="custsap_id" ColumnName="custsap_id" />
+          <ScalarProperty Name="society_id" ColumnName="society_id" />
+          <ScalarProperty Name="balance" ColumnName="balance" />
+          <ScalarProperty Name="credit_limit" ColumnName="credit_limit" />
+          <ScalarProperty Name="credit" ColumnName="credit" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sap_customer_rol">
+      <EntityTypeMapping TypeName="b2b_systemModel.sap_customer_rol">
+        <MappingFragment StoreEntitySet="sap_customer_rol">
+          <ScalarProperty Name="sysid" ColumnName="sysid" />
+          <ScalarProperty Name="custsap_id" ColumnName="custsap_id" />
+          <ScalarProperty Name="vkorg_id" ColumnName="vkorg_id" />
+          <ScalarProperty Name="channel_id" ColumnName="channel_id" />
+          <ScalarProperty Name="sector_id" ColumnName="sector_id" />
+          <ScalarProperty Name="custsap2_id" ColumnName="custsap2_id" />
+          <ScalarProperty Name="role" ColumnName="role" />
+          <ScalarProperty Name="shopping" ColumnName="shopping" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sap_customer_state">
+      <EntityTypeMapping TypeName="b2b_systemModel.sap_customer_state">
+        <MappingFragment StoreEntitySet="sap_customer_state">
+          <ScalarProperty Name="sysid" ColumnName="sysid" />
+          <ScalarProperty Name="custsap_id" ColumnName="custsap_id" />
+          <ScalarProperty Name="blocked" ColumnName="blocked" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sap_division">
+      <EntityTypeMapping TypeName="b2b_systemModel.sap_division">
+        <MappingFragment StoreEntitySet="sap_division">
+          <ScalarProperty Name="sysid" ColumnName="sysid" />
+          <ScalarProperty Name="iddivision" ColumnName="iddivision" />
+          <ScalarProperty Name="name" ColumnName="name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sap_doc">
+      <EntityTypeMapping TypeName="b2b_systemModel.sap_doc">
+        <MappingFragment StoreEntitySet="sap_doc">
+          <ScalarProperty Name="sysid" ColumnName="sysid" />
+          <ScalarProperty Name="doc_id" ColumnName="doc_id" />
+          <ScalarProperty Name="creation_date" ColumnName="creation_date" />
+          <ScalarProperty Name="amount" ColumnName="amount" />
+          <ScalarProperty Name="custsap" ColumnName="custsap" />
+          <ScalarProperty Name="vkorg" ColumnName="vkorg" />
+          <ScalarProperty Name="channel" ColumnName="channel" />
+          <ScalarProperty Name="sector" ColumnName="sector" />
+          <ScalarProperty Name="creation_by" ColumnName="creation_by" />
+          <ScalarProperty Name="status_orderid" ColumnName="status_orderid" />
+          <ScalarProperty Name="order_text" ColumnName="order_text" />
+          <ScalarProperty Name="typedoc" ColumnName="typedoc" />
+          <ScalarProperty Name="destsap" ColumnName="destsap" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sap_doc_bin">
+      <EntityTypeMapping TypeName="b2b_systemModel.sap_doc_bin">
+        <MappingFragment StoreEntitySet="sap_doc_bin">
+          <ScalarProperty Name="sysid" ColumnName="sysid" />
+          <ScalarProperty Name="doc_id" ColumnName="doc_id" />
+          <ScalarProperty Name="typebin" ColumnName="typebin" />
+          <ScalarProperty Name="filetype" ColumnName="filetype" />
+          <ScalarProperty Name="empty" ColumnName="empty" />
+          <ScalarProperty Name="file" ColumnName="file" />
+          <ScalarProperty Name="filetext" ColumnName="filetext" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sap_doc_item">
+      <EntityTypeMapping TypeName="b2b_systemModel.sap_doc_item">
+        <MappingFragment StoreEntitySet="sap_doc_item">
+          <ScalarProperty Name="sysid" ColumnName="sysid" />
+          <ScalarProperty Name="doc_id" ColumnName="doc_id" />
+          <ScalarProperty Name="pos" ColumnName="pos" />
+          <ScalarProperty Name="product" ColumnName="product" />
+          <ScalarProperty Name="quantity" ColumnName="quantity" />
+          <ScalarProperty Name="umo" ColumnName="umo" />
+          <ScalarProperty Name="status_orderid" ColumnName="status_orderid" />
+          <ScalarProperty Name="amount" ColumnName="amount" />
+          <ScalarProperty Name="ref_doc_id" ColumnName="ref_doc_id" />
+          <ScalarProperty Name="ref_pos" ColumnName="ref_pos" />
+          <ScalarProperty Name="base" ColumnName="base" />
+          <ScalarProperty Name="descu" ColumnName="descu" />
+          <ScalarProperty Name="valordesc" ColumnName="valordesc" />
+          <ScalarProperty Name="iva" ColumnName="iva" />
+          <ScalarProperty Name="valoriva" ColumnName="valoriva" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sap_documentfi">
+      <EntityTypeMapping TypeName="b2b_systemModel.sap_documentfi">
+        <MappingFragment StoreEntitySet="sap_documentfi">
+          <ScalarProperty Name="sysid" ColumnName="sysid" />
+          <ScalarProperty Name="iddocfi" ColumnName="iddocfi" />
+          <ScalarProperty Name="pos" ColumnName="pos" />
+          <ScalarProperty Name="iddoctype" ColumnName="iddoctype" />
+          <ScalarProperty Name="custsap_id" ColumnName="custsap_id" />
+          <ScalarProperty Name="idcorporation" ColumnName="idcorporation" />
+          <ScalarProperty Name="idpaycondition" ColumnName="idpaycondition" />
+          <ScalarProperty Name="ref1" ColumnName="ref1" />
+          <ScalarProperty Name="ref2" ColumnName="ref2" />
+          <ScalarProperty Name="datedoc" ColumnName="datedoc" />
+          <ScalarProperty Name="duedate" ColumnName="duedate" />
+          <ScalarProperty Name="amount_value" ColumnName="amount_value" />
+          <ScalarProperty Name="outstanding_amount" ColumnName="outstanding_amount" />
+          <ScalarProperty Name="iscompleted" ColumnName="iscompleted" />
+          <ScalarProperty Name="iddivision" ColumnName="iddivision" />
+          <ScalarProperty Name="nocheck" ColumnName="nocheck" />
+          <ScalarProperty Name="text01" ColumnName="text01" />
+          <ScalarProperty Name="tax" ColumnName="tax" />
+          <ScalarProperty Name="tax_wh" ColumnName="tax_wh" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sap_groupcustomer">
+      <EntityTypeMapping TypeName="b2b_systemModel.sap_groupcustomer">
+        <MappingFragment StoreEntitySet="sap_groupcustomer">
+          <ScalarProperty Name="sysid" ColumnName="sysid" />
+          <ScalarProperty Name="grpcust_id" ColumnName="grpcust_id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sap_konh">
+      <EntityTypeMapping TypeName="b2b_systemModel.sap_konh">
+        <MappingFragment StoreEntitySet="sap_konh">
+          <ScalarProperty Name="mandt" ColumnName="mandt" />
+          <ScalarProperty Name="knumh" ColumnName="knumh" />
+          <ScalarProperty Name="ernam" ColumnName="ernam" />
+          <ScalarProperty Name="erdat" ColumnName="erdat" />
+          <ScalarProperty Name="kvewe" ColumnName="kvewe" />
+          <ScalarProperty Name="kotabnr" ColumnName="kotabnr" />
+          <ScalarProperty Name="kappl" ColumnName="kappl" />
+          <ScalarProperty Name="kschl" ColumnName="kschl" />
+          <ScalarProperty Name="vakey" ColumnName="vakey" />
+          <ScalarProperty Name="datab" ColumnName="datab" />
+          <ScalarProperty Name="datbi" ColumnName="datbi" />
+          <ScalarProperty Name="kosrt" ColumnName="kosrt" />
+          <ScalarProperty Name="kzust" ColumnName="kzust" />
+          <ScalarProperty Name="knuma_pi" ColumnName="knuma_pi" />
+          <ScalarProperty Name="knuma_ag" ColumnName="knuma_ag" />
+          <ScalarProperty Name="knuma_sq" ColumnName="knuma_sq" />
+          <ScalarProperty Name="knuma_sd" ColumnName="knuma_sd" />
+          <ScalarProperty Name="aktnr" ColumnName="aktnr" />
+          <ScalarProperty Name="knuma_bo" ColumnName="knuma_bo" />
+          <ScalarProperty Name="licno" ColumnName="licno" />
+          <ScalarProperty Name="licdt" ColumnName="licdt" />
+          <ScalarProperty Name="vadat" ColumnName="vadat" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sap_konm">
+      <EntityTypeMapping TypeName="b2b_systemModel.sap_konm">
+        <MappingFragment StoreEntitySet="sap_konm">
+          <ScalarProperty Name="mandt" ColumnName="mandt" />
+          <ScalarProperty Name="knumh" ColumnName="knumh" />
+          <ScalarProperty Name="kopos" ColumnName="kopos" />
+          <ScalarProperty Name="klfn1" ColumnName="klfn1" />
+          <ScalarProperty Name="kstbm" ColumnName="kstbm" />
+          <ScalarProperty Name="kbetr" ColumnName="kbetr" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sap_konp">
+      <EntityTypeMapping TypeName="b2b_systemModel.sap_konp">
+        <MappingFragment StoreEntitySet="sap_konp">
+          <ScalarProperty Name="mandt" ColumnName="mandt" />
+          <ScalarProperty Name="knumh" ColumnName="knumh" />
+          <ScalarProperty Name="kopos" ColumnName="kopos" />
+          <ScalarProperty Name="kappl" ColumnName="kappl" />
+          <ScalarProperty Name="kschl" ColumnName="kschl" />
+          <ScalarProperty Name="knumt" ColumnName="knumt" />
+          <ScalarProperty Name="stfkz" ColumnName="stfkz" />
+          <ScalarProperty Name="kzbzg" ColumnName="kzbzg" />
+          <ScalarProperty Name="kstbm" ColumnName="kstbm" />
+          <ScalarProperty Name="konms" ColumnName="konms" />
+          <ScalarProperty Name="kstbw" ColumnName="kstbw" />
+          <ScalarProperty Name="konws" ColumnName="konws" />
+          <ScalarProperty Name="krech" ColumnName="krech" />
+          <ScalarProperty Name="kbetr" ColumnName="kbetr" />
+          <ScalarProperty Name="konwa" ColumnName="konwa" />
+          <ScalarProperty Name="kpein" ColumnName="kpein" />
+          <ScalarProperty Name="kmein" ColumnName="kmein" />
+          <ScalarProperty Name="prsch" ColumnName="prsch" />
+          <ScalarProperty Name="kumza" ColumnName="kumza" />
+          <ScalarProperty Name="kumne" ColumnName="kumne" />
+          <ScalarProperty Name="meins" ColumnName="meins" />
+          <ScalarProperty Name="mxwrt" ColumnName="mxwrt" />
+          <ScalarProperty Name="gkwrt" ColumnName="gkwrt" />
+          <ScalarProperty Name="pkwrt" ColumnName="pkwrt" />
+          <ScalarProperty Name="fkwrt" ColumnName="fkwrt" />
+          <ScalarProperty Name="rswrt" ColumnName="rswrt" />
+          <ScalarProperty Name="kwaeh" ColumnName="kwaeh" />
+          <ScalarProperty Name="ukbas" ColumnName="ukbas" />
+          <ScalarProperty Name="kznep" ColumnName="kznep" />
+          <ScalarProperty Name="kunnr" ColumnName="kunnr" />
+          <ScalarProperty Name="lifnr" ColumnName="lifnr" />
+          <ScalarProperty Name="mwsk1" ColumnName="mwsk1" />
+          <ScalarProperty Name="loevm_ko" ColumnName="loevm_ko" />
+          <ScalarProperty Name="zaehk_ind" ColumnName="zaehk_ind" />
+          <ScalarProperty Name="bomat" ColumnName="bomat" />
+          <ScalarProperty Name="kbrue" ColumnName="kbrue" />
+          <ScalarProperty Name="kspae" ColumnName="kspae" />
+          <ScalarProperty Name="bosta" ColumnName="bosta" />
+          <ScalarProperty Name="knuma_pi" ColumnName="knuma_pi" />
+          <ScalarProperty Name="knuma_ag" ColumnName="knuma_ag" />
+          <ScalarProperty Name="knuma_sq" ColumnName="knuma_sq" />
+          <ScalarProperty Name="valtg" ColumnName="valtg" />
+          <ScalarProperty Name="valdt" ColumnName="valdt" />
+          <ScalarProperty Name="zterm" ColumnName="zterm" />
+          <ScalarProperty Name="anzauf" ColumnName="anzauf" />
+          <ScalarProperty Name="mikbas" ColumnName="mikbas" />
+          <ScalarProperty Name="mxkbas" ColumnName="mxkbas" />
+          <ScalarProperty Name="komxwrt" ColumnName="komxwrt" />
+          <ScalarProperty Name="klf_stg" ColumnName="klf_stg" />
+          <ScalarProperty Name="klf_kal" ColumnName="klf_kal" />
+          <ScalarProperty Name="vkkal" ColumnName="vkkal" />
+          <ScalarProperty Name="aktnr" ColumnName="aktnr" />
+          <ScalarProperty Name="knuma_bo" ColumnName="knuma_bo" />
+          <ScalarProperty Name="mwsk2" ColumnName="mwsk2" />
+          <ScalarProperty Name="vertt" ColumnName="vertt" />
+          <ScalarProperty Name="vertn" ColumnName="vertn" />
+          <ScalarProperty Name="vbewa" ColumnName="vbewa" />
+          <ScalarProperty Name="mdflg" ColumnName="mdflg" />
+          <ScalarProperty Name="kfrst" ColumnName="kfrst" />
+          <ScalarProperty Name="uasta" ColumnName="uasta" />
+          <ScalarProperty Name="C_bev1_ecrtt" ColumnName="_bev1_ecrtt" />
+          <ScalarProperty Name="C_bev1_ecrtn" ColumnName="_bev1_ecrtn" />
+          <ScalarProperty Name="C_bev1_ecewa" ColumnName="_bev1_ecewa" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sap_master_conditions">
+      <EntityTypeMapping TypeName="b2b_systemModel.sap_master_conditions">
+        <MappingFragment StoreEntitySet="sap_master_conditions">
+          <ScalarProperty Name="sysid" ColumnName="sysid" />
+          <ScalarProperty Name="kschl" ColumnName="kschl" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="discount" ColumnName="discount" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sap_payment_conditions">
+      <EntityTypeMapping TypeName="b2b_systemModel.sap_payment_conditions">
+        <MappingFragment StoreEntitySet="sap_payment_conditions">
+          <ScalarProperty Name="sysid" ColumnName="sysid" />
+          <ScalarProperty Name="idpaycondition" ColumnName="idpaycondition" />
+          <ScalarProperty Name="name" ColumnName="name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sap_payment_types">
+      <EntityTypeMapping TypeName="b2b_systemModel.sap_payment_types">
+        <MappingFragment StoreEntitySet="sap_payment_types">
+          <ScalarProperty Name="sysid" ColumnName="sysid" />
+          <ScalarProperty Name="iddoctype" ColumnName="iddoctype" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="name2" ColumnName="name2" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sap_plant">
+      <EntityTypeMapping TypeName="b2b_systemModel.sap_plant">
+        <MappingFragment StoreEntitySet="sap_plant">
+          <ScalarProperty Name="sysid" ColumnName="sysid" />
+          <ScalarProperty Name="plant_id" ColumnName="plant_id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sap_product">
+      <EntityTypeMapping TypeName="b2b_systemModel.sap_product">
+        <MappingFragment StoreEntitySet="sap_product">
+          <ScalarProperty Name="sysid" ColumnName="sysid" />
+          <ScalarProperty Name="product_id" ColumnName="product_id" />
+          <ScalarProperty Name="umb" ColumnName="umb" />
+          <ScalarProperty Name="umv" ColumnName="umv" />
+          <ScalarProperty Name="familyid" ColumnName="familyid" />
+          <ScalarProperty Name="subfamilyid" ColumnName="subfamilyid" />
+          <ScalarProperty Name="brandid" ColumnName="brandid" />
+          <ScalarProperty Name="blocked" ColumnName="blocked" />
+          <ScalarProperty Name="type_p" ColumnName="type_p" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sap_product_brand">
+      <EntityTypeMapping TypeName="b2b_systemModel.sap_product_brand">
+        <MappingFragment StoreEntitySet="sap_product_brand">
+          <ScalarProperty Name="sysid" ColumnName="sysid" />
+          <ScalarProperty Name="family_id" ColumnName="family_id" />
+          <ScalarProperty Name="sub_family_id" ColumnName="sub_family_id" />
+          <ScalarProperty Name="brand_id" ColumnName="brand_id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sap_product_exc_product">
+      <EntityTypeMapping TypeName="b2b_systemModel.sap_product_exc_product">
+        <MappingFragment StoreEntitySet="sap_product_exc_product">
+          <ScalarProperty Name="sysid" ColumnName="sysid" />
+          <ScalarProperty Name="custsap_id" ColumnName="custsap_id" />
+          <ScalarProperty Name="product_id" ColumnName="product_id" />
+          <ScalarProperty Name="role" ColumnName="role" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sap_product_family">
+      <EntityTypeMapping TypeName="b2b_systemModel.sap_product_family">
+        <MappingFragment StoreEntitySet="sap_product_family">
+          <ScalarProperty Name="sysid" ColumnName="sysid" />
+          <ScalarProperty Name="family_id" ColumnName="family_id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sap_product_plant">
+      <EntityTypeMapping TypeName="b2b_systemModel.sap_product_plant">
+        <MappingFragment StoreEntitySet="sap_product_plant">
+          <ScalarProperty Name="sysid" ColumnName="sysid" />
+          <ScalarProperty Name="product_id" ColumnName="product_id" />
+          <ScalarProperty Name="plant_id" ColumnName="plant_id" />
+          <ScalarProperty Name="store_id" ColumnName="store_id" />
+          <ScalarProperty Name="vshow" ColumnName="vshow" />
+          <ScalarProperty Name="sell" ColumnName="sell" />
+          <ScalarProperty Name="addscard" ColumnName="addscard" />
+          <ScalarProperty Name="available" ColumnName="available" />
+          <ScalarProperty Name="confirmed" ColumnName="confirmed" />
+          <ScalarProperty Name="need" ColumnName="need" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sap_product_price">
+      <EntityTypeMapping TypeName="b2b_systemModel.sap_product_price">
+        <MappingFragment StoreEntitySet="sap_product_price">
+          <ScalarProperty Name="sysid" ColumnName="sysid" />
+          <ScalarProperty Name="product_id" ColumnName="product_id" />
+          <ScalarProperty Name="cust_sap_id" ColumnName="cust_sap_id" />
+          <ScalarProperty Name="plant_id" ColumnName="plant_id" />
+          <ScalarProperty Name="price_value" ColumnName="price_value" />
+          <ScalarProperty Name="umv" ColumnName="umv" />
+          <ScalarProperty Name="discount_value" ColumnName="discount_value" />
+          <ScalarProperty Name="discount" ColumnName="discount" />
+          <ScalarProperty Name="tax_value" ColumnName="tax_value" />
+          <ScalarProperty Name="tax" ColumnName="tax" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sap_product_price_cond">
+      <EntityTypeMapping TypeName="b2b_systemModel.sap_product_price_cond">
+        <MappingFragment StoreEntitySet="sap_product_price_cond">
+          <ScalarProperty Name="sysid" ColumnName="sysid" />
+          <ScalarProperty Name="product_id" ColumnName="product_id" />
+          <ScalarProperty Name="cust_sap_id" ColumnName="cust_sap_id" />
+          <ScalarProperty Name="plant_id" ColumnName="plant_id" />
+          <ScalarProperty Name="kschl" ColumnName="kschl" />
+          <ScalarProperty Name="knumh" ColumnName="knumh" />
+          <ScalarProperty Name="erdat" ColumnName="erdat" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sap_product_subfamily">
+      <EntityTypeMapping TypeName="b2b_systemModel.sap_product_subfamily">
+        <MappingFragment StoreEntitySet="sap_product_subfamily">
+          <ScalarProperty Name="sysid" ColumnName="sysid" />
+          <ScalarProperty Name="family_id" ColumnName="family_id" />
+          <ScalarProperty Name="sub_family_id" ColumnName="sub_family_id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sap_product_tag">
+      <EntityTypeMapping TypeName="b2b_systemModel.sap_product_tag">
+        <MappingFragment StoreEntitySet="sap_product_tag">
+          <ScalarProperty Name="sysid" ColumnName="sysid" />
+          <ScalarProperty Name="product_id" ColumnName="product_id" />
+          <ScalarProperty Name="text_type_id" ColumnName="text_type_id" />
+          <ScalarProperty Name="language_id" ColumnName="language_id" />
+          <ScalarProperty Name="textcol" ColumnName="textcol" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sap_product_um">
+      <EntityTypeMapping TypeName="b2b_systemModel.sap_product_um">
+        <MappingFragment StoreEntitySet="sap_product_um">
+          <ScalarProperty Name="sysid" ColumnName="sysid" />
+          <ScalarProperty Name="product_id" ColumnName="product_id" />
+          <ScalarProperty Name="um_id" ColumnName="um_id" />
+          <ScalarProperty Name="ean" ColumnName="ean" />
+          <ScalarProperty Name="length" ColumnName="length" />
+          <ScalarProperty Name="width" ColumnName="width" />
+          <ScalarProperty Name="height" ColumnName="height" />
+          <ScalarProperty Name="umd" ColumnName="umd" />
+          <ScalarProperty Name="volume" ColumnName="volume" />
+          <ScalarProperty Name="umv" ColumnName="umv" />
+          <ScalarProperty Name="gross_weight" ColumnName="gross_weight" />
+          <ScalarProperty Name="net_weight" ColumnName="net_weight" />
+          <ScalarProperty Name="Umw" ColumnName="Umw" />
+          <ScalarProperty Name="factor_umb" ColumnName="factor_umb" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sap_store">
+      <EntityTypeMapping TypeName="b2b_systemModel.sap_store">
+        <MappingFragment StoreEntitySet="sap_store">
+          <ScalarProperty Name="sysid" ColumnName="sysid" />
+          <ScalarProperty Name="plant_id" ColumnName="plant_id" />
+          <ScalarProperty Name="grp_alm_des" ColumnName="grp_alm_des" />
+          <ScalarProperty Name="store_id" ColumnName="store_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sap_system">
+      <EntityTypeMapping TypeName="b2b_systemModel.sap_system">
+        <MappingFragment StoreEntitySet="sap_system">
+          <ScalarProperty Name="sysid" ColumnName="sysid" />
+          <ScalarProperty Name="text" ColumnName="text" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sap_units">
+      <EntityTypeMapping TypeName="b2b_systemModel.sap_units">
+        <MappingFragment StoreEntitySet="sap_units">
+          <ScalarProperty Name="sysid" ColumnName="sysid" />
+          <ScalarProperty Name="idunit" ColumnName="idunit" />
+          <ScalarProperty Name="denominacion" ColumnName="denominacion" />
+          <ScalarProperty Name="iconurl_01" ColumnName="iconurl_01" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

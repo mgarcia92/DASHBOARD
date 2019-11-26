@@ -1,0 +1,2988 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="b2b_systemModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="b2b_access_request">
+    <Key>
+      <PropertyRef Name="sysid" />
+      <PropertyRef Name="access_request_id" />
+    </Key>
+    <Property Name="sysid" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="access_request_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="rif" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="address" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="city" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+    <Property Name="state" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+    <Property Name="contact_person" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="phone1" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="phone2" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+    <Property Name="email" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityType Name="b2b_audit_action">
+    <Key>
+      <PropertyRef Name="sysid" />
+      <PropertyRef Name="audit_action_id" />
+    </Key>
+    <Property Name="sysid" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="audit_action_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="login" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="action" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="description" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ip_address" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="creation_date" Type="DateTime" Nullable="false" />
+    <NavigationProperty Name="b2b_login" Relationship="Self.fk_b2b_audit_action_b2b_login1" FromRole="b2b_audit_action" ToRole="b2b_login" />
+  </EntityType>
+  <EntityType Name="b2b_bank_accounts">
+    <Key>
+      <PropertyRef Name="sysid" />
+      <PropertyRef Name="idaccount" />
+    </Key>
+    <Property Name="sysid" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="idaccount" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="account" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="accountsap" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="deleted" Type="Boolean" />
+    <Property Name="idbank" Type="Int32" Nullable="false" />
+    <Property Name="idcorporation" Type="String" MaxLength="4" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="iddivision" Type="String" MaxLength="4" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="b2b_banks" Relationship="Self.fk_b2b_bank_accounts_b2b_banks1" FromRole="b2b_bank_accounts" ToRole="b2b_banks" />
+    <NavigationProperty Name="sap_corporation" Relationship="Self.fk_b2b_bank_accounts_sap_corporation1" FromRole="b2b_bank_accounts" ToRole="sap_corporation" />
+    <NavigationProperty Name="sap_division" Relationship="Self.fk_b2b_bank_accounts_sap_division1" FromRole="b2b_bank_accounts" ToRole="sap_division" />
+    <NavigationProperty Name="b2b_banking_transaction" Relationship="Self.fk_b2b_banking_transaction_b2b_bank_accounts1" FromRole="b2b_bank_accounts" ToRole="b2b_banking_transaction" />
+  </EntityType>
+  <EntityType Name="b2b_banking_tran_customer_check">
+    <Key>
+      <PropertyRef Name="sysid" />
+      <PropertyRef Name="idcheck" />
+    </Key>
+    <Property Name="sysid" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="idcheck" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="check_number" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="check_amount" Type="Double" Nullable="false" />
+    <Property Name="idbank" Type="Int32" Nullable="false" />
+    <Property Name="bank_account" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="idbtrans" Type="Int32" Nullable="false" />
+    <Property Name="trans_check_number" Type="Int32" />
+    <NavigationProperty Name="b2b_banking_transaction" Relationship="Self.fk_b2b_customer_bank_checks_b2b_banking_transaction1" FromRole="b2b_banking_tran_customer_check" ToRole="b2b_banking_transaction" />
+    <NavigationProperty Name="b2b_banks" Relationship="Self.fk_b2b_customer_bank_checks_b2b_banks1" FromRole="b2b_banking_tran_customer_check" ToRole="b2b_banks" />
+  </EntityType>
+  <EntityType Name="b2b_banking_tran_det">
+    <Key>
+      <PropertyRef Name="sysid" />
+      <PropertyRef Name="idbtrans" />
+      <PropertyRef Name="iddocfi" />
+      <PropertyRef Name="pos" />
+    </Key>
+    <Property Name="sysid" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="idbtrans" Type="Int32" Nullable="false" />
+    <Property Name="iddocfi" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="pos" Type="Int32" Nullable="false" />
+    <Property Name="paid_amount" Type="Double" />
+    <NavigationProperty Name="b2b_banking_transaction" Relationship="Self.fk_b2b_banking_transaction_2" FromRole="b2b_banking_tran_det" ToRole="b2b_banking_transaction" />
+    <NavigationProperty Name="sap_documentfi" Relationship="Self.fk_sap_docfik1" FromRole="b2b_banking_tran_det" ToRole="sap_documentfi" />
+  </EntityType>
+  <EntityType Name="b2b_banking_tran_reasons">
+    <Key>
+      <PropertyRef Name="sysid" />
+      <PropertyRef Name="idbtrans" />
+      <PropertyRef Name="idreason" />
+    </Key>
+    <Property Name="sysid" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="idbtrans" Type="Int32" Nullable="false" />
+    <Property Name="idreason" Type="Int32" Nullable="false" />
+    <Property Name="amount_r" Type="Double" />
+    <Property Name="observation" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="b2b_payment_reasons" Relationship="Self.fk_b2b_banking_tran_reasons_b2b_payment_reasons1" FromRole="b2b_banking_tran_reasons" ToRole="b2b_payment_reasons" />
+    <NavigationProperty Name="b2b_banking_transaction" Relationship="Self.fk_b2b_banking_transaction_copy1_b2b_banking_transaction10" FromRole="b2b_banking_tran_reasons" ToRole="b2b_banking_transaction" />
+  </EntityType>
+  <EntityType Name="b2b_banking_tran_reasons_files">
+    <Key>
+      <PropertyRef Name="sysid" />
+      <PropertyRef Name="idfile" />
+    </Key>
+    <Property Name="sysid" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="idfile" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="file_path" Type="String" MaxLength="128" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="idbtrans" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="b2b_banking_transaction" Relationship="Self.fk_b2b_payment_reason_file1" FromRole="b2b_banking_tran_reasons_files" ToRole="b2b_banking_transaction" />
+  </EntityType>
+  <EntityType Name="b2b_banking_transaction">
+    <Key>
+      <PropertyRef Name="sysid" />
+      <PropertyRef Name="idbtrans" />
+    </Key>
+    <Property Name="sysid" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="idbtrans" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="datetrs" Type="DateTime" Nullable="false" />
+    <Property Name="idcorporation" Type="String" MaxLength="4" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="idcustomer" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="idlogin" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+    <Property Name="idaccount" Type="Int32" />
+    <Property Name="idpaymethod" Type="Int32" Nullable="false" />
+    <Property Name="iddivision" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+    <Property Name="observations" Type="String" MaxLength="16777215" FixedLength="false" Unicode="false" />
+    <Property Name="voucher_reference_number" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+    <Property Name="voucher_date" Type="DateTime" />
+    <Property Name="voucher_cash_amount" Type="Double" Nullable="false" />
+    <Property Name="voucher_idbank" Type="Int32" />
+    <Property Name="voucher_account" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+    <Property Name="voucher_attached_file" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
+    <Property Name="payment_difference_observations" Type="String" MaxLength="16777215" FixedLength="false" Unicode="false" />
+    <Property Name="unpaid_tolerance" Type="Double" Nullable="false" />
+    <Property Name="status" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="b2b_bank_accounts" Relationship="Self.fk_b2b_banking_transaction_b2b_bank_accounts1" FromRole="b2b_banking_transaction" ToRole="b2b_bank_accounts" />
+    <NavigationProperty Name="b2b_banking_tran_customer_check" Relationship="Self.fk_b2b_customer_bank_checks_b2b_banking_transaction1" FromRole="b2b_banking_transaction" ToRole="b2b_banking_tran_customer_check" />
+    <NavigationProperty Name="b2b_banking_tran_det" Relationship="Self.fk_b2b_banking_transaction_2" FromRole="b2b_banking_transaction" ToRole="b2b_banking_tran_det" />
+    <NavigationProperty Name="b2b_banking_tran_reasons" Relationship="Self.fk_b2b_banking_transaction_copy1_b2b_banking_transaction10" FromRole="b2b_banking_transaction" ToRole="b2b_banking_tran_reasons" />
+    <NavigationProperty Name="b2b_banking_tran_reasons_files" Relationship="Self.fk_b2b_payment_reason_file1" FromRole="b2b_banking_transaction" ToRole="b2b_banking_tran_reasons_files" />
+    <NavigationProperty Name="b2b_banks" Relationship="Self.fk_b2b_banking_transaction_b2b_banks02" FromRole="b2b_banking_transaction" ToRole="b2b_banks" />
+    <NavigationProperty Name="b2b_payment_methods" Relationship="Self.fk_b2b_banking_transaction_b2b_payment_methods1" FromRole="b2b_banking_transaction" ToRole="b2b_payment_methods" />
+    <NavigationProperty Name="sap_corporation" Relationship="Self.fk_b2b_banking_transaction_sap_corporation" FromRole="b2b_banking_transaction" ToRole="sap_corporation" />
+    <NavigationProperty Name="sap_division" Relationship="Self.fk_b2b_banking_transaction_sap_division" FromRole="b2b_banking_transaction" ToRole="sap_division" />
+  </EntityType>
+  <EntityType Name="b2b_banks">
+    <Key>
+      <PropertyRef Name="sysid" />
+      <PropertyRef Name="idbank" />
+    </Key>
+    <Property Name="sysid" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="idbank" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+    <Property Name="country" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+    <Property Name="name2" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="b2b_bank_accounts" Relationship="Self.fk_b2b_bank_accounts_b2b_banks1" FromRole="b2b_banks" ToRole="b2b_bank_accounts" />
+    <NavigationProperty Name="b2b_banking_tran_customer_check" Relationship="Self.fk_b2b_customer_bank_checks_b2b_banks1" FromRole="b2b_banks" ToRole="b2b_banking_tran_customer_check" />
+    <NavigationProperty Name="b2b_banking_transaction" Relationship="Self.fk_b2b_banking_transaction_b2b_banks02" FromRole="b2b_banks" ToRole="b2b_banking_transaction" />
+  </EntityType>
+  <EntityType Name="b2b_banner">
+    <Key>
+      <PropertyRef Name="sysid" />
+      <PropertyRef Name="banner_id" />
+    </Key>
+    <Property Name="sysid" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="banner_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="activation_type" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="promotion_id" Type="Int32" />
+    <Property Name="language_id" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="title" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="html_content" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="banner_url" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="status" Type="Int32" Nullable="false" />
+    <Property Name="url" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="new_window" Type="Int32" Nullable="false" />
+    <Property Name="beginning_date" Type="DateTime" Nullable="false" />
+    <Property Name="ending_date" Type="DateTime" />
+    <Property Name="creation_date" Type="DateTime" Nullable="false" />
+    <Property Name="banner_type_id" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="sequence" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="b2b_banner_activation_type" Relationship="Self.fk_b2b_banner_act_type" FromRole="b2b_banner" ToRole="b2b_banner_activation_type" />
+  </EntityType>
+  <EntityType Name="b2b_banner_activation_type">
+    <Key>
+      <PropertyRef Name="sysid" />
+      <PropertyRef Name="banner_activation_type" />
+    </Key>
+    <Property Name="sysid" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="banner_activation_type" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="description" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="b2b_banner" Relationship="Self.fk_b2b_banner_act_type" FromRole="b2b_banner_activation_type" ToRole="b2b_banner" />
+  </EntityType>
+  <EntityType Name="b2b_banner_tag">
+    <Key>
+      <PropertyRef Name="sysid" />
+      <PropertyRef Name="tag" />
+      <PropertyRef Name="banner_id" />
+    </Key>
+    <Property Name="sysid" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="tag" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="banner_id" Type="Int32" Nullable="false" />
+    <Property Name="value" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityType Name="b2b_banner_type">
+    <Key>
+      <PropertyRef Name="sysid" />
+      <PropertyRef Name="banner_type_id" />
+    </Key>
+    <Property Name="sysid" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="banner_type_id" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="b2b_banner_type_name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="b2b_carousel">
+    <Key>
+      <PropertyRef Name="sysid" />
+      <PropertyRef Name="carousel_id" />
+    </Key>
+    <Property Name="sysid" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="carousel_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="carousel_type_id" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="80" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="sql_query" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="has_banners" Type="Int32" Nullable="false" />
+    <Property Name="enabled" Type="Int32" Nullable="false" />
+    <Property Name="sequence" Type="Int32" Nullable="false" />
+    <Property Name="creation_date" Type="DateTime" Nullable="false" />
+    <NavigationProperty Name="b2b_carousel_type" Relationship="Self.fk_b2b_carousel_typeFK" FromRole="b2b_carousel" ToRole="b2b_carousel_type" />
+  </EntityType>
+  <EntityType Name="b2b_carousel_type">
+    <Key>
+      <PropertyRef Name="sysid" />
+      <PropertyRef Name="carousel_type_id" />
+    </Key>
+    <Property Name="sysid" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="carousel_type_id" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="b2b_carousel" Relationship="Self.fk_b2b_carousel_typeFK" FromRole="b2b_carousel_type" ToRole="b2b_carousel" />
+  </EntityType>
+  <EntityType Name="b2b_category">
+    <Key>
+      <PropertyRef Name="sysid" />
+      <PropertyRef Name="category_id" />
+    </Key>
+    <Property Name="sysid" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="category_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="navigation_tree_id" Type="Int32" Nullable="false" />
+    <Property Name="parent_category_id" Type="Int32" />
+    <Property Name="language_id" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="image_url" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+    <Property Name="sequence" Type="Int32" Nullable="false" />
+    <Property Name="enabled" Type="Int32" Nullable="false" />
+    <Property Name="creation_date" Type="DateTime" Nullable="false" />
+    <NavigationProperty Name="b2b_navigation_tree" Relationship="Self.fk_b2b_category_nav_tree_fk" FromRole="b2b_category" ToRole="b2b_navigation_tree" />
+    <NavigationProperty Name="b2b_category1" Relationship="Self.fk_b2b_category_self_fk" FromRole="b2b_category" ToRole="b2b_category1" />
+    <NavigationProperty Name="b2b_category2" Relationship="Self.fk_b2b_category_self_fk" FromRole="b2b_category1" ToRole="b2b_category" />
+  </EntityType>
+  <EntityType Name="b2b_category_has_sap_product">
+    <Key>
+      <PropertyRef Name="sysid" />
+      <PropertyRef Name="product_id" />
+      <PropertyRef Name="category_id" />
+    </Key>
+    <Property Name="sysid" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="product_id" Type="String" MaxLength="18" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="category_id" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="b2b_challenge_question">
+    <Key>
+      <PropertyRef Name="sysid" />
+      <PropertyRef Name="challenge_question_id" />
+    </Key>
+    <Property Name="sysid" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="challenge_question_id" Type="Int32" Nullable="false" />
+    <Property Name="challenge_question" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+    <Property Name="creation_date" Type="DateTime" />
+  </EntityType>
+  <EntityType Name="b2b_corporation">
+    <Key>
+      <PropertyRef Name="sysid" />
+      <PropertyRef Name="idcorporation" />
+    </Key>
+    <Property Name="sysid" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="idcorporation" Type="String" MaxLength="4" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="tolerancia" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+    <Property Name="emailadmin" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="sap_corporation" Relationship="Self.fk_b2b_corporation_sap_corporation1" FromRole="b2b_corporation" ToRole="sap_corporation" />
+  </EntityType>
+  <EntityType Name="b2b_customer">
+    <Key>
+      <PropertyRef Name="sysid" />
+      <PropertyRef Name="custsap_id" />
+    </Key>
+    <Property Name="sysid" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="custsap_id" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="payment_module_permission" Type="SByte" Nullable="false" />
+    <Property Name="tdc_module_permission" Type="SByte" Nullable="false" />
+    <NavigationProperty Name="sap_customer" Relationship="Self.b2b_customer_ibfk_1" FromRole="b2b_customer" ToRole="sap_customer" />
+  </EntityType>
+  <EntityType Name="b2b_dashboard_rol">
+    <Key>
+      <PropertyRef Name="id_rol" />
+    </Key>
+    <Property Name="id_rol" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="rol" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="b2b_login_dashboard" Relationship="Self.fk_login_dash_rol" FromRole="b2b_dashboard_rol" ToRole="b2b_login_dashboard" />
+  </EntityType>
+  <EntityType Name="b2b_device">
+    <Key>
+      <PropertyRef Name="sysid" />
+      <PropertyRef Name="login" />
+      <PropertyRef Name="device_address" />
+    </Key>
+    <Property Name="sysid" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="login" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="device_address" Type="String" MaxLength="16" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="creation_date" Type="DateTime" Nullable="false" />
+    <NavigationProperty Name="b2b_login" Relationship="Self.fk_b2b_device_b2b_login1" FromRole="b2b_device" ToRole="b2b_login" />
+  </EntityType>
+  <EntityType Name="b2b_division">
+    <Key>
+      <PropertyRef Name="sysid" />
+      <PropertyRef Name="iddivision" />
+    </Key>
+    <Property Name="sysid" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="iddivision" Type="String" MaxLength="4" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="email" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="b2b_faq">
+    <Key>
+      <PropertyRef Name="sysid" />
+      <PropertyRef Name="faq_id" />
+    </Key>
+    <Property Name="sysid" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="faq_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="language_id" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="section_id" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="question" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="answer" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="status" Type="Int32" Nullable="false" />
+    <Property Name="creation_date" Type="DateTime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="b2b_gateway_credential">
+    <Key>
+      <PropertyRef Name="sysid" />
+      <PropertyRef Name="idcorporation" />
+    </Key>
+    <Property Name="sysid" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="idcorporation" Type="String" MaxLength="4" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="affiliate_code" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="username" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="password" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityType Name="b2b_gateway_transaction">
+    <Key>
+      <PropertyRef Name="sysid" />
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="sysid" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="idcorporation" Type="String" MaxLength="4" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="idcustomer" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="idlogin" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="started" Type="DateTime" Nullable="false" />
+    <Property Name="ended" Type="DateTime" />
+    <Property Name="amount" Type="Decimal" Nullable="false" />
+    <Property Name="control" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Name="status" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="code" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+    <Property Name="voucher" Type="String" MaxLength="16777215" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="b2b_image_type">
+    <Key>
+      <PropertyRef Name="sysid" />
+      <PropertyRef Name="image_type_id" />
+    </Key>
+    <Property Name="sysid" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="image_type_id" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="is_required" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="b2b_product_image" Relationship="Self.fk_b2b_product_image_fk" FromRole="b2b_image_type" ToRole="b2b_product_image" />
+  </EntityType>
+  <EntityType Name="b2b_language">
+    <Key>
+      <PropertyRef Name="sysid" />
+      <PropertyRef Name="language_id" />
+    </Key>
+    <Property Name="sysid" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="language_id" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityType Name="b2b_login">
+    <Key>
+      <PropertyRef Name="sysid" />
+      <PropertyRef Name="login" />
+    </Key>
+    <Property Name="sysid" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="login" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="login_type_id" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="navigation_tree_id" Type="Int32" />
+    <Property Name="name" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="last_name" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="description" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+    <Property Name="password" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="email2" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+    <Property Name="status" Type="Int32" Nullable="false" />
+    <Property Name="creation_date" Type="DateTime" Nullable="false" />
+    <Property Name="invitation_email_date" Type="DateTime" />
+    <Property Name="terms_accepted_date" Type="DateTime" />
+    <Property Name="last_login_date" Type="DateTime" />
+    <Property Name="last_password_update_date" Type="DateTime" />
+    <Property Name="recover_password_sent_date" Type="DateTime" />
+    <Property Name="openfire_login" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+    <Property Name="openfire_password" Type="String" MaxLength="95" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="b2b_audit_action" Relationship="Self.fk_b2b_audit_action_b2b_login1" FromRole="b2b_login" ToRole="b2b_audit_action" />
+    <NavigationProperty Name="b2b_device" Relationship="Self.fk_b2b_device_b2b_login1" FromRole="b2b_login" ToRole="b2b_device" />
+    <NavigationProperty Name="b2b_navigation_tree" Relationship="Self.fk_b2b_login_nav_tree_fk" FromRole="b2b_login" ToRole="b2b_navigation_tree" />
+    <NavigationProperty Name="b2b_login_permission" Relationship="Self.fk_b2b_login_permission_b2b_login1" FromRole="b2b_login" ToRole="b2b_login_permission" />
+    <NavigationProperty Name="b2b_login_sap_customer" Relationship="Self.fk_b2b_login_sap_customer_login_fk" FromRole="b2b_login" ToRole="b2b_login_sap_customer" />
+    <NavigationProperty Name="b2b_login_type" Relationship="Self.fk_b2b_login_type_fk" FromRole="b2b_login" ToRole="b2b_login_type" />
+    <NavigationProperty Name="b2b_order" Relationship="Self.fk_b2b_order_login_fk" FromRole="b2b_login" ToRole="b2b_order" />
+  </EntityType>
+  <EntityType Name="b2b_login_challenge_question">
+    <Key>
+      <PropertyRef Name="sysid" />
+      <PropertyRef Name="login" />
+      <PropertyRef Name="challenge_question_id" />
+    </Key>
+    <Property Name="sysid" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="login" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="challenge_question_id" Type="Int32" Nullable="false" />
+    <Property Name="answer" Type="String" MaxLength="75" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="creation_date" Type="DateTime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="b2b_login_dashboard">
+    <Key>
+      <PropertyRef Name="sysid" />
+      <PropertyRef Name="login" />
+    </Key>
+    <Property Name="sysid" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="login" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="failed_login" Type="Int16" />
+    <Property Name="creation_date" Type="DateTime" />
+    <Property Name="last_password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="rol_id" Type="Int32" Nullable="false" />
+    <Property Name="C_deleted" Type="Int16" />
+    <NavigationProperty Name="b2b_dashboard_rol" Relationship="Self.fk_login_dash_rol" FromRole="b2b_login_dashboard" ToRole="b2b_dashboard_rol" />
+    <NavigationProperty Name="b2b_login_dashboard_sap_advisor" Relationship="Self.FK_advisor_login" FromRole="b2b_login_dashboard" ToRole="b2b_login_dashboard_sap_advisor" />
+  </EntityType>
+  <EntityType Name="b2b_login_dashboard_sap_advisor">
+    <Key>
+      <PropertyRef Name="sysid" />
+      <PropertyRef Name="LOGIN" />
+      <PropertyRef Name="advisor_id" />
+    </Key>
+    <Property Name="sysid" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="LOGIN" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="advisor_id" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="b2b_login_dashboard" Relationship="Self.FK_advisor_login" FromRole="b2b_login_dashboard_sap_advisor" ToRole="b2b_login_dashboard" />
+  </EntityType>
+  <EntityType Name="b2b_login_permission">
+    <Key>
+      <PropertyRef Name="sysid" />
+      <PropertyRef Name="login" />
+      <PropertyRef Name="permission_id" />
+    </Key>
+    <Property Name="sysid" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="login" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="permission_id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="b2b_login" Relationship="Self.fk_b2b_login_permission_b2b_login1" FromRole="b2b_login_permission" ToRole="b2b_login" />
+    <NavigationProperty Name="b2b_permission" Relationship="Self.fk_b2b_login_permission_b2b_login_permission1" FromRole="b2b_login_permission" ToRole="b2b_permission" />
+  </EntityType>
+  <EntityType Name="b2b_login_sap_customer">
+    <Key>
+      <PropertyRef Name="sysid" />
+      <PropertyRef Name="login" />
+      <PropertyRef Name="customer_id" />
+    </Key>
+    <Property Name="sysid" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="login" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="customer_id" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="b2b_login" Relationship="Self.fk_b2b_login_sap_customer_login_fk" FromRole="b2b_login_sap_customer" ToRole="b2b_login" />
+  </EntityType>
+  <EntityType Name="b2b_login_type">
+    <Key>
+      <PropertyRef Name="sysid" />
+      <PropertyRef Name="login_type_id" />
+    </Key>
+    <Property Name="sysid" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="login_type_id" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="b2b_login" Relationship="Self.fk_b2b_login_type_fk" FromRole="b2b_login_type" ToRole="b2b_login" />
+  </EntityType>
+  <EntityType Name="b2b_message">
+    <Key>
+      <PropertyRef Name="sysid" />
+      <PropertyRef Name="message_id" />
+    </Key>
+    <Property Name="sysid" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="message_id" Type="Int32" Nullable="false" />
+    <Property Name="sender_login_id" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="customer_id" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="message" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="creation_date" Type="DateTime" Nullable="false" />
+    <Property Name="read_date" Type="DateTime" />
+  </EntityType>
+  <EntityType Name="b2b_navigation_tree">
+    <Key>
+      <PropertyRef Name="sysid" />
+      <PropertyRef Name="navigation_tree_id" />
+    </Key>
+    <Property Name="sysid" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="navigation_tree_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="80" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="creation_date" Type="DateTime" Nullable="false" />
+    <NavigationProperty Name="b2b_category" Relationship="Self.fk_b2b_category_nav_tree_fk" FromRole="b2b_navigation_tree" ToRole="b2b_category" />
+    <NavigationProperty Name="b2b_login" Relationship="Self.fk_b2b_login_nav_tree_fk" FromRole="b2b_navigation_tree" ToRole="b2b_login" />
+  </EntityType>
+  <EntityType Name="b2b_nutritional_fact">
+    <Key>
+      <PropertyRef Name="sysid" />
+      <PropertyRef Name="nutritional_fact_id" />
+    </Key>
+    <Property Name="sysid" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="nutritional_fact_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="language_id" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="is_required" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="b2b_product_nutritional_fact" Relationship="Self.fk_b2b_product_nutritional_fact_fk" FromRole="b2b_nutritional_fact" ToRole="b2b_product_nutritional_fact" />
+  </EntityType>
+  <EntityType Name="b2b_object_type">
+    <Key>
+      <PropertyRef Name="sysid" />
+      <PropertyRef Name="object_type" />
+    </Key>
+    <Property Name="sysid" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="object_type" Type="String" MaxLength="12" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="description" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="b2b_tag_object" Relationship="Self.fk_b2b_object_type_object_1" FromRole="b2b_object_type" ToRole="b2b_tag_object" />
+    <NavigationProperty Name="b2b_promotion_tag" Relationship="Self.fk_b2b_object_type_promotion_1" FromRole="b2b_object_type" ToRole="b2b_promotion_tag" />
+  </EntityType>
+  <EntityType Name="b2b_order">
+    <Key>
+      <PropertyRef Name="sysid" />
+      <PropertyRef Name="order_id" />
+    </Key>
+    <Property Name="sysid" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="order_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="login" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="plant_id" Type="String" MaxLength="4" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="order_status_id" Type="String" MaxLength="2" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="sap_customer_id" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="sap_destination_id" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="custom_order_number" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="total" Type="Decimal" Nullable="false" />
+    <Property Name="creation_date" Type="DateTime" Nullable="false" />
+    <Property Name="data" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="b2b_login" Relationship="Self.fk_b2b_order_login_fk" FromRole="b2b_order" ToRole="b2b_login" />
+  </EntityType>
+  <EntityType Name="b2b_order_item">
+    <Key>
+      <PropertyRef Name="sysid" />
+      <PropertyRef Name="order_item_id" />
+    </Key>
+    <Property Name="sysid" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="order_item_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="order_id" Type="Int32" Nullable="false" />
+    <Property Name="sap_product_id" Type="String" MaxLength="18" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="quantity" Type="Int32" Nullable="false" />
+    <Property Name="amount" Type="Decimal" Nullable="false" />
+    <Property Name="unit" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="discount" Type="Double" />
+    <Property Name="discount_value" Type="Double" />
+    <Property Name="tax" Type="Double" />
+    <Property Name="tax_value" Type="Double" />
+  </EntityType>
+  <EntityType Name="b2b_order_status">
+    <Key>
+      <PropertyRef Name="sysid" />
+      <PropertyRef Name="order_status_id" />
+    </Key>
+    <Property Name="sysid" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="order_status_id" Type="String" MaxLength="2" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="icon" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+    <Property Name="description" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="position" Type="Int32" />
+  </EntityType>
+  <EntityType Name="b2b_payment_methods">
+    <Key>
+      <PropertyRef Name="idpaymethod" />
+      <PropertyRef Name="sysid" />
+    </Key>
+    <Property Name="idpaymethod" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="sysid" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+    <Property Name="movsap" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+    <Property Name="mode" Type="SByte" />
+    <NavigationProperty Name="b2b_banking_transaction" Relationship="Self.fk_b2b_banking_transaction_b2b_payment_methods1" FromRole="b2b_payment_methods" ToRole="b2b_banking_transaction" />
+  </EntityType>
+  <EntityType Name="b2b_payment_reasons">
+    <Key>
+      <PropertyRef Name="idreason" />
+      <PropertyRef Name="sysid" />
+    </Key>
+    <Property Name="idreason" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="sysid" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+    <Property Name="name2" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="b2b_banking_tran_reasons" Relationship="Self.fk_b2b_banking_tran_reasons_b2b_payment_reasons1" FromRole="b2b_payment_reasons" ToRole="b2b_banking_tran_reasons" />
+  </EntityType>
+  <EntityType Name="b2b_permission">
+    <Key>
+      <PropertyRef Name="sysid" />
+      <PropertyRef Name="permission_id" />
+    </Key>
+    <Property Name="sysid" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="permission_id" Type="Int32" Nullable="false" />
+    <Property Name="report_id" Type="Int32" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="b2b_login_permission" Relationship="Self.fk_b2b_login_permission_b2b_login_permission1" FromRole="b2b_permission" ToRole="b2b_login_permission" />
+    <NavigationProperty Name="cms_report" Relationship="Self.fk_b2b_login_permission_cms_report1" FromRole="b2b_permission" ToRole="cms_report" />
+  </EntityType>
+  <EntityType Name="b2b_plant">
+    <Key>
+      <PropertyRef Name="sysid" />
+      <PropertyRef Name="plant_id" />
+    </Key>
+    <Property Name="sysid" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="plant_id" Type="String" MaxLength="4" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="status" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="message" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="b2b_preferred_list">
+    <Key>
+      <PropertyRef Name="sysid" />
+      <PropertyRef Name="preferred_list_id" />
+    </Key>
+    <Property Name="sysid" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="preferred_list_id" Type="Int32" Nullable="false" />
+    <Property Name="customer_id" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="status" Type="Int32" Nullable="false" />
+    <Property Name="creation_date" Type="DateTime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="b2b_preferred_list_item">
+    <Key>
+      <PropertyRef Name="sysid" />
+      <PropertyRef Name="preferred_list_item_id" />
+    </Key>
+    <Property Name="sysid" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="preferred_list_item_id" Type="Int32" Nullable="false" />
+    <Property Name="preferred_list_id" Type="Int32" Nullable="false" />
+    <Property Name="sap_product_id" Type="String" MaxLength="18" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="quantity" Type="Int32" Nullable="false" />
+    <Property Name="creation_date" Type="DateTime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="b2b_product">
+    <Key>
+      <PropertyRef Name="sysid" />
+      <PropertyRef Name="product_id" />
+    </Key>
+    <Property Name="sysid" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="product_id" Type="String" MaxLength="18" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="active" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="b2b_product_carousel">
+    <Key>
+      <PropertyRef Name="sysid" />
+      <PropertyRef Name="carousel_id" />
+    </Key>
+    <Property Name="sysid" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="carousel_id" Type="Int32" Nullable="false" />
+    <Property Name="carousel_type_id" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="mysql_view" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="header_image" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+    <Property Name="footer_image" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+    <Property Name="right_image" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+    <Property Name="lelft_image" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+    <Property Name="sequence" Type="Int32" Nullable="false" />
+    <Property Name="status" Type="Int32" Nullable="false" />
+    <Property Name="creation_date" Type="DateTime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="b2b_product_image">
+    <Key>
+      <PropertyRef Name="sysid" />
+      <PropertyRef Name="product_id" />
+      <PropertyRef Name="image_type_id" />
+      <PropertyRef Name="language_id" />
+      <PropertyRef Name="sequence" />
+    </Key>
+    <Property Name="sysid" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="product_id" Type="String" MaxLength="18" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="image_type_id" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="language_id" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="sequence" Type="SByte" Nullable="false" />
+    <Property Name="image_url" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="b2b_image_type" Relationship="Self.fk_b2b_product_image_fk" FromRole="b2b_product_image" ToRole="b2b_image_type" />
+  </EntityType>
+  <EntityType Name="b2b_product_nutritional_fact">
+    <Key>
+      <PropertyRef Name="sysid" />
+      <PropertyRef Name="product_id" />
+      <PropertyRef Name="nutritional_fact_id" />
+    </Key>
+    <Property Name="sysid" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="product_id" Type="String" MaxLength="18" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="nutritional_fact_id" Type="Int32" Nullable="false" />
+    <Property Name="value" Type="Double" Nullable="false" />
+    <Property Name="unit" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="rdi_percent" Type="Decimal" />
+    <Property Name="sequence" Type="SByte" Nullable="false" />
+    <NavigationProperty Name="b2b_nutritional_fact" Relationship="Self.fk_b2b_product_nutritional_fact_fk" FromRole="b2b_product_nutritional_fact" ToRole="b2b_nutritional_fact" />
+  </EntityType>
+  <EntityType Name="b2b_product_tag">
+    <Key>
+      <PropertyRef Name="sysid" />
+      <PropertyRef Name="product_id" />
+      <PropertyRef Name="text_type_id" />
+      <PropertyRef Name="language_id" />
+    </Key>
+    <Property Name="sysid" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="product_id" Type="String" MaxLength="18" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="text_type_id" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="language_id" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="text_value" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="b2b_tag_type" Relationship="Self.fk_b2b_product_tag_fk" FromRole="b2b_product_tag" ToRole="b2b_tag_type" />
+  </EntityType>
+  <EntityType Name="b2b_product_um_sale">
+    <Key>
+      <PropertyRef Name="sysid" />
+      <PropertyRef Name="product_id" />
+      <PropertyRef Name="um_id" />
+    </Key>
+    <Property Name="sysid" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="product_id" Type="String" MaxLength="18" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="um_id" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="um_sale" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="sap_product_um" Relationship="Self.fkey_proum_sales_source01" FromRole="b2b_product_um_sale" ToRole="sap_product_um" />
+  </EntityType>
+  <EntityType Name="b2b_promotion">
+    <Key>
+      <PropertyRef Name="sysid" />
+      <PropertyRef Name="promotion_id" />
+    </Key>
+    <Property Name="sysid" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="promotion_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="description" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+    <Property Name="status" Type="Int32" Nullable="false" />
+    <Property Name="created_by" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="creation_date" Type="DateTime" Nullable="false" />
+    <Property Name="beginning_date" Type="DateTime" Nullable="false" />
+    <Property Name="ending_date" Type="DateTime" />
+    <NavigationProperty Name="b2b_promotion_discount" Relationship="Self.fk_b2b_promotion_discount_fk" FromRole="b2b_promotion" ToRole="b2b_promotion_discount" />
+    <NavigationProperty Name="b2b_promotion_schedule" Relationship="Self.fk_b2b_promotion_schedule_promotion_1" FromRole="b2b_promotion" ToRole="b2b_promotion_schedule" />
+    <NavigationProperty Name="b2b_promotion_tag" Relationship="Self.fk_b2b_promotion_tag_promotion_1" FromRole="b2b_promotion" ToRole="b2b_promotion_tag" />
+  </EntityType>
+  <EntityType Name="b2b_promotion_discount">
+    <Key>
+      <PropertyRef Name="sysid" />
+      <PropertyRef Name="promotion_id" />
+      <PropertyRef Name="from" />
+    </Key>
+    <Property Name="sysid" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="promotion_id" Type="Int32" Nullable="false" />
+    <Property Name="from" Type="Int32" Nullable="false" />
+    <Property Name="to" Type="Int32" Nullable="false" />
+    <Property Name="value" Type="Decimal" Nullable="false" />
+    <Property Name="discount_type" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="b2b_promotion" Relationship="Self.fk_b2b_promotion_discount_fk" FromRole="b2b_promotion_discount" ToRole="b2b_promotion" />
+  </EntityType>
+  <EntityType Name="b2b_promotion_schedule">
+    <Key>
+      <PropertyRef Name="sysid" />
+      <PropertyRef Name="promotion_id" />
+      <PropertyRef Name="week_day" />
+      <PropertyRef Name="hour" />
+    </Key>
+    <Property Name="sysid" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="promotion_id" Type="Int32" Nullable="false" />
+    <Property Name="week_day" Type="Int32" Nullable="false" />
+    <Property Name="hour" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="b2b_promotion" Relationship="Self.fk_b2b_promotion_schedule_promotion_1" FromRole="b2b_promotion_schedule" ToRole="b2b_promotion" />
+  </EntityType>
+  <EntityType Name="b2b_promotion_tag">
+    <Key>
+      <PropertyRef Name="sysid" />
+      <PropertyRef Name="tag" />
+      <PropertyRef Name="object_type" />
+      <PropertyRef Name="promotion_id" />
+    </Key>
+    <Property Name="sysid" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="tag" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="object_type" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="promotion_id" Type="Int32" Nullable="false" />
+    <Property Name="value" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="b2b_object_type" Relationship="Self.fk_b2b_object_type_promotion_1" FromRole="b2b_promotion_tag" ToRole="b2b_object_type" />
+    <NavigationProperty Name="b2b_promotion" Relationship="Self.fk_b2b_promotion_tag_promotion_1" FromRole="b2b_promotion_tag" ToRole="b2b_promotion" />
+    <NavigationProperty Name="b2b_tag" Relationship="Self.fk_b2b_tag_promotion_1" FromRole="b2b_promotion_tag" ToRole="b2b_tag" />
+  </EntityType>
+  <EntityType Name="b2b_section">
+    <Key>
+      <PropertyRef Name="sysid" />
+      <PropertyRef Name="section_id" />
+    </Key>
+    <Property Name="sysid" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="section_id" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityType Name="b2b_shopping_cart">
+    <Key>
+      <PropertyRef Name="sysid" />
+      <PropertyRef Name="customer_id" />
+      <PropertyRef Name="login" />
+      <PropertyRef Name="plant_id" />
+    </Key>
+    <Property Name="sysid" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="customer_id" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="login" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="plant_id" Type="String" MaxLength="4" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="data" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+    <Property Name="creation_date" Type="DateTime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="b2b_tag">
+    <Key>
+      <PropertyRef Name="sysid" />
+      <PropertyRef Name="tag" />
+    </Key>
+    <Property Name="sysid" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="tag" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="tag_list_id" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+    <Property Name="description" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+    <Property Name="source" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="status" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="b2b_promotion_tag" Relationship="Self.fk_b2b_tag_promotion_1" FromRole="b2b_tag" ToRole="b2b_promotion_tag" />
+    <NavigationProperty Name="b2b_tag_object" Relationship="Self.fk_b2b_tag_object_1" FromRole="b2b_tag" ToRole="b2b_tag_object" />
+    <NavigationProperty Name="content_article_has_tag" Relationship="Self.fk_cms_article_tags_tag" FromRole="b2b_tag" ToRole="content_article_has_tag" />
+  </EntityType>
+  <EntityType Name="b2b_tag_list">
+    <Key>
+      <PropertyRef Name="sysid" />
+      <PropertyRef Name="tag_list_id" />
+    </Key>
+    <Property Name="sysid" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="tag_list_id" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="source" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="description" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="b2b_tag_list_values" Relationship="Self.fk_b2b_tag_list_values_1" FromRole="b2b_tag_list" ToRole="b2b_tag_list_values" />
+  </EntityType>
+  <EntityType Name="b2b_tag_list_values">
+    <Key>
+      <PropertyRef Name="sysid" />
+      <PropertyRef Name="tag_list_id" />
+      <PropertyRef Name="value" />
+    </Key>
+    <Property Name="sysid" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="tag_list_id" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="value" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="text" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="sequence" Type="Int32" Nullable="false" />
+    <Property Name="status" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="b2b_tag_list" Relationship="Self.fk_b2b_tag_list_values_1" FromRole="b2b_tag_list_values" ToRole="b2b_tag_list" />
+  </EntityType>
+  <EntityType Name="b2b_tag_object">
+    <Key>
+      <PropertyRef Name="sysid" />
+      <PropertyRef Name="object_id" />
+      <PropertyRef Name="object_type" />
+      <PropertyRef Name="tag" />
+    </Key>
+    <Property Name="sysid" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="object_id" Type="String" MaxLength="18" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="object_type" Type="String" MaxLength="12" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="tag" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="value" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="b2b_object_type" Relationship="Self.fk_b2b_object_type_object_1" FromRole="b2b_tag_object" ToRole="b2b_object_type" />
+    <NavigationProperty Name="b2b_tag" Relationship="Self.fk_b2b_tag_object_1" FromRole="b2b_tag_object" ToRole="b2b_tag" />
+  </EntityType>
+  <EntityType Name="b2b_tag_type">
+    <Key>
+      <PropertyRef Name="sysid" />
+      <PropertyRef Name="text_type_id" />
+    </Key>
+    <Property Name="sysid" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="text_type_id" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="is_html" Type="Int64" Nullable="false" />
+    <Property Name="is_required" Type="Int64" Nullable="false" />
+    <Property Name="is_search_feature" Type="Int64" Nullable="false" />
+    <NavigationProperty Name="b2b_product_tag" Relationship="Self.fk_b2b_product_tag_fk" FromRole="b2b_tag_type" ToRole="b2b_product_tag" />
+  </EntityType>
+  <EntityType Name="b2b_tweet">
+    <Key>
+      <PropertyRef Name="sysid" />
+      <PropertyRef Name="tweet_id" />
+    </Key>
+    <Property Name="sysid" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="tweet_id" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="tweet_text" Type="String" MaxLength="160" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="sender_name" Type="String" MaxLength="80" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="sender_account" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="sender_profile_picture" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="status" Type="Int32" Nullable="false" />
+    <Property Name="creation_date" Type="DateTime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="b2b_user_messages">
+    <Key>
+      <PropertyRef Name="sysid" />
+      <PropertyRef Name="idmessage" />
+    </Key>
+    <Property Name="sysid" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="idmessage" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="message_key" Type="String" MaxLength="128" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="comment" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="message" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityType Name="b2b_wish_list">
+    <Key>
+      <PropertyRef Name="sysid" />
+      <PropertyRef Name="wish_list_id" />
+    </Key>
+    <Property Name="sysid" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="wish_list_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="login" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="status" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="product_id" Type="String" MaxLength="18" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="sap_customer_id" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="sap_plant_id" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="quantity" Type="Int32" Nullable="false" />
+    <Property Name="forced_quantity" Type="Int32" Nullable="false" />
+    <Property Name="creation_date" Type="DateTime" Nullable="false" />
+    <Property Name="notification_date" Type="DateTime" />
+    <Property Name="shopping_date" Type="DateTime" />
+    <Property Name="added_shopping_truck_date" Type="DateTime" />
+  </EntityType>
+  <EntityType Name="b2b_wish_list_priority">
+    <Key>
+      <PropertyRef Name="sysid" />
+      <PropertyRef Name="sap_customer_id" />
+    </Key>
+    <Property Name="sysid" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="sap_customer_id" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="priority" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="b2b_wish_list_schedule">
+    <Key>
+      <PropertyRef Name="sysid" />
+      <PropertyRef Name="plant_id" />
+    </Key>
+    <Property Name="sysid" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="plant_id" Type="String" MaxLength="4" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="schedule1" Type="Time" />
+    <Property Name="schedule2" Type="Time" />
+  </EntityType>
+  <EntityType Name="b2b_wish_list_status">
+    <Key>
+      <PropertyRef Name="sysid" />
+      <PropertyRef Name="wish_list_status_id" />
+    </Key>
+    <Property Name="sysid" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="wish_list_status_id" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityType Name="carrousel_product">
+    <Key>
+      <PropertyRef Name="sysid" />
+      <PropertyRef Name="product_id" />
+      <PropertyRef Name="carrousel_Key" />
+    </Key>
+    <Property Name="sysid" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="product_id" Type="String" MaxLength="18" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="carrousel_Key" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityType Name="cms_audit_action">
+    <Key>
+      <PropertyRef Name="sysid" />
+      <PropertyRef Name="audit_action_id" />
+    </Key>
+    <Property Name="sysid" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="audit_action_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="login" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="action" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="description" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ip_address" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="creation_date" Type="DateTime" Nullable="false" />
+    <NavigationProperty Name="cms_user" Relationship="Self.fk_cms_audit_action_1" FromRole="cms_audit_action" ToRole="cms_user" />
+  </EntityType>
+  <EntityType Name="cms_configuration">
+    <Key>
+      <PropertyRef Name="sysid" />
+      <PropertyRef Name="configuration_id" />
+    </Key>
+    <Property Name="sysid" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="configuration_id" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+    <Property Name="configuration_value" Type="String" MaxLength="300" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="configuration_description" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="position" Type="Int32" Nullable="false" />
+    <Property Name="group_name" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="cms_permission">
+    <Key>
+      <PropertyRef Name="sysid" />
+      <PropertyRef Name="permission_id" />
+    </Key>
+    <Property Name="sysid" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="permission_id" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="report_id" Type="Int32" />
+    <Property Name="name" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="permission_group" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityType Name="cms_report">
+    <Key>
+      <PropertyRef Name="sysid" />
+      <PropertyRef Name="report_id" />
+    </Key>
+    <Property Name="sysid" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="report_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="report_group_id" Type="Int32" Nullable="false" />
+    <Property Name="title" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="description" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+    <Property Name="query" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="status" Type="Int32" Nullable="false" />
+    <Property Name="creation_date" Type="DateTime" Nullable="false" />
+    <NavigationProperty Name="b2b_permission" Relationship="Self.fk_b2b_login_permission_cms_report1" FromRole="cms_report" ToRole="b2b_permission" />
+    <NavigationProperty Name="cms_report_group" Relationship="Self.fk_cms_report_group_fk" FromRole="cms_report" ToRole="cms_report_group" />
+    <NavigationProperty Name="cms_report_parameter" Relationship="Self.fk_cms_report_parameter_report_fk" FromRole="cms_report" ToRole="cms_report_parameter" />
+  </EntityType>
+  <EntityType Name="cms_report_group">
+    <Key>
+      <PropertyRef Name="sysid" />
+      <PropertyRef Name="report_group_id" />
+    </Key>
+    <Property Name="sysid" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="report_group_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="cms_report" Relationship="Self.fk_cms_report_group_fk" FromRole="cms_report_group" ToRole="cms_report" />
+  </EntityType>
+  <EntityType Name="cms_report_parameter">
+    <Key>
+      <PropertyRef Name="sysid" />
+      <PropertyRef Name="report_parameter_id" />
+    </Key>
+    <Property Name="sysid" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="report_parameter_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="report_id" Type="Int32" Nullable="false" />
+    <Property Name="parameter_type_id" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="sql_select" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="cms_report" Relationship="Self.fk_cms_report_parameter_report_fk" FromRole="cms_report_parameter" ToRole="cms_report" />
+    <NavigationProperty Name="cms_report_parameter_type" Relationship="Self.fk_cms_report_parameter_1type" FromRole="cms_report_parameter" ToRole="cms_report_parameter_type" />
+  </EntityType>
+  <EntityType Name="cms_report_parameter_type">
+    <Key>
+      <PropertyRef Name="sysid" />
+      <PropertyRef Name="parameter_type_id" />
+    </Key>
+    <Property Name="sysid" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="parameter_type_id" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="cms_report_parameter" Relationship="Self.fk_cms_report_parameter_1type" FromRole="cms_report_parameter_type" ToRole="cms_report_parameter" />
+  </EntityType>
+  <EntityType Name="cms_role">
+    <Key>
+      <PropertyRef Name="sysid" />
+      <PropertyRef Name="role_id" />
+    </Key>
+    <Property Name="sysid" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="role_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="creation_date" Type="DateTime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="cms_role_has_permission">
+    <Key>
+      <PropertyRef Name="sysid" />
+      <PropertyRef Name="role_id" />
+      <PropertyRef Name="permission_id" />
+    </Key>
+    <Property Name="sysid" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="role_id" Type="Int32" Nullable="false" />
+    <Property Name="permission_id" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityType Name="cms_user">
+    <Key>
+      <PropertyRef Name="sysid" />
+      <PropertyRef Name="login" />
+    </Key>
+    <Property Name="sysid" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="login" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="role_id" Type="Int32" Nullable="false" />
+    <Property Name="password" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="email" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="enabled" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="failed_login_attempts" Type="Int32" Nullable="false" />
+    <Property Name="last_failed_login" Type="DateTime" />
+    <Property Name="last_password_update_date" Type="DateTime" Nullable="false" />
+    <Property Name="creation_date" Type="DateTime" Nullable="false" />
+    <NavigationProperty Name="cms_audit_action" Relationship="Self.fk_cms_audit_action_1" FromRole="cms_user" ToRole="cms_audit_action" />
+  </EntityType>
+  <EntityType Name="content_article">
+    <Key>
+      <PropertyRef Name="sysid" />
+      <PropertyRef Name="article_id" />
+    </Key>
+    <Property Name="sysid" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="article_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="template_id" Type="Int32" Nullable="false" />
+    <Property Name="title" Type="String" MaxLength="180" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="friendly_url" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="content" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="author" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="creation_date" Type="DateTime" Nullable="false" />
+    <Property Name="last_update_date" Type="DateTime" Nullable="false" />
+    <Property Name="status" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="content_article_has_category" Relationship="Self.fk_article_categories_article" FromRole="content_article" ToRole="content_article_has_category" />
+    <NavigationProperty Name="content_template" Relationship="Self.fk_article_template" FromRole="content_article" ToRole="content_template" />
+    <NavigationProperty Name="content_article_has_tag" Relationship="Self.fk_cms_article_tags_article" FromRole="content_article" ToRole="content_article_has_tag" />
+  </EntityType>
+  <EntityType Name="content_article_has_category">
+    <Key>
+      <PropertyRef Name="sysid" />
+      <PropertyRef Name="article_id" />
+      <PropertyRef Name="category_id" />
+    </Key>
+    <Property Name="sysid" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="article_id" Type="Int32" Nullable="false" />
+    <Property Name="category_id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="content_article" Relationship="Self.fk_article_categories_article" FromRole="content_article_has_category" ToRole="content_article" />
+    <NavigationProperty Name="content_category" Relationship="Self.fk_article_categories_category" FromRole="content_article_has_category" ToRole="content_category" />
+  </EntityType>
+  <EntityType Name="content_article_has_tag">
+    <Key>
+      <PropertyRef Name="sysid" />
+      <PropertyRef Name="tag_id" />
+      <PropertyRef Name="article_id" />
+    </Key>
+    <Property Name="sysid" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="tag_id" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="article_id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="b2b_tag" Relationship="Self.fk_cms_article_tags_tag" FromRole="content_article_has_tag" ToRole="b2b_tag" />
+    <NavigationProperty Name="content_article" Relationship="Self.fk_cms_article_tags_article" FromRole="content_article_has_tag" ToRole="content_article" />
+  </EntityType>
+  <EntityType Name="content_category">
+    <Key>
+      <PropertyRef Name="sysid" />
+      <PropertyRef Name="category_id" />
+    </Key>
+    <Property Name="sysid" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="category_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="80" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="parent_category_id" Type="Int32" />
+    <Property Name="summary" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+    <Property Name="image_file_name" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+    <Property Name="sequence" Type="Int32" Nullable="false" />
+    <Property Name="enabled" Type="Int32" Nullable="false" />
+    <Property Name="creation_date" Type="DateTime" Nullable="false" />
+    <Property Name="status" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="content_article_has_category" Relationship="Self.fk_article_categories_category" FromRole="content_category" ToRole="content_article_has_category" />
+    <NavigationProperty Name="content_category1" Relationship="Self.fk_category_category" FromRole="content_category" ToRole="content_category1" />
+    <NavigationProperty Name="content_category2" Relationship="Self.fk_category_category" FromRole="content_category1" ToRole="content_category" />
+  </EntityType>
+  <EntityType Name="content_resource">
+    <Key>
+      <PropertyRef Name="sysid" />
+      <PropertyRef Name="resource_id" />
+    </Key>
+    <Property Name="sysid" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="resource_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="resource_type_id" Type="Int32" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="80" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="file_name" Type="String" MaxLength="80" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="thumb_file_name" Type="String" MaxLength="80" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="creation_date" Type="DateTime" Nullable="false" />
+    <Property Name="status" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="content_resource_type" Relationship="Self.fk_resource_resource_type" FromRole="content_resource" ToRole="content_resource_type" />
+  </EntityType>
+  <EntityType Name="content_resource_type">
+    <Key>
+      <PropertyRef Name="sysid" />
+      <PropertyRef Name="resource_type_id" />
+    </Key>
+    <Property Name="sysid" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="resource_type_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="80" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="content_types" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+    <Property Name="max_size" Type="Int32" Nullable="false" />
+    <Property Name="default_thumb" Type="String" MaxLength="80" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="html" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="status" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="content_resource" Relationship="Self.fk_resource_resource_type" FromRole="content_resource_type" ToRole="content_resource" />
+  </EntityType>
+  <EntityType Name="content_template">
+    <Key>
+      <PropertyRef Name="sysid" />
+      <PropertyRef Name="template_id" />
+    </Key>
+    <Property Name="sysid" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="template_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="80" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="content" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+    <Property Name="status" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="content_article" Relationship="Self.fk_article_template" FromRole="content_template" ToRole="content_article" />
+  </EntityType>
+  <EntityType Name="sap_area_plant">
+    <Key>
+      <PropertyRef Name="sysid" />
+      <PropertyRef Name="vkorg_id" />
+      <PropertyRef Name="channel_id" />
+      <PropertyRef Name="sector_id" />
+    </Key>
+    <Property Name="sysid" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="vkorg_id" Type="String" MaxLength="4" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="channel_id" Type="String" MaxLength="2" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="sector_id" Type="String" MaxLength="2" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="plant_id" Type="String" MaxLength="4" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="blocked" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="sap_channel">
+    <Key>
+      <PropertyRef Name="sysid" />
+      <PropertyRef Name="channel_id" />
+    </Key>
+    <Property Name="sysid" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="channel_id" Type="String" MaxLength="2" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="sap_corporation">
+    <Key>
+      <PropertyRef Name="sysid" />
+      <PropertyRef Name="idcorporation" />
+    </Key>
+    <Property Name="sysid" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="idcorporation" Type="String" MaxLength="4" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+    <Property Name="RIF" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="namef" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="b2b_bank_accounts" Relationship="Self.fk_b2b_bank_accounts_sap_corporation1" FromRole="sap_corporation" ToRole="b2b_bank_accounts" />
+    <NavigationProperty Name="b2b_banking_transaction" Relationship="Self.fk_b2b_banking_transaction_sap_corporation" FromRole="sap_corporation" ToRole="b2b_banking_transaction" />
+    <NavigationProperty Name="b2b_corporation" Relationship="Self.fk_b2b_corporation_sap_corporation1" FromRole="sap_corporation" ToRole="b2b_corporation" />
+    <NavigationProperty Name="sap_documentfi" Relationship="Self.fk_sap_documentfi_sap_corporation1" FromRole="sap_corporation" ToRole="sap_documentfi" />
+  </EntityType>
+  <EntityType Name="sap_customer">
+    <Key>
+      <PropertyRef Name="sysid" />
+      <PropertyRef Name="custsap_id" />
+    </Key>
+    <Property Name="sysid" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="custsap_id" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="customer_type" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="email" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+    <Property Name="name" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+    <Property Name="rif" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="nif" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="phone" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="sort" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+    <Property Name="address" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+    <Property Name="grp_alm_des" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+    <Property Name="grp_cust" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="b2b_customer" Relationship="Self.b2b_customer_ibfk_1" FromRole="sap_customer" ToRole="b2b_customer" />
+    <NavigationProperty Name="sap_documentfi" Relationship="Self.fk_sap_documentfi_sap_customer1" FromRole="sap_customer" ToRole="sap_documentfi" />
+  </EntityType>
+  <EntityType Name="sap_customer_area">
+    <Key>
+      <PropertyRef Name="sysid" />
+      <PropertyRef Name="custsap_id" />
+      <PropertyRef Name="vkorg_id" />
+      <PropertyRef Name="channel_id" />
+      <PropertyRef Name="sector_id" />
+    </Key>
+    <Property Name="sysid" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="custsap_id" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="vkorg_id" Type="String" MaxLength="4" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="channel_id" Type="String" MaxLength="2" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="sector_id" Type="String" MaxLength="2" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="shopping" Type="Boolean" />
+    <Property Name="grpcustid" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+    <Property Name="visday" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="vistime" Type="Time" />
+    <Property Name="visfrc" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Name="iddivision" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="sap_customer_balance">
+    <Key>
+      <PropertyRef Name="sysid" />
+      <PropertyRef Name="custsap_id" />
+      <PropertyRef Name="society_id" />
+    </Key>
+    <Property Name="sysid" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="custsap_id" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="society_id" Type="String" MaxLength="4" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="balance" Type="Double" />
+    <Property Name="credit_limit" Type="Double" />
+    <Property Name="credit" Type="Double" />
+  </EntityType>
+  <EntityType Name="sap_customer_rol">
+    <Key>
+      <PropertyRef Name="sysid" />
+      <PropertyRef Name="custsap_id" />
+      <PropertyRef Name="vkorg_id" />
+      <PropertyRef Name="channel_id" />
+      <PropertyRef Name="sector_id" />
+      <PropertyRef Name="custsap2_id" />
+    </Key>
+    <Property Name="sysid" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="custsap_id" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="vkorg_id" Type="String" MaxLength="4" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="channel_id" Type="String" MaxLength="2" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="sector_id" Type="String" MaxLength="2" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="custsap2_id" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="role" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+    <Property Name="shopping" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="sap_customer_state">
+    <Key>
+      <PropertyRef Name="sysid" />
+      <PropertyRef Name="custsap_id" />
+    </Key>
+    <Property Name="sysid" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="custsap_id" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="blocked" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="sap_division">
+    <Key>
+      <PropertyRef Name="sysid" />
+      <PropertyRef Name="iddivision" />
+    </Key>
+    <Property Name="sysid" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="iddivision" Type="String" MaxLength="4" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="b2b_bank_accounts" Relationship="Self.fk_b2b_bank_accounts_sap_division1" FromRole="sap_division" ToRole="b2b_bank_accounts" />
+    <NavigationProperty Name="b2b_banking_transaction" Relationship="Self.fk_b2b_banking_transaction_sap_division" FromRole="sap_division" ToRole="b2b_banking_transaction" />
+  </EntityType>
+  <EntityType Name="sap_doc">
+    <Key>
+      <PropertyRef Name="sysid" />
+      <PropertyRef Name="doc_id" />
+    </Key>
+    <Property Name="sysid" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="doc_id" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="creation_date" Type="DateTime" />
+    <Property Name="amount" Type="Double" />
+    <Property Name="custsap" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="vkorg" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+    <Property Name="channel" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+    <Property Name="sector" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+    <Property Name="creation_by" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+    <Property Name="status_orderid" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+    <Property Name="order_text" Type="String" MaxLength="35" FixedLength="false" Unicode="false" />
+    <Property Name="typedoc" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="destsap" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="sap_doc_bin">
+    <Key>
+      <PropertyRef Name="sysid" />
+      <PropertyRef Name="doc_id" />
+      <PropertyRef Name="typebin" />
+    </Key>
+    <Property Name="sysid" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="doc_id" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="typebin" Type="String" MaxLength="4" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="filetype" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+    <Property Name="empty" Type="Boolean" />
+    <Property Name="file" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="filetext" Type="String" MaxLength="16777215" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="sap_doc_item">
+    <Key>
+      <PropertyRef Name="sysid" />
+      <PropertyRef Name="doc_id" />
+      <PropertyRef Name="pos" />
+    </Key>
+    <Property Name="sysid" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="doc_id" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="pos" Type="Int32" Nullable="false" />
+    <Property Name="product" Type="String" MaxLength="18" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="quantity" Type="Double" Nullable="false" />
+    <Property Name="umo" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+    <Property Name="status_orderid" Type="String" MaxLength="2" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="amount" Type="Double" />
+    <Property Name="ref_doc_id" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="ref_pos" Type="Int32" />
+    <Property Name="base" Type="Double" />
+    <Property Name="descu" Type="Double" />
+    <Property Name="valordesc" Type="Double" />
+    <Property Name="iva" Type="Double" />
+    <Property Name="valoriva" Type="Double" />
+  </EntityType>
+  <EntityType Name="sap_documentfi">
+    <Key>
+      <PropertyRef Name="sysid" />
+      <PropertyRef Name="iddocfi" />
+      <PropertyRef Name="pos" />
+    </Key>
+    <Property Name="sysid" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="iddocfi" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="pos" Type="Int32" Nullable="false" />
+    <Property Name="iddoctype" Type="String" MaxLength="4" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="custsap_id" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="idcorporation" Type="String" MaxLength="4" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="idpaycondition" Type="String" MaxLength="4" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ref1" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="ref2" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="datedoc" Type="DateTime" />
+    <Property Name="duedate" Type="DateTime" />
+    <Property Name="amount_value" Type="Double" />
+    <Property Name="outstanding_amount" Type="Double" />
+    <Property Name="iscompleted" Type="Boolean" />
+    <Property Name="iddivision" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+    <Property Name="nocheck" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="text01" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="tax" Type="Double" />
+    <Property Name="tax_wh" Type="Double" />
+    <NavigationProperty Name="b2b_banking_tran_det" Relationship="Self.fk_sap_docfik1" FromRole="sap_documentfi" ToRole="b2b_banking_tran_det" />
+    <NavigationProperty Name="sap_corporation" Relationship="Self.fk_sap_documentfi_sap_corporation1" FromRole="sap_documentfi" ToRole="sap_corporation" />
+    <NavigationProperty Name="sap_customer" Relationship="Self.fk_sap_documentfi_sap_customer1" FromRole="sap_documentfi" ToRole="sap_customer" />
+    <NavigationProperty Name="sap_payment_conditions" Relationship="Self.fk_sap_documentfi_sap_payment_condition1" FromRole="sap_documentfi" ToRole="sap_payment_conditions" />
+    <NavigationProperty Name="sap_payment_types" Relationship="Self.fk_sap_documentfi_sap_payment_types1" FromRole="sap_documentfi" ToRole="sap_payment_types" />
+  </EntityType>
+  <EntityType Name="sap_groupcustomer">
+    <Key>
+      <PropertyRef Name="sysid" />
+      <PropertyRef Name="grpcust_id" />
+    </Key>
+    <Property Name="sysid" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="grpcust_id" Type="String" MaxLength="2" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="sap_konh">
+    <Key>
+      <PropertyRef Name="mandt" />
+      <PropertyRef Name="knumh" />
+    </Key>
+    <Property Name="mandt" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="knumh" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ernam" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
+    <Property Name="erdat" Type="DateTime" />
+    <Property Name="kvewe" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="kotabnr" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+    <Property Name="kappl" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+    <Property Name="kschl" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+    <Property Name="vakey" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="datab" Type="DateTime" />
+    <Property Name="datbi" Type="DateTime" />
+    <Property Name="kosrt" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="kzust" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+    <Property Name="knuma_pi" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="knuma_ag" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="knuma_sq" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="knuma_sd" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="aktnr" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="knuma_bo" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="licno" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="licdt" Type="DateTime" />
+    <Property Name="vadat" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="sap_konm">
+    <Key>
+      <PropertyRef Name="mandt" />
+      <PropertyRef Name="knumh" />
+      <PropertyRef Name="kopos" />
+      <PropertyRef Name="klfn1" />
+    </Key>
+    <Property Name="mandt" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="knumh" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="kopos" Type="String" MaxLength="2" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="klfn1" Type="String" MaxLength="4" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="kstbm" Type="Double" />
+    <Property Name="kbetr" Type="Double" />
+  </EntityType>
+  <EntityType Name="sap_konp">
+    <Key>
+      <PropertyRef Name="mandt" />
+      <PropertyRef Name="knumh" />
+      <PropertyRef Name="kopos" />
+    </Key>
+    <Property Name="mandt" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="knumh" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="kopos" Type="String" MaxLength="2" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="kappl" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+    <Property Name="kschl" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+    <Property Name="knumt" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="stfkz" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="kzbzg" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="kstbm" Type="Double" />
+    <Property Name="konms" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+    <Property Name="kstbw" Type="Double" />
+    <Property Name="konws" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+    <Property Name="krech" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="kbetr" Type="Double" />
+    <Property Name="konwa" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+    <Property Name="kpein" Type="Double" />
+    <Property Name="kmein" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+    <Property Name="prsch" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+    <Property Name="kumza" Type="Double" />
+    <Property Name="kumne" Type="Double" />
+    <Property Name="meins" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+    <Property Name="mxwrt" Type="Double" />
+    <Property Name="gkwrt" Type="Double" />
+    <Property Name="pkwrt" Type="Double" />
+    <Property Name="fkwrt" Type="Double" />
+    <Property Name="rswrt" Type="Double" />
+    <Property Name="kwaeh" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+    <Property Name="ukbas" Type="Double" />
+    <Property Name="kznep" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="kunnr" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="lifnr" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="mwsk1" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+    <Property Name="loevm_ko" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="zaehk_ind" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+    <Property Name="bomat" Type="String" MaxLength="18" FixedLength="false" Unicode="false" />
+    <Property Name="kbrue" Type="Double" />
+    <Property Name="kspae" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="bosta" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="knuma_pi" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="knuma_ag" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="knuma_sq" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="valtg" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+    <Property Name="valdt" Type="DateTime" />
+    <Property Name="zterm" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+    <Property Name="anzauf" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+    <Property Name="mikbas" Type="Double" />
+    <Property Name="mxkbas" Type="Double" />
+    <Property Name="komxwrt" Type="Double" />
+    <Property Name="klf_stg" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+    <Property Name="klf_kal" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+    <Property Name="vkkal" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="aktnr" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="knuma_bo" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="mwsk2" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+    <Property Name="vertt" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="vertn" Type="String" MaxLength="13" FixedLength="false" Unicode="false" />
+    <Property Name="vbewa" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+    <Property Name="mdflg" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="kfrst" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="uasta" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="C_bev1_ecrtt" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="C_bev1_ecrtn" Type="String" MaxLength="13" FixedLength="false" Unicode="false" />
+    <Property Name="C_bev1_ecewa" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="sap_master_conditions">
+    <Key>
+      <PropertyRef Name="sysid" />
+      <PropertyRef Name="kschl" />
+    </Key>
+    <Property Name="sysid" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="kschl" Type="String" MaxLength="4" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="discount" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sap_payment_conditions">
+    <Key>
+      <PropertyRef Name="sysid" />
+      <PropertyRef Name="idpaycondition" />
+    </Key>
+    <Property Name="sysid" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="idpaycondition" Type="String" MaxLength="4" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="sap_documentfi" Relationship="Self.fk_sap_documentfi_sap_payment_condition1" FromRole="sap_payment_conditions" ToRole="sap_documentfi" />
+  </EntityType>
+  <EntityType Name="sap_payment_types">
+    <Key>
+      <PropertyRef Name="sysid" />
+      <PropertyRef Name="iddoctype" />
+    </Key>
+    <Property Name="sysid" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="iddoctype" Type="String" MaxLength="4" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+    <Property Name="name2" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="sap_documentfi" Relationship="Self.fk_sap_documentfi_sap_payment_types1" FromRole="sap_payment_types" ToRole="sap_documentfi" />
+  </EntityType>
+  <EntityType Name="sap_plant">
+    <Key>
+      <PropertyRef Name="sysid" />
+      <PropertyRef Name="plant_id" />
+    </Key>
+    <Property Name="sysid" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="plant_id" Type="String" MaxLength="4" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sap_product">
+    <Key>
+      <PropertyRef Name="sysid" />
+      <PropertyRef Name="product_id" />
+    </Key>
+    <Property Name="sysid" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="product_id" Type="String" MaxLength="18" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="umb" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+    <Property Name="umv" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+    <Property Name="familyid" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="subfamilyid" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="brandid" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="blocked" Type="Boolean" />
+    <Property Name="type_p" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="sap_product_brand">
+    <Key>
+      <PropertyRef Name="sysid" />
+      <PropertyRef Name="family_id" />
+      <PropertyRef Name="sub_family_id" />
+      <PropertyRef Name="brand_id" />
+    </Key>
+    <Property Name="sysid" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="family_id" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="sub_family_id" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="brand_id" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sap_product_exc_product">
+    <Key>
+      <PropertyRef Name="sysid" />
+      <PropertyRef Name="custsap_id" />
+      <PropertyRef Name="product_id" />
+      <PropertyRef Name="role" />
+    </Key>
+    <Property Name="sysid" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="custsap_id" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="product_id" Type="String" MaxLength="18" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="role" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sap_product_family">
+    <Key>
+      <PropertyRef Name="sysid" />
+      <PropertyRef Name="family_id" />
+    </Key>
+    <Property Name="sysid" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="family_id" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sap_product_plant">
+    <Key>
+      <PropertyRef Name="sysid" />
+      <PropertyRef Name="product_id" />
+      <PropertyRef Name="plant_id" />
+      <PropertyRef Name="store_id" />
+    </Key>
+    <Property Name="sysid" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="product_id" Type="String" MaxLength="18" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="plant_id" Type="String" MaxLength="4" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="store_id" Type="String" MaxLength="4" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="vshow" Type="Boolean" />
+    <Property Name="sell" Type="Boolean" />
+    <Property Name="addscard" Type="Boolean" />
+    <Property Name="available" Type="Double" />
+    <Property Name="confirmed" Type="Double" />
+    <Property Name="need" Type="Double" />
+  </EntityType>
+  <EntityType Name="sap_product_price">
+    <Key>
+      <PropertyRef Name="sysid" />
+      <PropertyRef Name="product_id" />
+      <PropertyRef Name="cust_sap_id" />
+      <PropertyRef Name="plant_id" />
+    </Key>
+    <Property Name="sysid" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="product_id" Type="String" MaxLength="18" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="cust_sap_id" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="plant_id" Type="String" MaxLength="4" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="price_value" Type="Double" />
+    <Property Name="umv" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+    <Property Name="discount_value" Type="Double" />
+    <Property Name="discount" Type="Double" />
+    <Property Name="tax_value" Type="Double" />
+    <Property Name="tax" Type="Double" />
+  </EntityType>
+  <EntityType Name="sap_product_price_cond">
+    <Key>
+      <PropertyRef Name="sysid" />
+      <PropertyRef Name="product_id" />
+      <PropertyRef Name="cust_sap_id" />
+      <PropertyRef Name="plant_id" />
+      <PropertyRef Name="kschl" />
+    </Key>
+    <Property Name="sysid" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="product_id" Type="String" MaxLength="18" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="cust_sap_id" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="plant_id" Type="String" MaxLength="4" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="kschl" Type="String" MaxLength="4" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="knumh" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="erdat" Type="DateTime" />
+  </EntityType>
+  <EntityType Name="sap_product_subfamily">
+    <Key>
+      <PropertyRef Name="sysid" />
+      <PropertyRef Name="family_id" />
+      <PropertyRef Name="sub_family_id" />
+    </Key>
+    <Property Name="sysid" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="family_id" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="sub_family_id" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sap_product_tag">
+    <Key>
+      <PropertyRef Name="sysid" />
+      <PropertyRef Name="product_id" />
+      <PropertyRef Name="text_type_id" />
+      <PropertyRef Name="language_id" />
+    </Key>
+    <Property Name="sysid" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="product_id" Type="String" MaxLength="18" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="text_type_id" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="language_id" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="textcol" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="sap_product_um">
+    <Key>
+      <PropertyRef Name="sysid" />
+      <PropertyRef Name="product_id" />
+      <PropertyRef Name="um_id" />
+    </Key>
+    <Property Name="sysid" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="product_id" Type="String" MaxLength="18" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="um_id" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ean" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="length" Type="Double" />
+    <Property Name="width" Type="Double" />
+    <Property Name="height" Type="Double" />
+    <Property Name="umd" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+    <Property Name="volume" Type="Double" />
+    <Property Name="umv" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+    <Property Name="gross_weight" Type="Double" />
+    <Property Name="net_weight" Type="Double" />
+    <Property Name="Umw" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+    <Property Name="factor_umb" Type="Double" />
+    <NavigationProperty Name="b2b_product_um_sale" Relationship="Self.fkey_proum_sales_source01" FromRole="sap_product_um" ToRole="b2b_product_um_sale" />
+  </EntityType>
+  <EntityType Name="sap_store">
+    <Key>
+      <PropertyRef Name="sysid" />
+      <PropertyRef Name="plant_id" />
+      <PropertyRef Name="grp_alm_des" />
+      <PropertyRef Name="store_id" />
+    </Key>
+    <Property Name="sysid" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="plant_id" Type="String" MaxLength="4" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="grp_alm_des" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="store_id" Type="String" MaxLength="4" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sap_system">
+    <Key>
+      <PropertyRef Name="sysid" />
+    </Key>
+    <Property Name="sysid" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="text" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="sap_units">
+    <Key>
+      <PropertyRef Name="sysid" />
+      <PropertyRef Name="idunit" />
+    </Key>
+    <Property Name="sysid" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="idunit" Type="String" MaxLength="4" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="denominacion" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="iconurl_01" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="new_view">
+    <Key>
+      <PropertyRef Name="sysid" />
+      <PropertyRef Name="custsap_id" />
+      <PropertyRef Name="customer_type" />
+      <PropertyRef Name="email" />
+      <PropertyRef Name="name" />
+      <PropertyRef Name="rif" />
+      <PropertyRef Name="nif" />
+      <PropertyRef Name="phone" />
+      <PropertyRef Name="sort" />
+      <PropertyRef Name="address" />
+      <PropertyRef Name="count_login_" />
+    </Key>
+    <Property Name="sysid" Type="SByte" Nullable="false" />
+    <Property Name="custsap_id" Type="SByte" Nullable="false" />
+    <Property Name="customer_type" Type="SByte" Nullable="false" />
+    <Property Name="email" Type="SByte" Nullable="false" />
+    <Property Name="name" Type="SByte" Nullable="false" />
+    <Property Name="rif" Type="SByte" Nullable="false" />
+    <Property Name="nif" Type="SByte" Nullable="false" />
+    <Property Name="phone" Type="SByte" Nullable="false" />
+    <Property Name="sort" Type="SByte" Nullable="false" />
+    <Property Name="address" Type="SByte" Nullable="false" />
+    <Property Name="count_login_" Type="SByte" Nullable="false" />
+  </EntityType>
+  <Association Name="fk_b2b_audit_action_b2b_login1">
+    <End Role="b2b_login" Type="Self.b2b_login" Multiplicity="1" />
+    <End Role="b2b_audit_action" Type="Self.b2b_audit_action" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="b2b_login">
+        <PropertyRef Name="sysid" />
+        <PropertyRef Name="login" />
+      </Principal>
+      <Dependent Role="b2b_audit_action">
+        <PropertyRef Name="sysid" />
+        <PropertyRef Name="login" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_b2b_bank_accounts_b2b_banks1">
+    <End Role="b2b_banks" Type="Self.b2b_banks" Multiplicity="1" />
+    <End Role="b2b_bank_accounts" Type="Self.b2b_bank_accounts" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="b2b_banks">
+        <PropertyRef Name="idbank" />
+        <PropertyRef Name="sysid" />
+      </Principal>
+      <Dependent Role="b2b_bank_accounts">
+        <PropertyRef Name="idbank" />
+        <PropertyRef Name="sysid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_b2b_bank_accounts_sap_corporation1">
+    <End Role="sap_corporation" Type="Self.sap_corporation" Multiplicity="1" />
+    <End Role="b2b_bank_accounts" Type="Self.b2b_bank_accounts" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="sap_corporation">
+        <PropertyRef Name="sysid" />
+        <PropertyRef Name="idcorporation" />
+      </Principal>
+      <Dependent Role="b2b_bank_accounts">
+        <PropertyRef Name="sysid" />
+        <PropertyRef Name="idcorporation" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_b2b_bank_accounts_sap_division1">
+    <End Role="sap_division" Type="Self.sap_division" Multiplicity="1" />
+    <End Role="b2b_bank_accounts" Type="Self.b2b_bank_accounts" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="sap_division">
+        <PropertyRef Name="sysid" />
+        <PropertyRef Name="iddivision" />
+      </Principal>
+      <Dependent Role="b2b_bank_accounts">
+        <PropertyRef Name="sysid" />
+        <PropertyRef Name="iddivision" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_b2b_banking_transaction_b2b_bank_accounts1">
+    <End Role="b2b_bank_accounts" Type="Self.b2b_bank_accounts" Multiplicity="0..1" />
+    <End Role="b2b_banking_transaction" Type="Self.b2b_banking_transaction" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="b2b_bank_accounts">
+        <PropertyRef Name="idaccount" />
+        <PropertyRef Name="sysid" />
+      </Principal>
+      <Dependent Role="b2b_banking_transaction">
+        <PropertyRef Name="idaccount" />
+        <PropertyRef Name="sysid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_b2b_customer_bank_checks_b2b_banking_transaction1">
+    <End Role="b2b_banking_transaction" Type="Self.b2b_banking_transaction" Multiplicity="1" />
+    <End Role="b2b_banking_tran_customer_check" Type="Self.b2b_banking_tran_customer_check" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="b2b_banking_transaction">
+        <PropertyRef Name="idbtrans" />
+        <PropertyRef Name="sysid" />
+      </Principal>
+      <Dependent Role="b2b_banking_tran_customer_check">
+        <PropertyRef Name="idbtrans" />
+        <PropertyRef Name="sysid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_b2b_customer_bank_checks_b2b_banks1">
+    <End Role="b2b_banks" Type="Self.b2b_banks" Multiplicity="1" />
+    <End Role="b2b_banking_tran_customer_check" Type="Self.b2b_banking_tran_customer_check" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="b2b_banks">
+        <PropertyRef Name="idbank" />
+        <PropertyRef Name="sysid" />
+      </Principal>
+      <Dependent Role="b2b_banking_tran_customer_check">
+        <PropertyRef Name="idbank" />
+        <PropertyRef Name="sysid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_b2b_banking_transaction_2">
+    <End Role="b2b_banking_transaction" Type="Self.b2b_banking_transaction" Multiplicity="1" />
+    <End Role="b2b_banking_tran_det" Type="Self.b2b_banking_tran_det" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="b2b_banking_transaction">
+        <PropertyRef Name="idbtrans" />
+        <PropertyRef Name="sysid" />
+      </Principal>
+      <Dependent Role="b2b_banking_tran_det">
+        <PropertyRef Name="idbtrans" />
+        <PropertyRef Name="sysid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_sap_docfik1">
+    <End Role="sap_documentfi" Type="Self.sap_documentfi" Multiplicity="1" />
+    <End Role="b2b_banking_tran_det" Type="Self.b2b_banking_tran_det" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="sap_documentfi">
+        <PropertyRef Name="sysid" />
+        <PropertyRef Name="iddocfi" />
+        <PropertyRef Name="pos" />
+      </Principal>
+      <Dependent Role="b2b_banking_tran_det">
+        <PropertyRef Name="sysid" />
+        <PropertyRef Name="iddocfi" />
+        <PropertyRef Name="pos" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_b2b_banking_tran_reasons_b2b_payment_reasons1">
+    <End Role="b2b_payment_reasons" Type="Self.b2b_payment_reasons" Multiplicity="1" />
+    <End Role="b2b_banking_tran_reasons" Type="Self.b2b_banking_tran_reasons" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="b2b_payment_reasons">
+        <PropertyRef Name="idreason" />
+        <PropertyRef Name="sysid" />
+      </Principal>
+      <Dependent Role="b2b_banking_tran_reasons">
+        <PropertyRef Name="idreason" />
+        <PropertyRef Name="sysid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_b2b_banking_transaction_copy1_b2b_banking_transaction10">
+    <End Role="b2b_banking_transaction" Type="Self.b2b_banking_transaction" Multiplicity="1" />
+    <End Role="b2b_banking_tran_reasons" Type="Self.b2b_banking_tran_reasons" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="b2b_banking_transaction">
+        <PropertyRef Name="idbtrans" />
+        <PropertyRef Name="sysid" />
+      </Principal>
+      <Dependent Role="b2b_banking_tran_reasons">
+        <PropertyRef Name="idbtrans" />
+        <PropertyRef Name="sysid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_b2b_payment_reason_file1">
+    <End Role="b2b_banking_transaction" Type="Self.b2b_banking_transaction" Multiplicity="1" />
+    <End Role="b2b_banking_tran_reasons_files" Type="Self.b2b_banking_tran_reasons_files" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="b2b_banking_transaction">
+        <PropertyRef Name="idbtrans" />
+        <PropertyRef Name="sysid" />
+      </Principal>
+      <Dependent Role="b2b_banking_tran_reasons_files">
+        <PropertyRef Name="idbtrans" />
+        <PropertyRef Name="sysid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_b2b_banking_transaction_b2b_banks02">
+    <End Role="b2b_banks" Type="Self.b2b_banks" Multiplicity="0..1" />
+    <End Role="b2b_banking_transaction" Type="Self.b2b_banking_transaction" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="b2b_banks">
+        <PropertyRef Name="idbank" />
+        <PropertyRef Name="sysid" />
+      </Principal>
+      <Dependent Role="b2b_banking_transaction">
+        <PropertyRef Name="voucher_idbank" />
+        <PropertyRef Name="sysid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_b2b_banking_transaction_b2b_payment_methods1">
+    <End Role="b2b_payment_methods" Type="Self.b2b_payment_methods" Multiplicity="1" />
+    <End Role="b2b_banking_transaction" Type="Self.b2b_banking_transaction" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="b2b_payment_methods">
+        <PropertyRef Name="idpaymethod" />
+        <PropertyRef Name="sysid" />
+      </Principal>
+      <Dependent Role="b2b_banking_transaction">
+        <PropertyRef Name="idpaymethod" />
+        <PropertyRef Name="sysid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_b2b_banking_transaction_sap_corporation">
+    <End Role="sap_corporation" Type="Self.sap_corporation" Multiplicity="1" />
+    <End Role="b2b_banking_transaction" Type="Self.b2b_banking_transaction" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="sap_corporation">
+        <PropertyRef Name="sysid" />
+        <PropertyRef Name="idcorporation" />
+      </Principal>
+      <Dependent Role="b2b_banking_transaction">
+        <PropertyRef Name="sysid" />
+        <PropertyRef Name="idcorporation" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_b2b_banking_transaction_sap_division">
+    <End Role="sap_division" Type="Self.sap_division" Multiplicity="0..1" />
+    <End Role="b2b_banking_transaction" Type="Self.b2b_banking_transaction" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="sap_division">
+        <PropertyRef Name="sysid" />
+        <PropertyRef Name="iddivision" />
+      </Principal>
+      <Dependent Role="b2b_banking_transaction">
+        <PropertyRef Name="sysid" />
+        <PropertyRef Name="iddivision" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_b2b_banner_act_type">
+    <End Role="b2b_banner_activation_type" Type="Self.b2b_banner_activation_type" Multiplicity="1" />
+    <End Role="b2b_banner" Type="Self.b2b_banner" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="b2b_banner_activation_type">
+        <PropertyRef Name="sysid" />
+        <PropertyRef Name="banner_activation_type" />
+      </Principal>
+      <Dependent Role="b2b_banner">
+        <PropertyRef Name="sysid" />
+        <PropertyRef Name="activation_type" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_b2b_carousel_typeFK">
+    <End Role="b2b_carousel_type" Type="Self.b2b_carousel_type" Multiplicity="1" />
+    <End Role="b2b_carousel" Type="Self.b2b_carousel" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="b2b_carousel_type">
+        <PropertyRef Name="sysid" />
+        <PropertyRef Name="carousel_type_id" />
+      </Principal>
+      <Dependent Role="b2b_carousel">
+        <PropertyRef Name="sysid" />
+        <PropertyRef Name="carousel_type_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_b2b_category_nav_tree_fk">
+    <End Role="b2b_navigation_tree" Type="Self.b2b_navigation_tree" Multiplicity="1" />
+    <End Role="b2b_category" Type="Self.b2b_category" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="b2b_navigation_tree">
+        <PropertyRef Name="navigation_tree_id" />
+        <PropertyRef Name="sysid" />
+      </Principal>
+      <Dependent Role="b2b_category">
+        <PropertyRef Name="navigation_tree_id" />
+        <PropertyRef Name="sysid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_b2b_category_self_fk">
+    <End Role="b2b_category" Type="Self.b2b_category" Multiplicity="0..1" />
+    <End Role="b2b_category1" Type="Self.b2b_category" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="b2b_category">
+        <PropertyRef Name="category_id" />
+        <PropertyRef Name="sysid" />
+      </Principal>
+      <Dependent Role="b2b_category1">
+        <PropertyRef Name="parent_category_id" />
+        <PropertyRef Name="sysid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_b2b_corporation_sap_corporation1">
+    <End Role="sap_corporation" Type="Self.sap_corporation" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="b2b_corporation" Type="Self.b2b_corporation" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="sap_corporation">
+        <PropertyRef Name="sysid" />
+        <PropertyRef Name="idcorporation" />
+      </Principal>
+      <Dependent Role="b2b_corporation">
+        <PropertyRef Name="sysid" />
+        <PropertyRef Name="idcorporation" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="b2b_customer_ibfk_1">
+    <End Role="sap_customer" Type="Self.sap_customer" Multiplicity="1" />
+    <End Role="b2b_customer" Type="Self.b2b_customer" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="sap_customer">
+        <PropertyRef Name="sysid" />
+        <PropertyRef Name="custsap_id" />
+      </Principal>
+      <Dependent Role="b2b_customer">
+        <PropertyRef Name="sysid" />
+        <PropertyRef Name="custsap_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_login_dash_rol">
+    <End Role="b2b_dashboard_rol" Type="Self.b2b_dashboard_rol" Multiplicity="1" />
+    <End Role="b2b_login_dashboard" Type="Self.b2b_login_dashboard" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="b2b_dashboard_rol">
+        <PropertyRef Name="id_rol" />
+      </Principal>
+      <Dependent Role="b2b_login_dashboard">
+        <PropertyRef Name="rol_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_b2b_device_b2b_login1">
+    <End Role="b2b_login" Type="Self.b2b_login" Multiplicity="1" />
+    <End Role="b2b_device" Type="Self.b2b_device" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="b2b_login">
+        <PropertyRef Name="sysid" />
+        <PropertyRef Name="login" />
+      </Principal>
+      <Dependent Role="b2b_device">
+        <PropertyRef Name="sysid" />
+        <PropertyRef Name="login" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_b2b_product_image_fk">
+    <End Role="b2b_image_type" Type="Self.b2b_image_type" Multiplicity="1" />
+    <End Role="b2b_product_image" Type="Self.b2b_product_image" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="b2b_image_type">
+        <PropertyRef Name="sysid" />
+        <PropertyRef Name="image_type_id" />
+      </Principal>
+      <Dependent Role="b2b_product_image">
+        <PropertyRef Name="sysid" />
+        <PropertyRef Name="image_type_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_b2b_login_nav_tree_fk">
+    <End Role="b2b_navigation_tree" Type="Self.b2b_navigation_tree" Multiplicity="0..1" />
+    <End Role="b2b_login" Type="Self.b2b_login" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="b2b_navigation_tree">
+        <PropertyRef Name="navigation_tree_id" />
+        <PropertyRef Name="sysid" />
+      </Principal>
+      <Dependent Role="b2b_login">
+        <PropertyRef Name="navigation_tree_id" />
+        <PropertyRef Name="sysid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_b2b_login_permission_b2b_login1">
+    <End Role="b2b_login" Type="Self.b2b_login" Multiplicity="1" />
+    <End Role="b2b_login_permission" Type="Self.b2b_login_permission" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="b2b_login">
+        <PropertyRef Name="sysid" />
+        <PropertyRef Name="login" />
+      </Principal>
+      <Dependent Role="b2b_login_permission">
+        <PropertyRef Name="sysid" />
+        <PropertyRef Name="login" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_b2b_login_sap_customer_login_fk">
+    <End Role="b2b_login" Type="Self.b2b_login" Multiplicity="1" />
+    <End Role="b2b_login_sap_customer" Type="Self.b2b_login_sap_customer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="b2b_login">
+        <PropertyRef Name="sysid" />
+        <PropertyRef Name="login" />
+      </Principal>
+      <Dependent Role="b2b_login_sap_customer">
+        <PropertyRef Name="sysid" />
+        <PropertyRef Name="login" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_b2b_login_type_fk">
+    <End Role="b2b_login_type" Type="Self.b2b_login_type" Multiplicity="1" />
+    <End Role="b2b_login" Type="Self.b2b_login" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="b2b_login_type">
+        <PropertyRef Name="sysid" />
+        <PropertyRef Name="login_type_id" />
+      </Principal>
+      <Dependent Role="b2b_login">
+        <PropertyRef Name="sysid" />
+        <PropertyRef Name="login_type_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_b2b_order_login_fk">
+    <End Role="b2b_login" Type="Self.b2b_login" Multiplicity="1" />
+    <End Role="b2b_order" Type="Self.b2b_order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="b2b_login">
+        <PropertyRef Name="sysid" />
+        <PropertyRef Name="login" />
+      </Principal>
+      <Dependent Role="b2b_order">
+        <PropertyRef Name="sysid" />
+        <PropertyRef Name="login" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_advisor_login">
+    <End Role="b2b_login_dashboard" Type="Self.b2b_login_dashboard" Multiplicity="1" />
+    <End Role="b2b_login_dashboard_sap_advisor" Type="Self.b2b_login_dashboard_sap_advisor" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="b2b_login_dashboard">
+        <PropertyRef Name="sysid" />
+        <PropertyRef Name="login" />
+      </Principal>
+      <Dependent Role="b2b_login_dashboard_sap_advisor">
+        <PropertyRef Name="sysid" />
+        <PropertyRef Name="LOGIN" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_b2b_login_permission_b2b_login_permission1">
+    <End Role="b2b_permission" Type="Self.b2b_permission" Multiplicity="1" />
+    <End Role="b2b_login_permission" Type="Self.b2b_login_permission" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="b2b_permission">
+        <PropertyRef Name="sysid" />
+        <PropertyRef Name="permission_id" />
+      </Principal>
+      <Dependent Role="b2b_login_permission">
+        <PropertyRef Name="sysid" />
+        <PropertyRef Name="permission_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_b2b_product_nutritional_fact_fk">
+    <End Role="b2b_nutritional_fact" Type="Self.b2b_nutritional_fact" Multiplicity="1" />
+    <End Role="b2b_product_nutritional_fact" Type="Self.b2b_product_nutritional_fact" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="b2b_nutritional_fact">
+        <PropertyRef Name="nutritional_fact_id" />
+        <PropertyRef Name="sysid" />
+      </Principal>
+      <Dependent Role="b2b_product_nutritional_fact">
+        <PropertyRef Name="nutritional_fact_id" />
+        <PropertyRef Name="sysid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_b2b_object_type_object_1">
+    <End Role="b2b_object_type" Type="Self.b2b_object_type" Multiplicity="1" />
+    <End Role="b2b_tag_object" Type="Self.b2b_tag_object" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="b2b_object_type">
+        <PropertyRef Name="sysid" />
+        <PropertyRef Name="object_type" />
+      </Principal>
+      <Dependent Role="b2b_tag_object">
+        <PropertyRef Name="sysid" />
+        <PropertyRef Name="object_type" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_b2b_object_type_promotion_1">
+    <End Role="b2b_object_type" Type="Self.b2b_object_type" Multiplicity="1" />
+    <End Role="b2b_promotion_tag" Type="Self.b2b_promotion_tag" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="b2b_object_type">
+        <PropertyRef Name="sysid" />
+        <PropertyRef Name="object_type" />
+      </Principal>
+      <Dependent Role="b2b_promotion_tag">
+        <PropertyRef Name="sysid" />
+        <PropertyRef Name="object_type" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_b2b_login_permission_cms_report1">
+    <End Role="cms_report" Type="Self.cms_report" Multiplicity="1" />
+    <End Role="b2b_permission" Type="Self.b2b_permission" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="cms_report">
+        <PropertyRef Name="report_id" />
+        <PropertyRef Name="sysid" />
+      </Principal>
+      <Dependent Role="b2b_permission">
+        <PropertyRef Name="report_id" />
+        <PropertyRef Name="sysid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_b2b_product_tag_fk">
+    <End Role="b2b_tag_type" Type="Self.b2b_tag_type" Multiplicity="1" />
+    <End Role="b2b_product_tag" Type="Self.b2b_product_tag" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="b2b_tag_type">
+        <PropertyRef Name="sysid" />
+        <PropertyRef Name="text_type_id" />
+      </Principal>
+      <Dependent Role="b2b_product_tag">
+        <PropertyRef Name="sysid" />
+        <PropertyRef Name="text_type_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fkey_proum_sales_source01">
+    <End Role="sap_product_um" Type="Self.sap_product_um" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="b2b_product_um_sale" Type="Self.b2b_product_um_sale" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="sap_product_um">
+        <PropertyRef Name="sysid" />
+        <PropertyRef Name="product_id" />
+        <PropertyRef Name="um_id" />
+      </Principal>
+      <Dependent Role="b2b_product_um_sale">
+        <PropertyRef Name="sysid" />
+        <PropertyRef Name="product_id" />
+        <PropertyRef Name="um_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_b2b_promotion_discount_fk">
+    <End Role="b2b_promotion" Type="Self.b2b_promotion" Multiplicity="1" />
+    <End Role="b2b_promotion_discount" Type="Self.b2b_promotion_discount" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="b2b_promotion">
+        <PropertyRef Name="promotion_id" />
+        <PropertyRef Name="sysid" />
+      </Principal>
+      <Dependent Role="b2b_promotion_discount">
+        <PropertyRef Name="promotion_id" />
+        <PropertyRef Name="sysid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_b2b_promotion_schedule_promotion_1">
+    <End Role="b2b_promotion" Type="Self.b2b_promotion" Multiplicity="1" />
+    <End Role="b2b_promotion_schedule" Type="Self.b2b_promotion_schedule" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="b2b_promotion">
+        <PropertyRef Name="promotion_id" />
+        <PropertyRef Name="sysid" />
+      </Principal>
+      <Dependent Role="b2b_promotion_schedule">
+        <PropertyRef Name="promotion_id" />
+        <PropertyRef Name="sysid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_b2b_promotion_tag_promotion_1">
+    <End Role="b2b_promotion" Type="Self.b2b_promotion" Multiplicity="1" />
+    <End Role="b2b_promotion_tag" Type="Self.b2b_promotion_tag" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="b2b_promotion">
+        <PropertyRef Name="promotion_id" />
+        <PropertyRef Name="sysid" />
+      </Principal>
+      <Dependent Role="b2b_promotion_tag">
+        <PropertyRef Name="promotion_id" />
+        <PropertyRef Name="sysid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_b2b_tag_promotion_1">
+    <End Role="b2b_tag" Type="Self.b2b_tag" Multiplicity="1" />
+    <End Role="b2b_promotion_tag" Type="Self.b2b_promotion_tag" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="b2b_tag">
+        <PropertyRef Name="sysid" />
+        <PropertyRef Name="tag" />
+      </Principal>
+      <Dependent Role="b2b_promotion_tag">
+        <PropertyRef Name="sysid" />
+        <PropertyRef Name="tag" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_b2b_tag_object_1">
+    <End Role="b2b_tag" Type="Self.b2b_tag" Multiplicity="1" />
+    <End Role="b2b_tag_object" Type="Self.b2b_tag_object" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="b2b_tag">
+        <PropertyRef Name="sysid" />
+        <PropertyRef Name="tag" />
+      </Principal>
+      <Dependent Role="b2b_tag_object">
+        <PropertyRef Name="sysid" />
+        <PropertyRef Name="tag" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_cms_article_tags_tag">
+    <End Role="b2b_tag" Type="Self.b2b_tag" Multiplicity="1" />
+    <End Role="content_article_has_tag" Type="Self.content_article_has_tag" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="b2b_tag">
+        <PropertyRef Name="sysid" />
+        <PropertyRef Name="tag" />
+      </Principal>
+      <Dependent Role="content_article_has_tag">
+        <PropertyRef Name="sysid" />
+        <PropertyRef Name="tag_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_b2b_tag_list_values_1">
+    <End Role="b2b_tag_list" Type="Self.b2b_tag_list" Multiplicity="1" />
+    <End Role="b2b_tag_list_values" Type="Self.b2b_tag_list_values" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="b2b_tag_list">
+        <PropertyRef Name="sysid" />
+        <PropertyRef Name="tag_list_id" />
+      </Principal>
+      <Dependent Role="b2b_tag_list_values">
+        <PropertyRef Name="sysid" />
+        <PropertyRef Name="tag_list_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_cms_audit_action_1">
+    <End Role="cms_user" Type="Self.cms_user" Multiplicity="1" />
+    <End Role="cms_audit_action" Type="Self.cms_audit_action" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="cms_user">
+        <PropertyRef Name="sysid" />
+        <PropertyRef Name="login" />
+      </Principal>
+      <Dependent Role="cms_audit_action">
+        <PropertyRef Name="sysid" />
+        <PropertyRef Name="login" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_cms_report_group_fk">
+    <End Role="cms_report_group" Type="Self.cms_report_group" Multiplicity="1" />
+    <End Role="cms_report" Type="Self.cms_report" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="cms_report_group">
+        <PropertyRef Name="report_group_id" />
+        <PropertyRef Name="sysid" />
+      </Principal>
+      <Dependent Role="cms_report">
+        <PropertyRef Name="report_group_id" />
+        <PropertyRef Name="sysid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_cms_report_parameter_report_fk">
+    <End Role="cms_report" Type="Self.cms_report" Multiplicity="1" />
+    <End Role="cms_report_parameter" Type="Self.cms_report_parameter" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="cms_report">
+        <PropertyRef Name="report_id" />
+        <PropertyRef Name="sysid" />
+      </Principal>
+      <Dependent Role="cms_report_parameter">
+        <PropertyRef Name="report_id" />
+        <PropertyRef Name="sysid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_cms_report_parameter_1type">
+    <End Role="cms_report_parameter_type" Type="Self.cms_report_parameter_type" Multiplicity="1" />
+    <End Role="cms_report_parameter" Type="Self.cms_report_parameter" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="cms_report_parameter_type">
+        <PropertyRef Name="parameter_type_id" />
+        <PropertyRef Name="sysid" />
+      </Principal>
+      <Dependent Role="cms_report_parameter">
+        <PropertyRef Name="parameter_type_id" />
+        <PropertyRef Name="sysid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_article_categories_article">
+    <End Role="content_article" Type="Self.content_article" Multiplicity="1" />
+    <End Role="content_article_has_category" Type="Self.content_article_has_category" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="content_article">
+        <PropertyRef Name="article_id" />
+        <PropertyRef Name="sysid" />
+      </Principal>
+      <Dependent Role="content_article_has_category">
+        <PropertyRef Name="article_id" />
+        <PropertyRef Name="sysid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_article_template">
+    <End Role="content_template" Type="Self.content_template" Multiplicity="1" />
+    <End Role="content_article" Type="Self.content_article" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="content_template">
+        <PropertyRef Name="template_id" />
+        <PropertyRef Name="sysid" />
+      </Principal>
+      <Dependent Role="content_article">
+        <PropertyRef Name="template_id" />
+        <PropertyRef Name="sysid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_cms_article_tags_article">
+    <End Role="content_article" Type="Self.content_article" Multiplicity="1" />
+    <End Role="content_article_has_tag" Type="Self.content_article_has_tag" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="content_article">
+        <PropertyRef Name="article_id" />
+        <PropertyRef Name="sysid" />
+      </Principal>
+      <Dependent Role="content_article_has_tag">
+        <PropertyRef Name="article_id" />
+        <PropertyRef Name="sysid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_article_categories_category">
+    <End Role="content_category" Type="Self.content_category" Multiplicity="1" />
+    <End Role="content_article_has_category" Type="Self.content_article_has_category" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="content_category">
+        <PropertyRef Name="category_id" />
+        <PropertyRef Name="sysid" />
+      </Principal>
+      <Dependent Role="content_article_has_category">
+        <PropertyRef Name="category_id" />
+        <PropertyRef Name="sysid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_category_category">
+    <End Role="content_category" Type="Self.content_category" Multiplicity="0..1" />
+    <End Role="content_category1" Type="Self.content_category" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="content_category">
+        <PropertyRef Name="category_id" />
+        <PropertyRef Name="sysid" />
+      </Principal>
+      <Dependent Role="content_category1">
+        <PropertyRef Name="parent_category_id" />
+        <PropertyRef Name="sysid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_resource_resource_type">
+    <End Role="content_resource_type" Type="Self.content_resource_type" Multiplicity="1" />
+    <End Role="content_resource" Type="Self.content_resource" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="content_resource_type">
+        <PropertyRef Name="resource_type_id" />
+        <PropertyRef Name="sysid" />
+      </Principal>
+      <Dependent Role="content_resource">
+        <PropertyRef Name="resource_type_id" />
+        <PropertyRef Name="sysid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_sap_documentfi_sap_corporation1">
+    <End Role="sap_corporation" Type="Self.sap_corporation" Multiplicity="1" />
+    <End Role="sap_documentfi" Type="Self.sap_documentfi" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="sap_corporation">
+        <PropertyRef Name="sysid" />
+        <PropertyRef Name="idcorporation" />
+      </Principal>
+      <Dependent Role="sap_documentfi">
+        <PropertyRef Name="sysid" />
+        <PropertyRef Name="idcorporation" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_sap_documentfi_sap_customer1">
+    <End Role="sap_customer" Type="Self.sap_customer" Multiplicity="0..1" />
+    <End Role="sap_documentfi" Type="Self.sap_documentfi" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="sap_customer">
+        <PropertyRef Name="sysid" />
+        <PropertyRef Name="custsap_id" />
+      </Principal>
+      <Dependent Role="sap_documentfi">
+        <PropertyRef Name="sysid" />
+        <PropertyRef Name="custsap_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_sap_documentfi_sap_payment_condition1">
+    <End Role="sap_payment_conditions" Type="Self.sap_payment_conditions" Multiplicity="1" />
+    <End Role="sap_documentfi" Type="Self.sap_documentfi" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="sap_payment_conditions">
+        <PropertyRef Name="sysid" />
+        <PropertyRef Name="idpaycondition" />
+      </Principal>
+      <Dependent Role="sap_documentfi">
+        <PropertyRef Name="sysid" />
+        <PropertyRef Name="idpaycondition" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_sap_documentfi_sap_payment_types1">
+    <End Role="sap_payment_types" Type="Self.sap_payment_types" Multiplicity="1" />
+    <End Role="sap_documentfi" Type="Self.sap_documentfi" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="sap_payment_types">
+        <PropertyRef Name="sysid" />
+        <PropertyRef Name="iddoctype" />
+      </Principal>
+      <Dependent Role="sap_documentfi">
+        <PropertyRef Name="sysid" />
+        <PropertyRef Name="iddoctype" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="b2b_systemEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="b2b_access_request" EntityType="Self.b2b_access_request" />
+    <EntitySet Name="b2b_audit_action" EntityType="Self.b2b_audit_action" />
+    <EntitySet Name="b2b_bank_accounts" EntityType="Self.b2b_bank_accounts" />
+    <EntitySet Name="b2b_banking_tran_customer_check" EntityType="Self.b2b_banking_tran_customer_check" />
+    <EntitySet Name="b2b_banking_tran_det" EntityType="Self.b2b_banking_tran_det" />
+    <EntitySet Name="b2b_banking_tran_reasons" EntityType="Self.b2b_banking_tran_reasons" />
+    <EntitySet Name="b2b_banking_tran_reasons_files" EntityType="Self.b2b_banking_tran_reasons_files" />
+    <EntitySet Name="b2b_banking_transaction" EntityType="Self.b2b_banking_transaction" />
+    <EntitySet Name="b2b_banks" EntityType="Self.b2b_banks" />
+    <EntitySet Name="b2b_banner" EntityType="Self.b2b_banner" />
+    <EntitySet Name="b2b_banner_activation_type" EntityType="Self.b2b_banner_activation_type" />
+    <EntitySet Name="b2b_banner_tag" EntityType="Self.b2b_banner_tag" />
+    <EntitySet Name="b2b_banner_type" EntityType="Self.b2b_banner_type" />
+    <EntitySet Name="b2b_carousel" EntityType="Self.b2b_carousel" />
+    <EntitySet Name="b2b_carousel_type" EntityType="Self.b2b_carousel_type" />
+    <EntitySet Name="b2b_category" EntityType="Self.b2b_category" />
+    <EntitySet Name="b2b_category_has_sap_product" EntityType="Self.b2b_category_has_sap_product" />
+    <EntitySet Name="b2b_challenge_question" EntityType="Self.b2b_challenge_question" />
+    <EntitySet Name="b2b_corporation" EntityType="Self.b2b_corporation" />
+    <EntitySet Name="b2b_customer" EntityType="Self.b2b_customer" />
+    <EntitySet Name="b2b_dashboard_rol" EntityType="Self.b2b_dashboard_rol" />
+    <EntitySet Name="b2b_device" EntityType="Self.b2b_device" />
+    <EntitySet Name="b2b_division" EntityType="Self.b2b_division" />
+    <EntitySet Name="b2b_faq" EntityType="Self.b2b_faq" />
+    <EntitySet Name="b2b_gateway_credential" EntityType="Self.b2b_gateway_credential" />
+    <EntitySet Name="b2b_gateway_transaction" EntityType="Self.b2b_gateway_transaction" />
+    <EntitySet Name="b2b_image_type" EntityType="Self.b2b_image_type" />
+    <EntitySet Name="b2b_language" EntityType="Self.b2b_language" />
+    <EntitySet Name="b2b_login" EntityType="Self.b2b_login" />
+    <EntitySet Name="b2b_login_challenge_question" EntityType="Self.b2b_login_challenge_question" />
+    <EntitySet Name="b2b_login_dashboard" EntityType="Self.b2b_login_dashboard" />
+    <EntitySet Name="b2b_login_dashboard_sap_advisor" EntityType="Self.b2b_login_dashboard_sap_advisor" />
+    <EntitySet Name="b2b_login_permission" EntityType="Self.b2b_login_permission" />
+    <EntitySet Name="b2b_login_sap_customer" EntityType="Self.b2b_login_sap_customer" />
+    <EntitySet Name="b2b_login_type" EntityType="Self.b2b_login_type" />
+    <EntitySet Name="b2b_message" EntityType="Self.b2b_message" />
+    <EntitySet Name="b2b_navigation_tree" EntityType="Self.b2b_navigation_tree" />
+    <EntitySet Name="b2b_nutritional_fact" EntityType="Self.b2b_nutritional_fact" />
+    <EntitySet Name="b2b_object_type" EntityType="Self.b2b_object_type" />
+    <EntitySet Name="b2b_order" EntityType="Self.b2b_order" />
+    <EntitySet Name="b2b_order_item" EntityType="Self.b2b_order_item" />
+    <EntitySet Name="b2b_order_status" EntityType="Self.b2b_order_status" />
+    <EntitySet Name="b2b_payment_methods" EntityType="Self.b2b_payment_methods" />
+    <EntitySet Name="b2b_payment_reasons" EntityType="Self.b2b_payment_reasons" />
+    <EntitySet Name="b2b_permission" EntityType="Self.b2b_permission" />
+    <EntitySet Name="b2b_plant" EntityType="Self.b2b_plant" />
+    <EntitySet Name="b2b_preferred_list" EntityType="Self.b2b_preferred_list" />
+    <EntitySet Name="b2b_preferred_list_item" EntityType="Self.b2b_preferred_list_item" />
+    <EntitySet Name="b2b_product" EntityType="Self.b2b_product" />
+    <EntitySet Name="b2b_product_carousel" EntityType="Self.b2b_product_carousel" />
+    <EntitySet Name="b2b_product_image" EntityType="Self.b2b_product_image" />
+    <EntitySet Name="b2b_product_nutritional_fact" EntityType="Self.b2b_product_nutritional_fact" />
+    <EntitySet Name="b2b_product_tag" EntityType="Self.b2b_product_tag" />
+    <EntitySet Name="b2b_product_um_sale" EntityType="Self.b2b_product_um_sale" />
+    <EntitySet Name="b2b_promotion" EntityType="Self.b2b_promotion" />
+    <EntitySet Name="b2b_promotion_discount" EntityType="Self.b2b_promotion_discount" />
+    <EntitySet Name="b2b_promotion_schedule" EntityType="Self.b2b_promotion_schedule" />
+    <EntitySet Name="b2b_promotion_tag" EntityType="Self.b2b_promotion_tag" />
+    <EntitySet Name="b2b_section" EntityType="Self.b2b_section" />
+    <EntitySet Name="b2b_shopping_cart" EntityType="Self.b2b_shopping_cart" />
+    <EntitySet Name="b2b_tag" EntityType="Self.b2b_tag" />
+    <EntitySet Name="b2b_tag_list" EntityType="Self.b2b_tag_list" />
+    <EntitySet Name="b2b_tag_list_values" EntityType="Self.b2b_tag_list_values" />
+    <EntitySet Name="b2b_tag_object" EntityType="Self.b2b_tag_object" />
+    <EntitySet Name="b2b_tag_type" EntityType="Self.b2b_tag_type" />
+    <EntitySet Name="b2b_tweet" EntityType="Self.b2b_tweet" />
+    <EntitySet Name="b2b_user_messages" EntityType="Self.b2b_user_messages" />
+    <EntitySet Name="b2b_wish_list" EntityType="Self.b2b_wish_list" />
+    <EntitySet Name="b2b_wish_list_priority" EntityType="Self.b2b_wish_list_priority" />
+    <EntitySet Name="b2b_wish_list_schedule" EntityType="Self.b2b_wish_list_schedule" />
+    <EntitySet Name="b2b_wish_list_status" EntityType="Self.b2b_wish_list_status" />
+    <EntitySet Name="carrousel_product" EntityType="Self.carrousel_product" />
+    <EntitySet Name="cms_audit_action" EntityType="Self.cms_audit_action" />
+    <EntitySet Name="cms_configuration" EntityType="Self.cms_configuration" />
+    <EntitySet Name="cms_permission" EntityType="Self.cms_permission" />
+    <EntitySet Name="cms_report" EntityType="Self.cms_report" />
+    <EntitySet Name="cms_report_group" EntityType="Self.cms_report_group" />
+    <EntitySet Name="cms_report_parameter" EntityType="Self.cms_report_parameter" />
+    <EntitySet Name="cms_report_parameter_type" EntityType="Self.cms_report_parameter_type" />
+    <EntitySet Name="cms_role" EntityType="Self.cms_role" />
+    <EntitySet Name="cms_role_has_permission" EntityType="Self.cms_role_has_permission" />
+    <EntitySet Name="cms_user" EntityType="Self.cms_user" />
+    <EntitySet Name="content_article" EntityType="Self.content_article" />
+    <EntitySet Name="content_article_has_category" EntityType="Self.content_article_has_category" />
+    <EntitySet Name="content_article_has_tag" EntityType="Self.content_article_has_tag" />
+    <EntitySet Name="content_category" EntityType="Self.content_category" />
+    <EntitySet Name="content_resource" EntityType="Self.content_resource" />
+    <EntitySet Name="content_resource_type" EntityType="Self.content_resource_type" />
+    <EntitySet Name="content_template" EntityType="Self.content_template" />
+    <EntitySet Name="sap_area_plant" EntityType="Self.sap_area_plant" />
+    <EntitySet Name="sap_channel" EntityType="Self.sap_channel" />
+    <EntitySet Name="sap_corporation" EntityType="Self.sap_corporation" />
+    <EntitySet Name="sap_customer" EntityType="Self.sap_customer" />
+    <EntitySet Name="sap_customer_area" EntityType="Self.sap_customer_area" />
+    <EntitySet Name="sap_customer_balance" EntityType="Self.sap_customer_balance" />
+    <EntitySet Name="sap_customer_rol" EntityType="Self.sap_customer_rol" />
+    <EntitySet Name="sap_customer_state" EntityType="Self.sap_customer_state" />
+    <EntitySet Name="sap_division" EntityType="Self.sap_division" />
+    <EntitySet Name="sap_doc" EntityType="Self.sap_doc" />
+    <EntitySet Name="sap_doc_bin" EntityType="Self.sap_doc_bin" />
+    <EntitySet Name="sap_doc_item" EntityType="Self.sap_doc_item" />
+    <EntitySet Name="sap_documentfi" EntityType="Self.sap_documentfi" />
+    <EntitySet Name="sap_groupcustomer" EntityType="Self.sap_groupcustomer" />
+    <EntitySet Name="sap_konh" EntityType="Self.sap_konh" />
+    <EntitySet Name="sap_konm" EntityType="Self.sap_konm" />
+    <EntitySet Name="sap_konp" EntityType="Self.sap_konp" />
+    <EntitySet Name="sap_master_conditions" EntityType="Self.sap_master_conditions" />
+    <EntitySet Name="sap_payment_conditions" EntityType="Self.sap_payment_conditions" />
+    <EntitySet Name="sap_payment_types" EntityType="Self.sap_payment_types" />
+    <EntitySet Name="sap_plant" EntityType="Self.sap_plant" />
+    <EntitySet Name="sap_product" EntityType="Self.sap_product" />
+    <EntitySet Name="sap_product_brand" EntityType="Self.sap_product_brand" />
+    <EntitySet Name="sap_product_exc_product" EntityType="Self.sap_product_exc_product" />
+    <EntitySet Name="sap_product_family" EntityType="Self.sap_product_family" />
+    <EntitySet Name="sap_product_plant" EntityType="Self.sap_product_plant" />
+    <EntitySet Name="sap_product_price" EntityType="Self.sap_product_price" />
+    <EntitySet Name="sap_product_price_cond" EntityType="Self.sap_product_price_cond" />
+    <EntitySet Name="sap_product_subfamily" EntityType="Self.sap_product_subfamily" />
+    <EntitySet Name="sap_product_tag" EntityType="Self.sap_product_tag" />
+    <EntitySet Name="sap_product_um" EntityType="Self.sap_product_um" />
+    <EntitySet Name="sap_store" EntityType="Self.sap_store" />
+    <EntitySet Name="sap_system" EntityType="Self.sap_system" />
+    <EntitySet Name="sap_units" EntityType="Self.sap_units" />
+    <EntitySet Name="new_view" EntityType="Self.new_view" />
+    <AssociationSet Name="fk_b2b_audit_action_b2b_login1" Association="Self.fk_b2b_audit_action_b2b_login1">
+      <End Role="b2b_login" EntitySet="b2b_login" />
+      <End Role="b2b_audit_action" EntitySet="b2b_audit_action" />
+    </AssociationSet>
+    <AssociationSet Name="fk_b2b_bank_accounts_b2b_banks1" Association="Self.fk_b2b_bank_accounts_b2b_banks1">
+      <End Role="b2b_banks" EntitySet="b2b_banks" />
+      <End Role="b2b_bank_accounts" EntitySet="b2b_bank_accounts" />
+    </AssociationSet>
+    <AssociationSet Name="fk_b2b_bank_accounts_sap_corporation1" Association="Self.fk_b2b_bank_accounts_sap_corporation1">
+      <End Role="sap_corporation" EntitySet="sap_corporation" />
+      <End Role="b2b_bank_accounts" EntitySet="b2b_bank_accounts" />
+    </AssociationSet>
+    <AssociationSet Name="fk_b2b_bank_accounts_sap_division1" Association="Self.fk_b2b_bank_accounts_sap_division1">
+      <End Role="sap_division" EntitySet="sap_division" />
+      <End Role="b2b_bank_accounts" EntitySet="b2b_bank_accounts" />
+    </AssociationSet>
+    <AssociationSet Name="fk_b2b_banking_transaction_b2b_bank_accounts1" Association="Self.fk_b2b_banking_transaction_b2b_bank_accounts1">
+      <End Role="b2b_bank_accounts" EntitySet="b2b_bank_accounts" />
+      <End Role="b2b_banking_transaction" EntitySet="b2b_banking_transaction" />
+    </AssociationSet>
+    <AssociationSet Name="fk_b2b_customer_bank_checks_b2b_banking_transaction1" Association="Self.fk_b2b_customer_bank_checks_b2b_banking_transaction1">
+      <End Role="b2b_banking_transaction" EntitySet="b2b_banking_transaction" />
+      <End Role="b2b_banking_tran_customer_check" EntitySet="b2b_banking_tran_customer_check" />
+    </AssociationSet>
+    <AssociationSet Name="fk_b2b_customer_bank_checks_b2b_banks1" Association="Self.fk_b2b_customer_bank_checks_b2b_banks1">
+      <End Role="b2b_banks" EntitySet="b2b_banks" />
+      <End Role="b2b_banking_tran_customer_check" EntitySet="b2b_banking_tran_customer_check" />
+    </AssociationSet>
+    <AssociationSet Name="fk_b2b_banking_transaction_2" Association="Self.fk_b2b_banking_transaction_2">
+      <End Role="b2b_banking_transaction" EntitySet="b2b_banking_transaction" />
+      <End Role="b2b_banking_tran_det" EntitySet="b2b_banking_tran_det" />
+    </AssociationSet>
+    <AssociationSet Name="fk_sap_docfik1" Association="Self.fk_sap_docfik1">
+      <End Role="sap_documentfi" EntitySet="sap_documentfi" />
+      <End Role="b2b_banking_tran_det" EntitySet="b2b_banking_tran_det" />
+    </AssociationSet>
+    <AssociationSet Name="fk_b2b_banking_tran_reasons_b2b_payment_reasons1" Association="Self.fk_b2b_banking_tran_reasons_b2b_payment_reasons1">
+      <End Role="b2b_payment_reasons" EntitySet="b2b_payment_reasons" />
+      <End Role="b2b_banking_tran_reasons" EntitySet="b2b_banking_tran_reasons" />
+    </AssociationSet>
+    <AssociationSet Name="fk_b2b_banking_transaction_copy1_b2b_banking_transaction10" Association="Self.fk_b2b_banking_transaction_copy1_b2b_banking_transaction10">
+      <End Role="b2b_banking_transaction" EntitySet="b2b_banking_transaction" />
+      <End Role="b2b_banking_tran_reasons" EntitySet="b2b_banking_tran_reasons" />
+    </AssociationSet>
+    <AssociationSet Name="fk_b2b_payment_reason_file1" Association="Self.fk_b2b_payment_reason_file1">
+      <End Role="b2b_banking_transaction" EntitySet="b2b_banking_transaction" />
+      <End Role="b2b_banking_tran_reasons_files" EntitySet="b2b_banking_tran_reasons_files" />
+    </AssociationSet>
+    <AssociationSet Name="fk_b2b_banking_transaction_b2b_banks02" Association="Self.fk_b2b_banking_transaction_b2b_banks02">
+      <End Role="b2b_banks" EntitySet="b2b_banks" />
+      <End Role="b2b_banking_transaction" EntitySet="b2b_banking_transaction" />
+    </AssociationSet>
+    <AssociationSet Name="fk_b2b_banking_transaction_b2b_payment_methods1" Association="Self.fk_b2b_banking_transaction_b2b_payment_methods1">
+      <End Role="b2b_payment_methods" EntitySet="b2b_payment_methods" />
+      <End Role="b2b_banking_transaction" EntitySet="b2b_banking_transaction" />
+    </AssociationSet>
+    <AssociationSet Name="fk_b2b_banking_transaction_sap_corporation" Association="Self.fk_b2b_banking_transaction_sap_corporation">
+      <End Role="sap_corporation" EntitySet="sap_corporation" />
+      <End Role="b2b_banking_transaction" EntitySet="b2b_banking_transaction" />
+    </AssociationSet>
+    <AssociationSet Name="fk_b2b_banking_transaction_sap_division" Association="Self.fk_b2b_banking_transaction_sap_division">
+      <End Role="sap_division" EntitySet="sap_division" />
+      <End Role="b2b_banking_transaction" EntitySet="b2b_banking_transaction" />
+    </AssociationSet>
+    <AssociationSet Name="fk_b2b_banner_act_type" Association="Self.fk_b2b_banner_act_type">
+      <End Role="b2b_banner_activation_type" EntitySet="b2b_banner_activation_type" />
+      <End Role="b2b_banner" EntitySet="b2b_banner" />
+    </AssociationSet>
+    <AssociationSet Name="fk_b2b_carousel_typeFK" Association="Self.fk_b2b_carousel_typeFK">
+      <End Role="b2b_carousel_type" EntitySet="b2b_carousel_type" />
+      <End Role="b2b_carousel" EntitySet="b2b_carousel" />
+    </AssociationSet>
+    <AssociationSet Name="fk_b2b_category_nav_tree_fk" Association="Self.fk_b2b_category_nav_tree_fk">
+      <End Role="b2b_navigation_tree" EntitySet="b2b_navigation_tree" />
+      <End Role="b2b_category" EntitySet="b2b_category" />
+    </AssociationSet>
+    <AssociationSet Name="fk_b2b_category_self_fk" Association="Self.fk_b2b_category_self_fk">
+      <End Role="b2b_category" EntitySet="b2b_category" />
+      <End Role="b2b_category1" EntitySet="b2b_category" />
+    </AssociationSet>
+    <AssociationSet Name="fk_b2b_corporation_sap_corporation1" Association="Self.fk_b2b_corporation_sap_corporation1">
+      <End Role="sap_corporation" EntitySet="sap_corporation" />
+      <End Role="b2b_corporation" EntitySet="b2b_corporation" />
+    </AssociationSet>
+    <AssociationSet Name="b2b_customer_ibfk_1" Association="Self.b2b_customer_ibfk_1">
+      <End Role="sap_customer" EntitySet="sap_customer" />
+      <End Role="b2b_customer" EntitySet="b2b_customer" />
+    </AssociationSet>
+    <AssociationSet Name="fk_login_dash_rol" Association="Self.fk_login_dash_rol">
+      <End Role="b2b_dashboard_rol" EntitySet="b2b_dashboard_rol" />
+      <End Role="b2b_login_dashboard" EntitySet="b2b_login_dashboard" />
+    </AssociationSet>
+    <AssociationSet Name="fk_b2b_device_b2b_login1" Association="Self.fk_b2b_device_b2b_login1">
+      <End Role="b2b_login" EntitySet="b2b_login" />
+      <End Role="b2b_device" EntitySet="b2b_device" />
+    </AssociationSet>
+    <AssociationSet Name="fk_b2b_product_image_fk" Association="Self.fk_b2b_product_image_fk">
+      <End Role="b2b_image_type" EntitySet="b2b_image_type" />
+      <End Role="b2b_product_image" EntitySet="b2b_product_image" />
+    </AssociationSet>
+    <AssociationSet Name="fk_b2b_login_nav_tree_fk" Association="Self.fk_b2b_login_nav_tree_fk">
+      <End Role="b2b_navigation_tree" EntitySet="b2b_navigation_tree" />
+      <End Role="b2b_login" EntitySet="b2b_login" />
+    </AssociationSet>
+    <AssociationSet Name="fk_b2b_login_permission_b2b_login1" Association="Self.fk_b2b_login_permission_b2b_login1">
+      <End Role="b2b_login" EntitySet="b2b_login" />
+      <End Role="b2b_login_permission" EntitySet="b2b_login_permission" />
+    </AssociationSet>
+    <AssociationSet Name="fk_b2b_login_sap_customer_login_fk" Association="Self.fk_b2b_login_sap_customer_login_fk">
+      <End Role="b2b_login" EntitySet="b2b_login" />
+      <End Role="b2b_login_sap_customer" EntitySet="b2b_login_sap_customer" />
+    </AssociationSet>
+    <AssociationSet Name="fk_b2b_login_type_fk" Association="Self.fk_b2b_login_type_fk">
+      <End Role="b2b_login_type" EntitySet="b2b_login_type" />
+      <End Role="b2b_login" EntitySet="b2b_login" />
+    </AssociationSet>
+    <AssociationSet Name="fk_b2b_order_login_fk" Association="Self.fk_b2b_order_login_fk">
+      <End Role="b2b_login" EntitySet="b2b_login" />
+      <End Role="b2b_order" EntitySet="b2b_order" />
+    </AssociationSet>
+    <AssociationSet Name="FK_advisor_login" Association="Self.FK_advisor_login">
+      <End Role="b2b_login_dashboard" EntitySet="b2b_login_dashboard" />
+      <End Role="b2b_login_dashboard_sap_advisor" EntitySet="b2b_login_dashboard_sap_advisor" />
+    </AssociationSet>
+    <AssociationSet Name="fk_b2b_login_permission_b2b_login_permission1" Association="Self.fk_b2b_login_permission_b2b_login_permission1">
+      <End Role="b2b_permission" EntitySet="b2b_permission" />
+      <End Role="b2b_login_permission" EntitySet="b2b_login_permission" />
+    </AssociationSet>
+    <AssociationSet Name="fk_b2b_product_nutritional_fact_fk" Association="Self.fk_b2b_product_nutritional_fact_fk">
+      <End Role="b2b_nutritional_fact" EntitySet="b2b_nutritional_fact" />
+      <End Role="b2b_product_nutritional_fact" EntitySet="b2b_product_nutritional_fact" />
+    </AssociationSet>
+    <AssociationSet Name="fk_b2b_object_type_object_1" Association="Self.fk_b2b_object_type_object_1">
+      <End Role="b2b_object_type" EntitySet="b2b_object_type" />
+      <End Role="b2b_tag_object" EntitySet="b2b_tag_object" />
+    </AssociationSet>
+    <AssociationSet Name="fk_b2b_object_type_promotion_1" Association="Self.fk_b2b_object_type_promotion_1">
+      <End Role="b2b_object_type" EntitySet="b2b_object_type" />
+      <End Role="b2b_promotion_tag" EntitySet="b2b_promotion_tag" />
+    </AssociationSet>
+    <AssociationSet Name="fk_b2b_login_permission_cms_report1" Association="Self.fk_b2b_login_permission_cms_report1">
+      <End Role="cms_report" EntitySet="cms_report" />
+      <End Role="b2b_permission" EntitySet="b2b_permission" />
+    </AssociationSet>
+    <AssociationSet Name="fk_b2b_product_tag_fk" Association="Self.fk_b2b_product_tag_fk">
+      <End Role="b2b_tag_type" EntitySet="b2b_tag_type" />
+      <End Role="b2b_product_tag" EntitySet="b2b_product_tag" />
+    </AssociationSet>
+    <AssociationSet Name="fkey_proum_sales_source01" Association="Self.fkey_proum_sales_source01">
+      <End Role="sap_product_um" EntitySet="sap_product_um" />
+      <End Role="b2b_product_um_sale" EntitySet="b2b_product_um_sale" />
+    </AssociationSet>
+    <AssociationSet Name="fk_b2b_promotion_discount_fk" Association="Self.fk_b2b_promotion_discount_fk">
+      <End Role="b2b_promotion" EntitySet="b2b_promotion" />
+      <End Role="b2b_promotion_discount" EntitySet="b2b_promotion_discount" />
+    </AssociationSet>
+    <AssociationSet Name="fk_b2b_promotion_schedule_promotion_1" Association="Self.fk_b2b_promotion_schedule_promotion_1">
+      <End Role="b2b_promotion" EntitySet="b2b_promotion" />
+      <End Role="b2b_promotion_schedule" EntitySet="b2b_promotion_schedule" />
+    </AssociationSet>
+    <AssociationSet Name="fk_b2b_promotion_tag_promotion_1" Association="Self.fk_b2b_promotion_tag_promotion_1">
+      <End Role="b2b_promotion" EntitySet="b2b_promotion" />
+      <End Role="b2b_promotion_tag" EntitySet="b2b_promotion_tag" />
+    </AssociationSet>
+    <AssociationSet Name="fk_b2b_tag_promotion_1" Association="Self.fk_b2b_tag_promotion_1">
+      <End Role="b2b_tag" EntitySet="b2b_tag" />
+      <End Role="b2b_promotion_tag" EntitySet="b2b_promotion_tag" />
+    </AssociationSet>
+    <AssociationSet Name="fk_b2b_tag_object_1" Association="Self.fk_b2b_tag_object_1">
+      <End Role="b2b_tag" EntitySet="b2b_tag" />
+      <End Role="b2b_tag_object" EntitySet="b2b_tag_object" />
+    </AssociationSet>
+    <AssociationSet Name="fk_cms_article_tags_tag" Association="Self.fk_cms_article_tags_tag">
+      <End Role="b2b_tag" EntitySet="b2b_tag" />
+      <End Role="content_article_has_tag" EntitySet="content_article_has_tag" />
+    </AssociationSet>
+    <AssociationSet Name="fk_b2b_tag_list_values_1" Association="Self.fk_b2b_tag_list_values_1">
+      <End Role="b2b_tag_list" EntitySet="b2b_tag_list" />
+      <End Role="b2b_tag_list_values" EntitySet="b2b_tag_list_values" />
+    </AssociationSet>
+    <AssociationSet Name="fk_cms_audit_action_1" Association="Self.fk_cms_audit_action_1">
+      <End Role="cms_user" EntitySet="cms_user" />
+      <End Role="cms_audit_action" EntitySet="cms_audit_action" />
+    </AssociationSet>
+    <AssociationSet Name="fk_cms_report_group_fk" Association="Self.fk_cms_report_group_fk">
+      <End Role="cms_report_group" EntitySet="cms_report_group" />
+      <End Role="cms_report" EntitySet="cms_report" />
+    </AssociationSet>
+    <AssociationSet Name="fk_cms_report_parameter_report_fk" Association="Self.fk_cms_report_parameter_report_fk">
+      <End Role="cms_report" EntitySet="cms_report" />
+      <End Role="cms_report_parameter" EntitySet="cms_report_parameter" />
+    </AssociationSet>
+    <AssociationSet Name="fk_cms_report_parameter_1type" Association="Self.fk_cms_report_parameter_1type">
+      <End Role="cms_report_parameter_type" EntitySet="cms_report_parameter_type" />
+      <End Role="cms_report_parameter" EntitySet="cms_report_parameter" />
+    </AssociationSet>
+    <AssociationSet Name="fk_article_categories_article" Association="Self.fk_article_categories_article">
+      <End Role="content_article" EntitySet="content_article" />
+      <End Role="content_article_has_category" EntitySet="content_article_has_category" />
+    </AssociationSet>
+    <AssociationSet Name="fk_article_template" Association="Self.fk_article_template">
+      <End Role="content_template" EntitySet="content_template" />
+      <End Role="content_article" EntitySet="content_article" />
+    </AssociationSet>
+    <AssociationSet Name="fk_cms_article_tags_article" Association="Self.fk_cms_article_tags_article">
+      <End Role="content_article" EntitySet="content_article" />
+      <End Role="content_article_has_tag" EntitySet="content_article_has_tag" />
+    </AssociationSet>
+    <AssociationSet Name="fk_article_categories_category" Association="Self.fk_article_categories_category">
+      <End Role="content_category" EntitySet="content_category" />
+      <End Role="content_article_has_category" EntitySet="content_article_has_category" />
+    </AssociationSet>
+    <AssociationSet Name="fk_category_category" Association="Self.fk_category_category">
+      <End Role="content_category" EntitySet="content_category" />
+      <End Role="content_category1" EntitySet="content_category" />
+    </AssociationSet>
+    <AssociationSet Name="fk_resource_resource_type" Association="Self.fk_resource_resource_type">
+      <End Role="content_resource_type" EntitySet="content_resource_type" />
+      <End Role="content_resource" EntitySet="content_resource" />
+    </AssociationSet>
+    <AssociationSet Name="fk_sap_documentfi_sap_corporation1" Association="Self.fk_sap_documentfi_sap_corporation1">
+      <End Role="sap_corporation" EntitySet="sap_corporation" />
+      <End Role="sap_documentfi" EntitySet="sap_documentfi" />
+    </AssociationSet>
+    <AssociationSet Name="fk_sap_documentfi_sap_customer1" Association="Self.fk_sap_documentfi_sap_customer1">
+      <End Role="sap_customer" EntitySet="sap_customer" />
+      <End Role="sap_documentfi" EntitySet="sap_documentfi" />
+    </AssociationSet>
+    <AssociationSet Name="fk_sap_documentfi_sap_payment_condition1" Association="Self.fk_sap_documentfi_sap_payment_condition1">
+      <End Role="sap_payment_conditions" EntitySet="sap_payment_conditions" />
+      <End Role="sap_documentfi" EntitySet="sap_documentfi" />
+    </AssociationSet>
+    <AssociationSet Name="fk_sap_documentfi_sap_payment_types1" Association="Self.fk_sap_documentfi_sap_payment_types1">
+      <End Role="sap_payment_types" EntitySet="sap_payment_types" />
+      <End Role="sap_documentfi" EntitySet="sap_documentfi" />
+    </AssociationSet>
+    <FunctionImport Name="SP_ClientesYUsuariosFiltradosCG" ReturnType="Collection(b2b_systemModel.SP_ClientesYUsuariosFiltradosCG_Result)">
+      <Parameter Name="fecha_ini" Mode="In" Type="DateTime" />
+      <Parameter Name="fecha_fin" Mode="In" Type="DateTime" />
+      <Parameter Name="grupo" Mode="In" Type="String" />
+      <Parameter Name="canal" Mode="In" Type="String" />
+      <Parameter Name="orgv" Mode="In" Type="String" />
+    </FunctionImport>
+  </EntityContainer>
+  <ComplexType Name="SP_ClientesYUsuariosFiltradosCG_Result" />
+</Schema>

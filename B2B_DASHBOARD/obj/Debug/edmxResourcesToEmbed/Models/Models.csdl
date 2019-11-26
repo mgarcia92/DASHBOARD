@@ -1,0 +1,725 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="b2b_systemModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="b2b_login_dashboard">
+    <Key>
+      <PropertyRef Name="sysid" />
+      <PropertyRef Name="login" />
+    </Key>
+    <Property Name="sysid" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="login" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="failed_login" Type="Int16" />
+    <Property Name="creation_date" Type="DateTime" />
+    <Property Name="last_password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="rol_id" Type="Int32" Nullable="false" />
+    <Property Name="C_deleted" Type="Int16" />
+    <NavigationProperty Name="b2b_login_dashboard_sap_advisor" Relationship="Self.FK_advisor_login" FromRole="b2b_login_dashboard" ToRole="b2b_login_dashboard_sap_advisor" />
+  </EntityType>
+  <EntityType Name="b2b_login_dashboard_sap_advisor">
+    <Key>
+      <PropertyRef Name="sysid" />
+      <PropertyRef Name="LOGIN" />
+      <PropertyRef Name="advisor_id" />
+    </Key>
+    <Property Name="sysid" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="LOGIN" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="advisor_id" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="b2b_login_dashboard" Relationship="Self.FK_advisor_login" FromRole="b2b_login_dashboard_sap_advisor" ToRole="b2b_login_dashboard" />
+  </EntityType>
+  <EntityType Name="b2b_order">
+    <Key>
+      <PropertyRef Name="sysid" />
+      <PropertyRef Name="order_id" />
+    </Key>
+    <Property Name="sysid" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="order_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="login" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="plant_id" Type="String" MaxLength="4" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="order_status_id" Type="String" MaxLength="2" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="sap_customer_id" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="sap_destination_id" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="custom_order_number" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="total" Type="Decimal" Nullable="false" />
+    <Property Name="creation_date" Type="DateTime" Nullable="false" />
+    <Property Name="data" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="b2b_order_item">
+    <Key>
+      <PropertyRef Name="sysid" />
+      <PropertyRef Name="order_item_id" />
+    </Key>
+    <Property Name="sysid" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="order_item_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="order_id" Type="Int32" Nullable="false" />
+    <Property Name="sap_product_id" Type="String" MaxLength="18" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="quantity" Type="Int32" Nullable="false" />
+    <Property Name="amount" Type="Decimal" Nullable="false" />
+    <Property Name="unit" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="discount" Type="Double" />
+    <Property Name="discount_value" Type="Double" />
+    <Property Name="tax" Type="Double" />
+    <Property Name="tax_value" Type="Double" />
+  </EntityType>
+  <EntityType Name="b2b_shopping_cart">
+    <Key>
+      <PropertyRef Name="sysid" />
+      <PropertyRef Name="customer_id" />
+      <PropertyRef Name="login" />
+      <PropertyRef Name="plant_id" />
+    </Key>
+    <Property Name="sysid" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="customer_id" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="login" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="plant_id" Type="String" MaxLength="4" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="data" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+    <Property Name="creation_date" Type="DateTime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="b2b_wish_list">
+    <Key>
+      <PropertyRef Name="sysid" />
+      <PropertyRef Name="wish_list_id" />
+    </Key>
+    <Property Name="sysid" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="wish_list_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="login" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="status" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="product_id" Type="String" MaxLength="18" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="sap_customer_id" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="sap_plant_id" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="quantity" Type="Int32" Nullable="false" />
+    <Property Name="forced_quantity" Type="Int32" Nullable="false" />
+    <Property Name="creation_date" Type="DateTime" Nullable="false" />
+    <Property Name="notification_date" Type="DateTime" />
+    <Property Name="shopping_date" Type="DateTime" />
+    <Property Name="added_shopping_truck_date" Type="DateTime" />
+  </EntityType>
+  <EntityType Name="b2b_wish_list_priority">
+    <Key>
+      <PropertyRef Name="sysid" />
+      <PropertyRef Name="sap_customer_id" />
+    </Key>
+    <Property Name="sysid" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="sap_customer_id" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="priority" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="b2b_wish_list_schedule">
+    <Key>
+      <PropertyRef Name="sysid" />
+      <PropertyRef Name="plant_id" />
+    </Key>
+    <Property Name="sysid" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="plant_id" Type="String" MaxLength="4" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="schedule1" Type="Time" />
+    <Property Name="schedule2" Type="Time" />
+  </EntityType>
+  <EntityType Name="b2b_wish_list_status">
+    <Key>
+      <PropertyRef Name="sysid" />
+      <PropertyRef Name="wish_list_status_id" />
+    </Key>
+    <Property Name="sysid" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="wish_list_status_id" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sap_area_plant">
+    <Key>
+      <PropertyRef Name="sysid" />
+      <PropertyRef Name="vkorg_id" />
+      <PropertyRef Name="channel_id" />
+      <PropertyRef Name="sector_id" />
+    </Key>
+    <Property Name="sysid" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="vkorg_id" Type="String" MaxLength="4" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="channel_id" Type="String" MaxLength="2" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="sector_id" Type="String" MaxLength="2" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="plant_id" Type="String" MaxLength="4" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="blocked" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="sap_channel">
+    <Key>
+      <PropertyRef Name="sysid" />
+      <PropertyRef Name="channel_id" />
+    </Key>
+    <Property Name="sysid" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="channel_id" Type="String" MaxLength="2" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="sap_corporation">
+    <Key>
+      <PropertyRef Name="sysid" />
+      <PropertyRef Name="idcorporation" />
+    </Key>
+    <Property Name="sysid" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="idcorporation" Type="String" MaxLength="4" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+    <Property Name="RIF" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="namef" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="sap_customer">
+    <Key>
+      <PropertyRef Name="sysid" />
+      <PropertyRef Name="custsap_id" />
+    </Key>
+    <Property Name="sysid" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="custsap_id" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="customer_type" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="email" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+    <Property Name="name" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+    <Property Name="rif" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="nif" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="phone" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="sort" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+    <Property Name="address" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+    <Property Name="grp_alm_des" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+    <Property Name="grp_cust" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="sap_customer_area">
+    <Key>
+      <PropertyRef Name="sysid" />
+      <PropertyRef Name="custsap_id" />
+      <PropertyRef Name="vkorg_id" />
+      <PropertyRef Name="channel_id" />
+      <PropertyRef Name="sector_id" />
+    </Key>
+    <Property Name="sysid" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="custsap_id" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="vkorg_id" Type="String" MaxLength="4" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="channel_id" Type="String" MaxLength="2" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="sector_id" Type="String" MaxLength="2" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="shopping" Type="Boolean" />
+    <Property Name="grpcustid" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+    <Property Name="visday" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="vistime" Type="Time" />
+    <Property Name="visfrc" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Name="iddivision" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="sap_customer_balance">
+    <Key>
+      <PropertyRef Name="sysid" />
+      <PropertyRef Name="custsap_id" />
+      <PropertyRef Name="society_id" />
+    </Key>
+    <Property Name="sysid" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="custsap_id" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="society_id" Type="String" MaxLength="4" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="balance" Type="Double" />
+    <Property Name="credit_limit" Type="Double" />
+    <Property Name="credit" Type="Double" />
+  </EntityType>
+  <EntityType Name="sap_customer_rol">
+    <Key>
+      <PropertyRef Name="sysid" />
+      <PropertyRef Name="custsap_id" />
+      <PropertyRef Name="vkorg_id" />
+      <PropertyRef Name="channel_id" />
+      <PropertyRef Name="sector_id" />
+      <PropertyRef Name="custsap2_id" />
+    </Key>
+    <Property Name="sysid" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="custsap_id" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="vkorg_id" Type="String" MaxLength="4" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="channel_id" Type="String" MaxLength="2" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="sector_id" Type="String" MaxLength="2" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="custsap2_id" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="role" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+    <Property Name="shopping" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="sap_customer_state">
+    <Key>
+      <PropertyRef Name="sysid" />
+      <PropertyRef Name="custsap_id" />
+    </Key>
+    <Property Name="sysid" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="custsap_id" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="blocked" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="sap_division">
+    <Key>
+      <PropertyRef Name="sysid" />
+      <PropertyRef Name="iddivision" />
+    </Key>
+    <Property Name="sysid" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="iddivision" Type="String" MaxLength="4" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="sap_doc">
+    <Key>
+      <PropertyRef Name="sysid" />
+      <PropertyRef Name="doc_id" />
+    </Key>
+    <Property Name="sysid" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="doc_id" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="creation_date" Type="DateTime" />
+    <Property Name="amount" Type="Double" />
+    <Property Name="custsap" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="vkorg" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+    <Property Name="channel" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+    <Property Name="sector" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+    <Property Name="creation_by" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+    <Property Name="status_orderid" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+    <Property Name="order_text" Type="String" MaxLength="35" FixedLength="false" Unicode="false" />
+    <Property Name="typedoc" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="destsap" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="sap_doc_bin">
+    <Key>
+      <PropertyRef Name="sysid" />
+      <PropertyRef Name="doc_id" />
+      <PropertyRef Name="typebin" />
+    </Key>
+    <Property Name="sysid" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="doc_id" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="typebin" Type="String" MaxLength="4" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="filetype" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+    <Property Name="empty" Type="Boolean" />
+    <Property Name="file" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="filetext" Type="String" MaxLength="16777215" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="sap_doc_item">
+    <Key>
+      <PropertyRef Name="sysid" />
+      <PropertyRef Name="doc_id" />
+      <PropertyRef Name="pos" />
+    </Key>
+    <Property Name="sysid" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="doc_id" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="pos" Type="Int32" Nullable="false" />
+    <Property Name="product" Type="String" MaxLength="18" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="quantity" Type="Double" Nullable="false" />
+    <Property Name="umo" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+    <Property Name="status_orderid" Type="String" MaxLength="2" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="amount" Type="Double" />
+    <Property Name="ref_doc_id" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="ref_pos" Type="Int32" />
+    <Property Name="base" Type="Double" />
+    <Property Name="descu" Type="Double" />
+    <Property Name="valordesc" Type="Double" />
+    <Property Name="iva" Type="Double" />
+    <Property Name="valoriva" Type="Double" />
+  </EntityType>
+  <EntityType Name="sap_documentfi">
+    <Key>
+      <PropertyRef Name="sysid" />
+      <PropertyRef Name="iddocfi" />
+      <PropertyRef Name="pos" />
+    </Key>
+    <Property Name="sysid" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="iddocfi" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="pos" Type="Int32" Nullable="false" />
+    <Property Name="iddoctype" Type="String" MaxLength="4" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="custsap_id" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="idcorporation" Type="String" MaxLength="4" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="idpaycondition" Type="String" MaxLength="4" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ref1" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="ref2" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="datedoc" Type="DateTime" />
+    <Property Name="duedate" Type="DateTime" />
+    <Property Name="amount_value" Type="Double" />
+    <Property Name="outstanding_amount" Type="Double" />
+    <Property Name="iscompleted" Type="Boolean" />
+    <Property Name="iddivision" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+    <Property Name="nocheck" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="text01" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="tax" Type="Double" />
+    <Property Name="tax_wh" Type="Double" />
+  </EntityType>
+  <EntityType Name="sap_groupcustomer">
+    <Key>
+      <PropertyRef Name="sysid" />
+      <PropertyRef Name="grpcust_id" />
+    </Key>
+    <Property Name="sysid" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="grpcust_id" Type="String" MaxLength="2" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="sap_konh">
+    <Key>
+      <PropertyRef Name="mandt" />
+      <PropertyRef Name="knumh" />
+    </Key>
+    <Property Name="mandt" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="knumh" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ernam" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
+    <Property Name="erdat" Type="DateTime" />
+    <Property Name="kvewe" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="kotabnr" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+    <Property Name="kappl" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+    <Property Name="kschl" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+    <Property Name="vakey" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="datab" Type="DateTime" />
+    <Property Name="datbi" Type="DateTime" />
+    <Property Name="kosrt" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="kzust" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+    <Property Name="knuma_pi" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="knuma_ag" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="knuma_sq" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="knuma_sd" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="aktnr" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="knuma_bo" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="licno" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="licdt" Type="DateTime" />
+    <Property Name="vadat" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="sap_konm">
+    <Key>
+      <PropertyRef Name="mandt" />
+      <PropertyRef Name="knumh" />
+      <PropertyRef Name="kopos" />
+      <PropertyRef Name="klfn1" />
+    </Key>
+    <Property Name="mandt" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="knumh" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="kopos" Type="String" MaxLength="2" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="klfn1" Type="String" MaxLength="4" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="kstbm" Type="Double" />
+    <Property Name="kbetr" Type="Double" />
+  </EntityType>
+  <EntityType Name="sap_konp">
+    <Key>
+      <PropertyRef Name="mandt" />
+      <PropertyRef Name="knumh" />
+      <PropertyRef Name="kopos" />
+    </Key>
+    <Property Name="mandt" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="knumh" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="kopos" Type="String" MaxLength="2" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="kappl" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+    <Property Name="kschl" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+    <Property Name="knumt" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="stfkz" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="kzbzg" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="kstbm" Type="Double" />
+    <Property Name="konms" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+    <Property Name="kstbw" Type="Double" />
+    <Property Name="konws" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+    <Property Name="krech" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="kbetr" Type="Double" />
+    <Property Name="konwa" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+    <Property Name="kpein" Type="Double" />
+    <Property Name="kmein" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+    <Property Name="prsch" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+    <Property Name="kumza" Type="Double" />
+    <Property Name="kumne" Type="Double" />
+    <Property Name="meins" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+    <Property Name="mxwrt" Type="Double" />
+    <Property Name="gkwrt" Type="Double" />
+    <Property Name="pkwrt" Type="Double" />
+    <Property Name="fkwrt" Type="Double" />
+    <Property Name="rswrt" Type="Double" />
+    <Property Name="kwaeh" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+    <Property Name="ukbas" Type="Double" />
+    <Property Name="kznep" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="kunnr" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="lifnr" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="mwsk1" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+    <Property Name="loevm_ko" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="zaehk_ind" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+    <Property Name="bomat" Type="String" MaxLength="18" FixedLength="false" Unicode="false" />
+    <Property Name="kbrue" Type="Double" />
+    <Property Name="kspae" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="bosta" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="knuma_pi" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="knuma_ag" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="knuma_sq" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="valtg" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+    <Property Name="valdt" Type="DateTime" />
+    <Property Name="zterm" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+    <Property Name="anzauf" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+    <Property Name="mikbas" Type="Double" />
+    <Property Name="mxkbas" Type="Double" />
+    <Property Name="komxwrt" Type="Double" />
+    <Property Name="klf_stg" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+    <Property Name="klf_kal" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+    <Property Name="vkkal" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="aktnr" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="knuma_bo" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="mwsk2" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+    <Property Name="vertt" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="vertn" Type="String" MaxLength="13" FixedLength="false" Unicode="false" />
+    <Property Name="vbewa" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+    <Property Name="mdflg" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="kfrst" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="uasta" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="C_bev1_ecrtt" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="C_bev1_ecrtn" Type="String" MaxLength="13" FixedLength="false" Unicode="false" />
+    <Property Name="C_bev1_ecewa" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="sap_master_conditions">
+    <Key>
+      <PropertyRef Name="sysid" />
+      <PropertyRef Name="kschl" />
+    </Key>
+    <Property Name="sysid" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="kschl" Type="String" MaxLength="4" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="discount" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sap_payment_conditions">
+    <Key>
+      <PropertyRef Name="sysid" />
+      <PropertyRef Name="idpaycondition" />
+    </Key>
+    <Property Name="sysid" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="idpaycondition" Type="String" MaxLength="4" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="sap_payment_types">
+    <Key>
+      <PropertyRef Name="sysid" />
+      <PropertyRef Name="iddoctype" />
+    </Key>
+    <Property Name="sysid" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="iddoctype" Type="String" MaxLength="4" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+    <Property Name="name2" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="sap_plant">
+    <Key>
+      <PropertyRef Name="sysid" />
+      <PropertyRef Name="plant_id" />
+    </Key>
+    <Property Name="sysid" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="plant_id" Type="String" MaxLength="4" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sap_product">
+    <Key>
+      <PropertyRef Name="sysid" />
+      <PropertyRef Name="product_id" />
+    </Key>
+    <Property Name="sysid" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="product_id" Type="String" MaxLength="18" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="umb" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+    <Property Name="umv" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+    <Property Name="familyid" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="subfamilyid" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="brandid" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="blocked" Type="Boolean" />
+    <Property Name="type_p" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="sap_product_brand">
+    <Key>
+      <PropertyRef Name="sysid" />
+      <PropertyRef Name="family_id" />
+      <PropertyRef Name="sub_family_id" />
+      <PropertyRef Name="brand_id" />
+    </Key>
+    <Property Name="sysid" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="family_id" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="sub_family_id" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="brand_id" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sap_product_exc_product">
+    <Key>
+      <PropertyRef Name="sysid" />
+      <PropertyRef Name="custsap_id" />
+      <PropertyRef Name="product_id" />
+      <PropertyRef Name="role" />
+    </Key>
+    <Property Name="sysid" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="custsap_id" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="product_id" Type="String" MaxLength="18" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="role" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sap_product_family">
+    <Key>
+      <PropertyRef Name="sysid" />
+      <PropertyRef Name="family_id" />
+    </Key>
+    <Property Name="sysid" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="family_id" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sap_product_plant">
+    <Key>
+      <PropertyRef Name="sysid" />
+      <PropertyRef Name="product_id" />
+      <PropertyRef Name="plant_id" />
+      <PropertyRef Name="store_id" />
+    </Key>
+    <Property Name="sysid" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="product_id" Type="String" MaxLength="18" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="plant_id" Type="String" MaxLength="4" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="store_id" Type="String" MaxLength="4" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="vshow" Type="Boolean" />
+    <Property Name="sell" Type="Boolean" />
+    <Property Name="addscard" Type="Boolean" />
+    <Property Name="available" Type="Double" />
+    <Property Name="confirmed" Type="Double" />
+    <Property Name="need" Type="Double" />
+  </EntityType>
+  <EntityType Name="sap_product_price">
+    <Key>
+      <PropertyRef Name="sysid" />
+      <PropertyRef Name="product_id" />
+      <PropertyRef Name="cust_sap_id" />
+      <PropertyRef Name="plant_id" />
+    </Key>
+    <Property Name="sysid" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="product_id" Type="String" MaxLength="18" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="cust_sap_id" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="plant_id" Type="String" MaxLength="4" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="price_value" Type="Double" />
+    <Property Name="umv" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+    <Property Name="discount_value" Type="Double" />
+    <Property Name="discount" Type="Double" />
+    <Property Name="tax_value" Type="Double" />
+    <Property Name="tax" Type="Double" />
+  </EntityType>
+  <EntityType Name="sap_product_price_cond">
+    <Key>
+      <PropertyRef Name="sysid" />
+      <PropertyRef Name="product_id" />
+      <PropertyRef Name="cust_sap_id" />
+      <PropertyRef Name="plant_id" />
+      <PropertyRef Name="kschl" />
+    </Key>
+    <Property Name="sysid" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="product_id" Type="String" MaxLength="18" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="cust_sap_id" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="plant_id" Type="String" MaxLength="4" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="kschl" Type="String" MaxLength="4" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="knumh" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="erdat" Type="DateTime" />
+  </EntityType>
+  <EntityType Name="sap_product_subfamily">
+    <Key>
+      <PropertyRef Name="sysid" />
+      <PropertyRef Name="family_id" />
+      <PropertyRef Name="sub_family_id" />
+    </Key>
+    <Property Name="sysid" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="family_id" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="sub_family_id" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sap_product_tag">
+    <Key>
+      <PropertyRef Name="sysid" />
+      <PropertyRef Name="product_id" />
+      <PropertyRef Name="text_type_id" />
+      <PropertyRef Name="language_id" />
+    </Key>
+    <Property Name="sysid" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="product_id" Type="String" MaxLength="18" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="text_type_id" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="language_id" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="textcol" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="sap_product_um">
+    <Key>
+      <PropertyRef Name="sysid" />
+      <PropertyRef Name="product_id" />
+      <PropertyRef Name="um_id" />
+    </Key>
+    <Property Name="sysid" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="product_id" Type="String" MaxLength="18" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="um_id" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ean" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="length" Type="Double" />
+    <Property Name="width" Type="Double" />
+    <Property Name="height" Type="Double" />
+    <Property Name="umd" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+    <Property Name="volume" Type="Double" />
+    <Property Name="umv" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+    <Property Name="gross_weight" Type="Double" />
+    <Property Name="net_weight" Type="Double" />
+    <Property Name="Umw" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+    <Property Name="factor_umb" Type="Double" />
+  </EntityType>
+  <EntityType Name="sap_store">
+    <Key>
+      <PropertyRef Name="sysid" />
+      <PropertyRef Name="plant_id" />
+      <PropertyRef Name="grp_alm_des" />
+      <PropertyRef Name="store_id" />
+    </Key>
+    <Property Name="sysid" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="plant_id" Type="String" MaxLength="4" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="grp_alm_des" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="store_id" Type="String" MaxLength="4" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sap_system">
+    <Key>
+      <PropertyRef Name="sysid" />
+    </Key>
+    <Property Name="sysid" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="text" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="sap_units">
+    <Key>
+      <PropertyRef Name="sysid" />
+      <PropertyRef Name="idunit" />
+    </Key>
+    <Property Name="sysid" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="idunit" Type="String" MaxLength="4" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="denominacion" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="iconurl_01" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <Association Name="FK_advisor_login">
+    <End Role="b2b_login_dashboard" Type="Self.b2b_login_dashboard" Multiplicity="1" />
+    <End Role="b2b_login_dashboard_sap_advisor" Type="Self.b2b_login_dashboard_sap_advisor" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="b2b_login_dashboard">
+        <PropertyRef Name="sysid" />
+        <PropertyRef Name="login" />
+      </Principal>
+      <Dependent Role="b2b_login_dashboard_sap_advisor">
+        <PropertyRef Name="sysid" />
+        <PropertyRef Name="LOGIN" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="b2b_Entitie" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="b2b_login_dashboard" EntityType="Self.b2b_login_dashboard" />
+    <EntitySet Name="b2b_login_dashboard_sap_advisor" EntityType="Self.b2b_login_dashboard_sap_advisor" />
+    <EntitySet Name="b2b_order" EntityType="Self.b2b_order" />
+    <EntitySet Name="b2b_order_item" EntityType="Self.b2b_order_item" />
+    <EntitySet Name="b2b_shopping_cart" EntityType="Self.b2b_shopping_cart" />
+    <EntitySet Name="b2b_wish_list" EntityType="Self.b2b_wish_list" />
+    <EntitySet Name="b2b_wish_list_priority" EntityType="Self.b2b_wish_list_priority" />
+    <EntitySet Name="b2b_wish_list_schedule" EntityType="Self.b2b_wish_list_schedule" />
+    <EntitySet Name="b2b_wish_list_status" EntityType="Self.b2b_wish_list_status" />
+    <EntitySet Name="sap_area_plant" EntityType="Self.sap_area_plant" />
+    <EntitySet Name="sap_channel" EntityType="Self.sap_channel" />
+    <EntitySet Name="sap_corporation" EntityType="Self.sap_corporation" />
+    <EntitySet Name="sap_customer" EntityType="Self.sap_customer" />
+    <EntitySet Name="sap_customer_area" EntityType="Self.sap_customer_area" />
+    <EntitySet Name="sap_customer_balance" EntityType="Self.sap_customer_balance" />
+    <EntitySet Name="sap_customer_rol" EntityType="Self.sap_customer_rol" />
+    <EntitySet Name="sap_customer_state" EntityType="Self.sap_customer_state" />
+    <EntitySet Name="sap_division" EntityType="Self.sap_division" />
+    <EntitySet Name="sap_doc" EntityType="Self.sap_doc" />
+    <EntitySet Name="sap_doc_bin" EntityType="Self.sap_doc_bin" />
+    <EntitySet Name="sap_doc_item" EntityType="Self.sap_doc_item" />
+    <EntitySet Name="sap_documentfi" EntityType="Self.sap_documentfi" />
+    <EntitySet Name="sap_groupcustomer" EntityType="Self.sap_groupcustomer" />
+    <EntitySet Name="sap_konh" EntityType="Self.sap_konh" />
+    <EntitySet Name="sap_konm" EntityType="Self.sap_konm" />
+    <EntitySet Name="sap_konp" EntityType="Self.sap_konp" />
+    <EntitySet Name="sap_master_conditions" EntityType="Self.sap_master_conditions" />
+    <EntitySet Name="sap_payment_conditions" EntityType="Self.sap_payment_conditions" />
+    <EntitySet Name="sap_payment_types" EntityType="Self.sap_payment_types" />
+    <EntitySet Name="sap_plant" EntityType="Self.sap_plant" />
+    <EntitySet Name="sap_product" EntityType="Self.sap_product" />
+    <EntitySet Name="sap_product_brand" EntityType="Self.sap_product_brand" />
+    <EntitySet Name="sap_product_exc_product" EntityType="Self.sap_product_exc_product" />
+    <EntitySet Name="sap_product_family" EntityType="Self.sap_product_family" />
+    <EntitySet Name="sap_product_plant" EntityType="Self.sap_product_plant" />
+    <EntitySet Name="sap_product_price" EntityType="Self.sap_product_price" />
+    <EntitySet Name="sap_product_price_cond" EntityType="Self.sap_product_price_cond" />
+    <EntitySet Name="sap_product_subfamily" EntityType="Self.sap_product_subfamily" />
+    <EntitySet Name="sap_product_tag" EntityType="Self.sap_product_tag" />
+    <EntitySet Name="sap_product_um" EntityType="Self.sap_product_um" />
+    <EntitySet Name="sap_store" EntityType="Self.sap_store" />
+    <EntitySet Name="sap_system" EntityType="Self.sap_system" />
+    <EntitySet Name="sap_units" EntityType="Self.sap_units" />
+    <AssociationSet Name="FK_advisor_login" Association="Self.FK_advisor_login">
+      <End Role="b2b_login_dashboard" EntitySet="b2b_login_dashboard" />
+      <End Role="b2b_login_dashboard_sap_advisor" EntitySet="b2b_login_dashboard_sap_advisor" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

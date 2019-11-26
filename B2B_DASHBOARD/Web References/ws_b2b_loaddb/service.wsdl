@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns="http://vecgupra19.plumrose.com/servicios/loaddb/service.php" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns="http://schemas.xmlsoap.org/wsdl/" targetNamespace="http://vecgupra19.plumrose.com/servicios/loaddb/service.php" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://vecgupra19.plumrose.com/servicios/loaddb/service.php">
+      <xsd:complexType name="qDBRequestType">
+        <xsd:all>
+          <xsd:element form="unqualified" name="host" type="xsd:string" />
+          <xsd:element form="unqualified" name="user" type="xsd:string" />
+          <xsd:element form="unqualified" name="passw" type="xsd:string" />
+          <xsd:element form="unqualified" name="db" type="xsd:string" />
+          <xsd:element form="unqualified" name="port" type="xsd:string" />
+          <xsd:element form="unqualified" name="records" type="xsd:string" />
+        </xsd:all>
+      </xsd:complexType>
+      <xsd:complexType name="qDBResponseType">
+        <xsd:all>
+          <xsd:element form="unqualified" name="msg" type="xsd:string" />
+        </xsd:all>
+      </xsd:complexType>
+      <xsd:element name="qDB" type="tns:qDBRequestType" />
+      <xsd:element name="qDBResponse" type="tns:qDBResponseType" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="qDBRequest">
+    <wsdl:part name="parameters" element="tns:qDB" />
+  </wsdl:message>
+  <wsdl:message name="qDBResponse">
+    <wsdl:part name="parameters" element="tns:qDBResponse" />
+  </wsdl:message>
+  <wsdl:portType name="wsdmPortType">
+    <wsdl:operation name="qDB">
+      <documentation>Metodo para cargar datos maestros a mysql.</documentation>
+      <wsdl:input message="tns:qDBRequest" />
+      <wsdl:output message="tns:qDBResponse" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="wsdmBinding" type="tns:wsdmPortType">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="rpc" />
+    <wsdl:operation name="qDB">
+      <soap:operation soapAction="http://vecgupra19.plumrose.com/servicios/loaddb/service.php#qDB" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" namespace="http://vecgupra19.plumrose.com/servicios/loaddb/service.php" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" namespace="http://vecgupra19.plumrose.com/servicios/loaddb/service.php" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="wsdm">
+    <wsdl:port name="wsdmPort" binding="tns:wsdmBinding">
+      <soap:address location="http://vecgupra19.plumrose.com/servicios/loaddb/service.php" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

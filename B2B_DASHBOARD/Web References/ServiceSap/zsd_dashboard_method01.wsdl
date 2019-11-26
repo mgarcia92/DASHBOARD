@@ -1,0 +1,422 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsoap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:tns="urn:sap-com:document:sap:rfc:functions" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" targetNamespace="urn:sap-com:document:sap:rfc:functions" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:documentation>
+    <sidl:sidl xmlns:sidl="http://www.sap.com/2007/03/sidl" />
+  </wsdl:documentation>
+  <wsp:UsingPolicy wsdl:required="true" />
+  <wsp:Policy wsu:Id="BN__ZSD_DASHBOARD_METHOD01">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sapattahnd:Enabled xmlns:sapattahnd="http://www.sap.com/710/features/attachment/">false</sapattahnd:Enabled>
+        <saptrnbnd:OptimizedMimeSerialization xmlns:saptrnbnd="http://schemas.xmlsoap.org/ws/2004/09/policy/optimizedmimeserialization" wsp:Optional="true" />
+        <wsaw:UsingAddressing xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" wsp:Optional="true" />
+        <wsp:All xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy">
+          <sp:TransportBinding xmlns:sp="http://docs.oasis-open.org/ws-sx/ws-securitypolicy/200702" xmlns:sapsp="http://www.sap.com/webas/630/soap/features/security/policy" xmlns:wsa="http://www.w3.org/2005/08/addressing" xmlns:wst="http://docs.oasis-open.org/ws-sx/ws-trust/200512" xmlns:wsu="http://schemas.xmlsoap.org/ws/2002/07/utility" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex">
+            <wsp:Policy>
+              <sp:TransportToken>
+                <wsp:Policy>
+                  <sp:HttpsToken>
+                    <wsp:Policy>
+                      <sp:HttpBasicAuthentication />
+                    </wsp:Policy>
+                  </sp:HttpsToken>
+                </wsp:Policy>
+              </sp:TransportToken>
+              <sp:AlgorithmSuite>
+                <wsp:Policy>
+                  <sp:Basic128Rsa15 />
+                </wsp:Policy>
+              </sp:AlgorithmSuite>
+              <sp:Layout>
+                <wsp:Policy>
+                  <sp:Strict />
+                </wsp:Policy>
+              </sp:Layout>
+            </wsp:Policy>
+          </sp:TransportBinding>
+        </wsp:All>
+      </wsp:All>
+      <wsp:All>
+        <sapattahnd:Enabled xmlns:sapattahnd="http://www.sap.com/710/features/attachment/">false</sapattahnd:Enabled>
+        <saptrnbnd:OptimizedXMLTransfer uri="http://xml.sap.com/2006/11/esi/esp/binxml" xmlns:saptrnbnd="http://www.sap.com/webas/710/soap/features/transportbinding/" wsp:Optional="true" />
+        <wsaw:UsingAddressing xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" wsp:Optional="true" />
+        <wsp:All xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy">
+          <sp:TransportBinding xmlns:sp="http://docs.oasis-open.org/ws-sx/ws-securitypolicy/200702" xmlns:sapsp="http://www.sap.com/webas/630/soap/features/security/policy" xmlns:wsa="http://www.w3.org/2005/08/addressing" xmlns:wst="http://docs.oasis-open.org/ws-sx/ws-trust/200512" xmlns:wsu="http://schemas.xmlsoap.org/ws/2002/07/utility" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex">
+            <wsp:Policy>
+              <sp:TransportToken>
+                <wsp:Policy>
+                  <sp:HttpsToken>
+                    <wsp:Policy>
+                      <sp:HttpBasicAuthentication />
+                    </wsp:Policy>
+                  </sp:HttpsToken>
+                </wsp:Policy>
+              </sp:TransportToken>
+              <sp:AlgorithmSuite>
+                <wsp:Policy>
+                  <sp:Basic128Rsa15 />
+                </wsp:Policy>
+              </sp:AlgorithmSuite>
+              <sp:Layout>
+                <wsp:Policy>
+                  <sp:Strict />
+                </wsp:Policy>
+              </sp:Layout>
+            </wsp:Policy>
+          </sp:TransportBinding>
+        </wsp:All>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="BN__ZSD_DASHBOARD_METHOD01_soap12">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sapattahnd:Enabled xmlns:sapattahnd="http://www.sap.com/710/features/attachment/">false</sapattahnd:Enabled>
+        <saptrnbnd:OptimizedMimeSerialization xmlns:saptrnbnd="http://schemas.xmlsoap.org/ws/2004/09/policy/optimizedmimeserialization" wsp:Optional="true" />
+        <wsaw:UsingAddressing xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" wsp:Optional="true" />
+        <wsp:All xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy">
+          <sp:TransportBinding xmlns:sp="http://docs.oasis-open.org/ws-sx/ws-securitypolicy/200702" xmlns:sapsp="http://www.sap.com/webas/630/soap/features/security/policy" xmlns:wsa="http://www.w3.org/2005/08/addressing" xmlns:wst="http://docs.oasis-open.org/ws-sx/ws-trust/200512" xmlns:wsu="http://schemas.xmlsoap.org/ws/2002/07/utility" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex">
+            <wsp:Policy>
+              <sp:TransportToken>
+                <wsp:Policy>
+                  <sp:HttpsToken>
+                    <wsp:Policy>
+                      <sp:HttpBasicAuthentication />
+                    </wsp:Policy>
+                  </sp:HttpsToken>
+                </wsp:Policy>
+              </sp:TransportToken>
+              <sp:AlgorithmSuite>
+                <wsp:Policy>
+                  <sp:Basic128Rsa15 />
+                </wsp:Policy>
+              </sp:AlgorithmSuite>
+              <sp:Layout>
+                <wsp:Policy>
+                  <sp:Strict />
+                </wsp:Policy>
+              </sp:Layout>
+            </wsp:Policy>
+          </sp:TransportBinding>
+        </wsp:All>
+      </wsp:All>
+      <wsp:All>
+        <sapattahnd:Enabled xmlns:sapattahnd="http://www.sap.com/710/features/attachment/">false</sapattahnd:Enabled>
+        <saptrnbnd:OptimizedXMLTransfer uri="http://xml.sap.com/2006/11/esi/esp/binxml" xmlns:saptrnbnd="http://www.sap.com/webas/710/soap/features/transportbinding/" wsp:Optional="true" />
+        <wsaw:UsingAddressing xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" wsp:Optional="true" />
+        <wsp:All xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy">
+          <sp:TransportBinding xmlns:sp="http://docs.oasis-open.org/ws-sx/ws-securitypolicy/200702" xmlns:sapsp="http://www.sap.com/webas/630/soap/features/security/policy" xmlns:wsa="http://www.w3.org/2005/08/addressing" xmlns:wst="http://docs.oasis-open.org/ws-sx/ws-trust/200512" xmlns:wsu="http://schemas.xmlsoap.org/ws/2002/07/utility" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex">
+            <wsp:Policy>
+              <sp:TransportToken>
+                <wsp:Policy>
+                  <sp:HttpsToken>
+                    <wsp:Policy>
+                      <sp:HttpBasicAuthentication />
+                    </wsp:Policy>
+                  </sp:HttpsToken>
+                </wsp:Policy>
+              </sp:TransportToken>
+              <sp:AlgorithmSuite>
+                <wsp:Policy>
+                  <sp:Basic128Rsa15 />
+                </wsp:Policy>
+              </sp:AlgorithmSuite>
+              <sp:Layout>
+                <wsp:Policy>
+                  <sp:Strict />
+                </wsp:Policy>
+              </sp:Layout>
+            </wsp:Policy>
+          </sp:TransportBinding>
+        </wsp:All>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="IF__ZSD_DASHBOARD_METHOD01">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sapsession:Session xmlns:sapsession="http://www.sap.com/webas/630/soap/features/session/">
+          <sapsession:enableSession>false</sapsession:enableSession>
+        </sapsession:Session>
+        <sapcentraladmin:CentralAdministration xmlns:sapcentraladmin="http://www.sap.com/webas/700/soap/features/CentralAdministration/" wsp:Optional="true">
+          <sapcentraladmin:BusinessApplicationID>00215EADA4801ED881BF413FCC448FDC</sapcentraladmin:BusinessApplicationID>
+        </sapcentraladmin:CentralAdministration>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="OP__ZSD_SERVI_METHOD">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <saptrhnw05:required xmlns:saptrhnw05="http://www.sap.com/NW05/soap/features/transaction/">no</saptrhnw05:required>
+        <sapcomhnd:enableCommit xmlns:sapcomhnd="http://www.sap.com/NW05/soap/features/commit/">false</sapcomhnd:enableCommit>
+        <sapblock:enableBlocking xmlns:sapblock="http://www.sap.com/NW05/soap/features/blocking/">true</sapblock:enableBlocking>
+        <saprmnw05:enableWSRM xmlns:saprmnw05="http://www.sap.com/NW05/soap/features/wsrm/">false</saprmnw05:enableWSRM>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsdl:types>
+    <xsd:schema attributeFormDefault="qualified" targetNamespace="urn:sap-com:document:sap:rfc:functions">
+      <xsd:simpleType name="char1">
+        <xsd:restriction base="xsd:string">
+          <xsd:maxLength value="1" />
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="char10">
+        <xsd:restriction base="xsd:string">
+          <xsd:maxLength value="10" />
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="char132">
+        <xsd:restriction base="xsd:string">
+          <xsd:maxLength value="132" />
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="char18">
+        <xsd:restriction base="xsd:string">
+          <xsd:maxLength value="18" />
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="char2">
+        <xsd:restriction base="xsd:string">
+          <xsd:maxLength value="2" />
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="char20">
+        <xsd:restriction base="xsd:string">
+          <xsd:maxLength value="20" />
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="char3">
+        <xsd:restriction base="xsd:string">
+          <xsd:maxLength value="3" />
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="char35">
+        <xsd:restriction base="xsd:string">
+          <xsd:maxLength value="35" />
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="char4">
+        <xsd:restriction base="xsd:string">
+          <xsd:maxLength value="4" />
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="char40">
+        <xsd:restriction base="xsd:string">
+          <xsd:maxLength value="40" />
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="char5">
+        <xsd:restriction base="xsd:string">
+          <xsd:maxLength value="5" />
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="char50">
+        <xsd:restriction base="xsd:string">
+          <xsd:maxLength value="50" />
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="char8">
+        <xsd:restriction base="xsd:string">
+          <xsd:maxLength value="8" />
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="date10">
+        <xsd:restriction base="xsd:string">
+          <xsd:maxLength value="10" />
+          <xsd:pattern value="\d\d\d\d-\d\d-\d\d" />
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="decimal23.4">
+        <xsd:restriction base="xsd:decimal">
+          <xsd:totalDigits value="23" />
+          <xsd:fractionDigits value="4" />
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="numeric6">
+        <xsd:restriction base="xsd:string">
+          <xsd:maxLength value="6" />
+          <xsd:pattern value="\d*" />
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="numeric8">
+        <xsd:restriction base="xsd:string">
+          <xsd:maxLength value="8" />
+          <xsd:pattern value="\d*" />
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="quantum13.3">
+        <xsd:restriction base="xsd:decimal">
+          <xsd:totalDigits value="13" />
+          <xsd:fractionDigits value="3" />
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="quantum15.3">
+        <xsd:restriction base="xsd:decimal">
+          <xsd:totalDigits value="15" />
+          <xsd:fractionDigits value="3" />
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="string">
+        <xsd:restriction base="xsd:string" />
+      </xsd:simpleType>
+      <xsd:simpleType name="unit3">
+        <xsd:restriction base="xsd:string">
+          <xsd:maxLength value="3" />
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:complexType name="RSIS_S_RANGE">
+        <xsd:sequence>
+          <xsd:element name="SIGN" type="tns:char1" />
+          <xsd:element name="OPTION" type="tns:char2" />
+          <xsd:element name="LOW" type="tns:char132" />
+          <xsd:element name="HIGH" type="tns:char132" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ZSD_POM_DASHBOARD">
+        <xsd:sequence>
+          <xsd:element name="VRSIO" type="tns:char3" />
+          <xsd:element name="VKORG" type="tns:char4" />
+          <xsd:element name="PVRTNR" type="tns:numeric8" />
+          <xsd:element name="PKUNAG" type="tns:char10" />
+          <xsd:element name="NAME1" type="tns:char35" />
+          <xsd:element name="MATNR" type="tns:char18" />
+          <xsd:element name="ZPLAN_SOP" type="tns:quantum15.3" />
+          <xsd:element name="ZPESO_PEDI" type="tns:quantum15.3" />
+          <xsd:element name="ZPESO_ENTR" type="tns:quantum15.3" />
+          <xsd:element name="ZLOGRO" type="tns:quantum15.3" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ZSD_DOCUMENTS_DASHBOARD">
+        <xsd:sequence>
+          <xsd:element name="ID_DOC" type="tns:char10" />
+          <xsd:element name="DOC_TYPE" type="tns:char4" />
+          <xsd:element name="PURCHASE_ORDER" type="tns:char35" />
+          <xsd:element name="CUSTOMER" type="tns:char10" />
+          <xsd:element name="DATE" type="tns:date10" />
+          <xsd:element name="NET_AMOUNT" type="tns:decimal23.4" />
+          <xsd:element name="POSNR" type="tns:numeric6" />
+          <xsd:element name="MATERIAL" type="tns:char18" />
+          <xsd:element name="DESCRIPCION" type="tns:char40" />
+          <xsd:element name="MEINS" type="tns:unit3" />
+          <xsd:element name="ESTADO_ENTREGA" type="tns:char5" />
+          <xsd:element name="ESTADO_FACTURA" type="tns:char5" />
+          <xsd:element name="CANTIDAD" type="tns:quantum13.3" />
+          <xsd:element name="FACTURA" type="tns:char10" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="RSIS_T_RANGE">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="tns:RSIS_S_RANGE" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="TABLE_OF_ZSD_POM_DASHBOARD">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="tns:ZSD_POM_DASHBOARD" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="TABLE_OF_ZSD_DOCUMENTS_DASHBOARD">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="tns:ZSD_DOCUMENTS_DASHBOARD" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="ZSD_SERVI_METHOD">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" name="CUSTOMER" type="tns:char10" />
+            <xsd:element minOccurs="0" name="DATE" type="tns:RSIS_T_RANGE" />
+            <xsd:element minOccurs="0" name="DATOS_DOCUMENTOS" type="tns:TABLE_OF_ZSD_DOCUMENTS_DASHBOARD" />
+            <xsd:element minOccurs="0" name="DATOS_POM" type="tns:TABLE_OF_ZSD_POM_DASHBOARD" />
+            <xsd:element minOccurs="0" name="ORDER" type="tns:char20" />
+            <xsd:element minOccurs="0" name="ORGV" type="tns:RSIS_T_RANGE" />
+            <xsd:element name="REQUEST" type="tns:char5" />
+            <xsd:element minOccurs="0" name="ROUTE" type="tns:char8" />
+            <xsd:element minOccurs="0" name="SYSTEM" type="tns:char3" />
+            <xsd:element minOccurs="0" name="VAR001" type="tns:RSIS_T_RANGE" />
+            <xsd:element minOccurs="0" name="VAR002" type="tns:char20" />
+            <xsd:element minOccurs="0" name="VAR003" type="tns:char20" />
+            <xsd:element minOccurs="0" name="VAR004" type="tns:char40" />
+            <xsd:element minOccurs="0" name="VAR005" type="tns:char40" />
+            <xsd:element minOccurs="0" name="WERKS" type="tns:RSIS_T_RANGE" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="ZSD_SERVI_METHODResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" name="DATOS_DOCUMENTOS" type="tns:TABLE_OF_ZSD_DOCUMENTS_DASHBOARD" />
+            <xsd:element minOccurs="0" name="DATOS_POM" type="tns:TABLE_OF_ZSD_POM_DASHBOARD" />
+            <xsd:element name="EDIRECCION" type="tns:string" />
+            <xsd:element name="ELATITUDE" type="tns:char50" />
+            <xsd:element name="ELONGITUDE" type="tns:char50" />
+            <xsd:element name="ELZONE" type="tns:char10" />
+            <xsd:element name="ELZONE_T" type="tns:char20" />
+            <xsd:element name="ENOMBRE" type="tns:string" />
+            <xsd:element name="EREGIO" type="tns:char3" />
+            <xsd:element name="EREGIO_T" type="tns:char20" />
+            <xsd:element name="ERIF" type="tns:string" />
+            <xsd:element name="ERROR_MESSAGE" type="tns:string" />
+            <xsd:element name="ERR_MAPS" type="tns:char1" />
+            <xsd:element name="FLAG_01" type="tns:char2" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="ZSD_SERVI_METHOD">
+    <wsdl:part name="parameters" element="tns:ZSD_SERVI_METHOD" />
+  </wsdl:message>
+  <wsdl:message name="ZSD_SERVI_METHODResponse">
+    <wsdl:part name="parameter" element="tns:ZSD_SERVI_METHODResponse" />
+  </wsdl:message>
+  <wsdl:portType name="ZSD_DASHBOARD_METHOD01">
+    <wsp:Policy>
+      <wsp:PolicyReference URI="#IF__ZSD_DASHBOARD_METHOD01" />
+    </wsp:Policy>
+    <wsdl:operation name="ZSD_SERVI_METHOD">
+      <wsp:Policy>
+        <wsp:PolicyReference URI="#OP__ZSD_SERVI_METHOD" />
+      </wsp:Policy>
+      <wsdl:input message="tns:ZSD_SERVI_METHOD" />
+      <wsdl:output message="tns:ZSD_SERVI_METHODResponse" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ZSD_DASHBOARD_METHOD01" type="tns:ZSD_DASHBOARD_METHOD01">
+    <wsp:Policy>
+      <wsp:PolicyReference URI="#BN__ZSD_DASHBOARD_METHOD01" />
+    </wsp:Policy>
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ZSD_SERVI_METHOD">
+      <soap:operation soapAction="urn:sap-com:document:sap:rfc:functions:ZSD_DASHBOARD_METHOD01:ZSD_SERVI_METHODRequest" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ZSD_DASHBOARD_METHOD01_soap12" type="tns:ZSD_DASHBOARD_METHOD01">
+    <wsp:Policy>
+      <wsp:PolicyReference URI="#BN__ZSD_DASHBOARD_METHOD01_soap12" />
+    </wsp:Policy>
+    <wsoap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ZSD_SERVI_METHOD">
+      <wsoap12:operation soapAction="urn:sap-com:document:sap:rfc:functions:ZSD_DASHBOARD_METHOD01:ZSD_SERVI_METHODRequest" style="document" />
+      <wsdl:input>
+        <wsoap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <wsoap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ZSD_DASHBOARD_METHOD01">
+    <wsdl:port name="ZSD_DASHBOARD_METHOD01" binding="tns:ZSD_DASHBOARD_METHOD01">
+      <soap:address location="http://cgsapqa2.plumrose.com:8009/sap/bc/srt/rfc/sap/zsd_dashboard_method01/020/zsd_dashboard_method01/zsd_dashboard_method01" />
+    </wsdl:port>
+    <wsdl:port name="ZSD_DASHBOARD_METHOD01_soap12" binding="tns:ZSD_DASHBOARD_METHOD01_soap12">
+      <wsoap12:address location="http://cgsapqa2.plumrose.com:8009/sap/bc/srt/rfc/sap/zsd_dashboard_method01/020/zsd_dashboard_method01/zsd_dashboard_method01" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

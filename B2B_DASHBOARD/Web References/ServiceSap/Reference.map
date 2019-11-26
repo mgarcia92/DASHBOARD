@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DiscoveryClientResultsFile xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Results>
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.ContractReference" url="http://cgsapqa2.plumrose.com:8009/sap/bc/srt/wsdl/flv_10002A111AD1/bndg_url/sap/bc/srt/rfc/sap/zsd_dashboard_method01/020/zsd_dashboard_method01/zsd_dashboard_method01?sap-client=020" filename="zsd_dashboard_method01.wsdl" />
+  </Results>
+</DiscoveryClientResultsFile>
