@@ -1,0 +1,87 @@
+﻿
+@{
+    Layout = null;
+}
+
+<div class="modal fade" id="modal-default" style="display: none;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+                <h4 class="modal-title">Detalle SAP</h4>
+            </div>
+            <div class="modal-body">
+
+                <div class="box tabla-sap" id="table-modal-cabecera">
+                    <div class="box-header">
+                        <h3 class="box-title">Pedido</h3>
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-body no-padding">
+                        <table class="table table-striped">
+                            <tbody>
+                                <tr>
+                                    <th>Detalle</th>
+                                    <th>Estatus</th>
+                                </tr>
+                                <tr>
+                                    <td>N-Pedido SAP:</td>
+                                    <td id="pedido"></td>
+                                </tr>
+                                <tr>
+                                    <td>Orden de Compra:</td>
+                                    <td id="orden-compra"></td>
+                                </tr>
+                                <tr>
+                                    <td>Estado De La Entrega:</td>
+                                    <td id="entrega"></td>
+                                </tr>
+                                <tr>
+                                    <td>Estado De La Factura:</td>
+                                    <td id="factura"></td>
+                                </tr>
+                                <tr>
+                                    <td>Fecha Factura:</td>
+                                    <td id="fecha-factura"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- /.box-body -->
+                </div>
+
+                <div class="box  tabla-sap" id="table-modal-detalle" style="margin-top:10px;">
+                    <div class="box-header">
+                        <h3 class="box-title" id="numero-fact"></h3>
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-body no-padding">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Material</th>
+                                    <th>Descripcion</th>
+                                    <th>Cantidad</th>
+                                    <th>Unidad</th>
+                                    <th>Monto</th>
+                                </tr>
+                            </thead>
+                            <tbody id="body_details"></tbody>
+                        </table>                       
+                    </div>
+                    <!-- /.box-body -->                    
+                </div>
+                <label style="margin-left:75%;"><b id="total_detail"></b></label>
+                <!--contenedor de error-->
+                <div id="modal-messages"></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>

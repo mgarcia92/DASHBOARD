@@ -41,7 +41,7 @@ namespace B2B_DASHBOARD.Models.Connection
             cnString.Password = ConfigurationManager.AppSettings["password"].ToString();
             cnString.Port = Convert.ToUInt32(ConfigurationManager.AppSettings["port"].ToString());
             cnString.Database = ConfigurationManager.AppSettings[DB].ToString();
-            cnString.ConnectionTimeout = 1000;
+            cnString.ConnectionTimeout = 100;
         }
 
         private MySqlConnection Connect()

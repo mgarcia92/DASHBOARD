@@ -1,0 +1,21 @@
+﻿td.details-control {
+    background: url('/Content/img/details_open.png') no-repeat center center;
+    cursor: pointer;
+}
+
+tr.shown td.details-control {
+    background: url('/Content/img/details_close.png') no-repeat center center;
+}
+
+.table-Data thead tr th{
+    background:rgba(70, 138, 78,.6);
+    border-radius:5px;
+}
+
+
+.table-Data  tbody .table-Detail tr th{
+    background: rgba(55, 113, 62,.6);
+    border-radius: 5px;
+    box-shadow:3px 1px 3px 1px;
+}
+

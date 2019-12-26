@@ -1,0 +1,157 @@
+﻿@* 
+ This partial controls the left menu of the AdminLTE dashboard and is called automatically by _AdminLteLayout
+    This is where you can add, modify, or remove navigation options in your app
+    TODO: This preserves the links as-is for the demo, which lead to broken pages!
+    It's up to you to make sure these links either get deleted or lead somewhere REAL!
+*@
+
+@using B2B_DASHBOARD.Utils;
+@using B2B_DASHBOARD.Models; 
+@using System.Configuration;
+@{
+    Layout = null;
+    HttpCookie cookie = Request.Cookies[FormsAuthentication.FormsCookieName];
+    int rol = AuthHelpers.GetUserRol(cookie);
+    List<Menu> menu = Menu.GetMenu(rol);
+    var image = rol != 2 ? Url.Action("GetPictureUser", "Login") : ConfigurationManager.AppSettings["photo_asesor"].ToString();
+
+}
+<aside class="main-sidebar">
+    <!-- sidebar: style can be found in sidebar.less -->
+    <section class="sidebar">
+        <!-- Sidebar user panel -->
+        <div class="user-panel">
+            <div class="pull-left image">
+                <img src="@image" class="img-circle" alt="User Image" />
+            </div>
+            <div class="pull-left info">
+                <p>@AuthHelpers.GetUserId(cookie) </p>
+                <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+            </div>
+        </div>
+        <!-- search form -->
+        <form action="#" method="get" class="sidebar-form">
+            <div class="input-group">
+                <input type="text" name="q" class="form-control" placeholder="Search..." />
+                <span class="input-group-btn">
+                    <button type='submit' name='search' id='search-btn' class="btn btn-flat"><i class="fa fa-search"></i></button>
+                </span>
+            </div>
+        </form>
+        <!-- /.search form -->
+        <!-- sidebar menu: : style can be found in sidebar.less -->     
+                <ul class="sidebar-menu">
+                    <li class="header">Menu</li>
+@{  
+    foreach (var item in (from p in menu
+                          group p by p.MenuName into g
+                          select g.Key).ToList())
+    {
+                    <li class="treeview">
+                        <a href="#">
+                            <i class="fa fa-shopping-cart"></i>
+                            <span>@item</span>
+                            <i class="fa fa-angle-left pull-right"></i>
+                            @{
+                                var MenuNuevo = (from a in menu
+                                                 where a.Action == string.Empty && a.MenuName == item
+                                                 select a).FirstOrDefault();
+                                if (MenuNuevo != null)
+                                {
+                                    <small class="label pull-right bg-green">Proximamente</small>
+                                }
+                                else
+                                {
+                                    <small class="label pull-right bg-green">Nuevo</small>
+                                }
+                            }
+                        </a>
+                        <ul class="treeview-menu">
+                            @foreach (var li in menu.Where(x => x.MenuName == item))
+                            {
+                                <li><a href="@Url.Action(li.Action,li.Controller)"><i class="@li.Icon"></i>@li.AliasMenu</a></li>
+                            }
+                        </ul>              
+                    </li>
+    }
+}
+                </ul>
+            
+       
+        @*<ul class="sidebar-menu">
+            <li class="header">Menu</li>
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-shopping-cart"></i>
+                    <span>Ventas</span>
+                    <i class="fa fa-angle-left pull-right"></i>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="/Sales/Index/"><i class="fa fa-circle-o"></i>Ventas B2B</a></li>
+                    <li><a href="/Sales/Traditional_Sales/"><i class="fa fa-circle-o"></i>Ventas Tradicionales</a></li>
+                    <li><a href="/Sales/Sales_History_B2B/"><i class="fa fa-circle-o"></i>Historico de Ventas B2B</a></li>
+                    <li><a href="/Sales/Traditional_Sales_History/"><i class="fa fa-circle-o"></i>Historico de Ventas Tradicional</a></li>
+                </ul>
+            </li>
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-users"></i>
+                    <span>Clientes</span>
+                    <i class="fa fa-angle-left pull-right"></i>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="pages/charts/morris.html"><i class="fa fa-circle-o"></i>Mis Clientes</a></li>
+                    <li><a href="pages/charts/flot.html"><i class="fa fa-circle-o"></i>Clientes Activos</a></li>
+                </ul>
+            </li>
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa  fa-credit-card"></i>
+                    <span>Pagos</span>
+                    <i class="fa fa-angle-left pull-right"></i>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="pages/charts/morris.html"><i class="fa fa-circle-o"></i>Pagos del Dia</a></li>
+                    <li><a href="pages/charts/flot.html"><i class="fa fa-circle-o"></i>Pagos de la Semana</a></li>
+                    <li><a href="pages/charts/inline.html"><i class="fa fa-circle-o"></i>Historico de Pagos</a></li>
+                </ul>
+            </li>
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-pie-chart"></i>
+                    <span>Reportes</span>
+                    <i class="fa fa-angle-left pull-right"></i>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="pages/charts/morris.html"><i class="fa fa-circle-o"></i>Reporte de Ventas Diarias</a></li>
+                    <li><a href="pages/charts/flot.html"><i class="fa fa-circle-o"></i>Reporte de Pagos Diarios</a></li>
+                    <li><a href="pages/charts/inline.html"><i class="fa fa-circle-o"></i>Reporte de Clientes B2B</a></li>
+                    <li><a href="pages/charts/inline.html"><i class="fa fa-circle-o"></i>Reporte de Historicos</a></li>
+                </ul>
+            </li>
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-envelope"></i>
+                    <span>Notificaciones</span>
+                    <i class="fa fa-angle-left pull-right"></i>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="pages/charts/morris.html"><i class="fa fa-circle-o"></i>Enviar Notificacion a Cliente</a></li>
+                </ul>
+            </li>
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-pie-chart"></i>
+                    <span>Configuracion</span>
+                    <i class="fa fa-angle-left pull-right"></i>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="pages/charts/morris.html"><i class="fa fa-circle-o"></i>Crear Usuarios</a></li>
+                    <li><a href="pages/charts/flot.html"><i class="fa fa-circle-o"></i>Roles</a></li>
+                    <li><a href="pages/charts/inline.html"><i class="fa fa-circle-o"></i>Opciones De configuracion</a></li>
+                </ul>
+            </li>
+        </ul>*@
+    </section>
+    <!-- /.sidebar -->
+</aside>

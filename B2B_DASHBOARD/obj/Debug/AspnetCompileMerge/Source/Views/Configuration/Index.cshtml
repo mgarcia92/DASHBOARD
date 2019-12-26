@@ -1,0 +1,44 @@
+﻿
+@{
+    ViewBag.Title = "Administracion De Usuarios";
+    Layout = "~/Views/Shared/_AdminLteLayout.cshtml";
+}
+
+<div class="box box-default">
+    <div class="box-header with-border">
+        <h3 class="box-title">Panel de Administracion de Usuarios</h3>
+
+        <div class="box-tools pull-right">
+            <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+            <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-remove"></i></button>
+        </div>
+    </div>
+    <!-- /.box-header -->
+    <div class="box-body">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label>Usuarios</label>
+                    <select class="form-control select2 select2-hidden-accessible" id="select-users" style="width: 100%;" tabindex="-1" aria-hidden="true">
+                        <option selected="selected">Usuarios</option>
+                        @foreach (var item in ViewBag.usuarios)
+                        {
+                            <option value="@item.USERNAME">@item.DISPLAYNAME</option>
+                        }
+                    </select>
+                </div>                
+            </div>
+            <div class="col-md-4"><button class="btn btn-primary" id="activos">Usuarios Activos</button></div>
+            <div class=" col-xs-12" id="user-view"></div>
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.box-body -->
+    <div class="box-footer">
+    </div>
+</div>
+@section scripts {
+
+    @Scripts.Render("~/bundles/scriptUsers")
+
+}

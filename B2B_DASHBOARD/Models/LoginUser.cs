@@ -47,26 +47,34 @@ namespace B2B_DASHBOARD.Models
         public LoginUser LoginUsers(string User, string Password)
         {
             LoginUser Login = null;
-            if (!string.IsNullOrEmpty(User) && !string.IsNullOrEmpty(Password))
+          
+            try
             {
-                DBContextMysql db = new DBContextMysql("db_dashboard");
-                MySqlParameter[] parameters = {
+                if (!string.IsNullOrEmpty(User) && !string.IsNullOrEmpty(Password))
+                {
+                    DBContextMysql db = new DBContextMysql("db_dashboard");
+                    MySqlParameter[] parameters = {
                                                  new MySqlParameter("user",User)
                                                  //,new MySqlParameter("pass", Password)
                                               };
 
-                DataTable table = db.ExecProcedure("sp_login_dashboard", parameters);
+                    DataTable table = db.ExecProcedure("sp_login_dashboard", parameters);
 
-                if (table.Rows.Count > 0)
-                {
-                    if (LoginLdap(User, Password))
+                    if (table.Rows.Count > 0)
                     {
-                        return Login = table.toObject<LoginUser>();
-                    }                
+                        if (LoginLdap(User, Password))
+                        {
+                            return Login = table.toObject<LoginUser>();
+                        }
+                    }
                 }
+                return Login;
             }
+            catch (Exception)
+            {
 
-            return Login;
+                return Login;
+            }
         }
 
 

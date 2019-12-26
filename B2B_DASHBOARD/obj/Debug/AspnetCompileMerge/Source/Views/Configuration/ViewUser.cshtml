@@ -1,0 +1,107 @@
+﻿<div class="box box-primary">
+    <div class="box-header with-border">
+        <h3 class="box-title"></h3>
+    </div>
+    <!-- /.box-header -->
+    <!-- form start -->
+    <form id="form-user">
+            <div class="box">
+                <div class="box-header">
+                    <h3 class="box-title">Usuarios</h3>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body no-padding table-responsive">
+                    <table class="table table-condensed">
+                        <tbody>
+                            <tr>
+                                <th>Usuario</th>
+                                <th>Nombre</th>
+                                <th>Correo</th>
+                                <th>Cargo</th>
+                                <th>Area</th>
+                                <th>Jefe</th>
+                                <th>Rol</th>
+                                <th>Activo</th>
+                            </tr>
+                            
+                                @{
+                                    foreach (var item in ViewBag.usuario.user)
+                                    {
+                                        <tr>
+                                            <td>
+                                                <input hidden type="text" name="USERNAME" value=" @item.USERNAME" />
+                                                @item.USERNAME
+                                            </td>
+                                            <td>
+                                                <input hidden type="text" name="DISPLAYNAME" value=" @item.DISPLAYNAME" />
+                                                @item.DISPLAYNAME
+                                            </td>
+                                            <td>
+                                                <input hidden type="text" name="EMAIL" value=" @item.EMAIL" />
+                                                @item.EMAIL
+                                            </td>
+                                            <td>
+                                                <input hidden type="text" name="JOB" value=" @item.JOB" />
+                                                @item.JOB
+                                            </td>
+                                            <td>
+                                                <input hidden type="text" name="DEPARTMENT" value=" @item.DEPARTMENT" />
+                                                @item.DEPARTMENT
+                                            </td>
+                                            <td>
+                                                <input hidden type="text" name="MANAGER" value=" @item.MANAGER" />
+                                                @item.MANAGER
+                                            </td>
+                                            <td>
+                                                <select class="form-control" required name="ROL_ID">
+                                                    <option value=""></option>
+                                                    @{
+                                                        foreach (var rol in ViewBag.usuario.rol)
+                                                        {
+                                                            if (item.ROL_ID == rol.ID_ROL)
+                                                            {
+                                                                <option selected value="@rol.ID_ROL">@rol.ROL_NAME</option>
+                                                            }
+                                                            else
+                                                            {
+                                                                <option value="@rol.ID_ROL">@rol.ROL_NAME</option>
+                                                            }
+
+                                                        }
+                                                    }
+                                                </select>
+                                            </td>
+                                            <td>
+                                                <select class="form-control" name="Active">
+                                                    @{
+                                                        foreach (var estatus in ViewBag.usuario.estatus)
+                                                        {
+
+                                                            if (item.ACTIVE == estatus.ID)
+                                                            {
+                                                                <option selected value="@estatus.ID">@estatus.NAME</option>
+                                                            }
+                                                            else
+                                                            {
+                                                                <option value="@estatus.ID">@estatus.NAME</option>
+                                                            }
+                                                        }
+                                                    }
+                                                </select>
+                                            </td>
+                                        </tr>
+                                                        }
+                                }
+
+                                     
+                        </tbody>
+                    </table>
+                <!-- /.box-body -->
+            </div>
+        </div>
+        <!-- /.box-body -->
+        <div class="box-footer">
+            <button type="submit" class="btn btn-primary submit" id="submit-form">Editar</button>
+        </div>
+    </form>
+</div>

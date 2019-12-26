@@ -1,0 +1,124 @@
+﻿
+@{ 
+    ViewBag.Title = "Ventas B2B";
+}
+
+<div class="box">
+    <div class="box-header">
+        <h3 class="box-title">PEDIDOS INGRESADOS POR B2B</h3>
+    </div>
+    <!-- /.box-header -->
+    <div class="box-body">
+        <div id="example1_wrapper" class="">
+            <div class="row">
+                <div class="col-sm-12 datatable table-responsive">
+                    <div id="table_salesb2b_filter" class="dataTables_filter col-xs-12 col-xs-offset-3 col-sm-3 col-sm-offset-0">
+                        <label>Canal:
+                            <input type="search"  id="CANAL" class="form-control" placeholder="Canal" aria-controls="table_salesb2b">
+                        </label>
+                    </div>
+                    <div id="table_salesb2b_filter" class="dataTables_filter col-xs-12 col-xs-offset-3 col-sm-3 col-sm-offset-0">
+                        <label>
+                            Cliente:
+                            <input type="search" id="CLIENTE" class="form-control" placeholder="Cliente" aria-controls="table_salesb2b">
+                        </label>
+                    </div>
+                    @*<div id="table_salesb2b_filter" class="dataTables_filter col-xs-12 col-xs-offset-3 col-sm-3 col-sm-offset-0">
+                        <label>
+                            Fecha 1:
+                            <input type="date" class="form-control" placeholder="fecha" aria-controls="table_salesb2b">
+                        </label>
+                    </div>*@
+                    <!-- DATEPICKER FECHA 1 -->
+                    <form id="form-searchSalesB2BByDate" method="POST">
+                        <div class="form-group col-xs-12 col-xs-offset-3 col-sm-2 col-sm-offset-0">
+                            <label>
+                                Fecha 1:
+                                <div class="input-group date">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-calendar"></i>
+                                    </div>
+                                    <input type="text"  id="fecha1" readonly="readonly" class="form-control datepicker">
+                                </div>
+                            </label>
+                        </div>
+                        <!-- DATEPICKER FECHA 2 -->
+                        <div class="form-group col-xs-12 col-xs-offset-3 col-sm-2 col-sm-offset-0">
+                            <label>
+                                Fecha 2:
+                                <div class="input-group date">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-calendar"></i>
+                                    </div>
+                                    <input type="text" id="fecha2" readonly="readonly" class="form-control datepicker">
+                                </div>
+                            </label>
+                        </div>
+                        @{
+                            if (ViewBag.asesores != null)
+                            {
+                                <div class="form-group col-xs-6 col-xs-offset-3 col-sm-2 col-sm-offset-0">
+                                    <select id="select-route" class="form-control select2 select2-hidden-accessible" style="width: 100%;" tabindex="-1" aria-hidden="true">
+                                        <option selected="selected">Asesor</option>
+                                        @foreach (var item in ViewBag.asesores)
+                                        {
+                                            <option value="@item.ROTCODE">@item.ROTCODE @item.ROTNAME</option>
+                                        }
+                                    </select>
+                                </div>
+                            }
+                        }
+                      
+                        <div class="form-group col-xs-12 col-xs-offset-3 col-sm-2 col-sm-offset-0">
+                            <label>
+                                Buscar:
+                                <div class="input-group date">  
+                                    <button class="btn btn-primary" id="">
+                                        <i class="glyphicon glyphicon-search"></i>
+                                    </button>
+                                </div>
+                            </label>
+                            
+                        </div>
+                    </form>
+                        <table style="width:100%;" id="table_salesb2b" class="table nowrap table-Data table-hover table-condensed table-striped table-responsive">
+                            <thead>
+                                <tr>
+                                    <th style="width:10%;"></th>
+                                    <th>ORDEN_B2B</th>
+                                    <th>LOGIN</th>
+                                    <th>CENTRO</th>
+                                    <th>ORGV</th>
+                                    <th>CANAL</th>
+                                    <th>SUCURSAL</th>
+                                    <th>CLIENTE</th>
+                                    <th>NOMBRE</th>
+                                    <th>ESTATUS</th>
+                                    <th>FECHA</th>
+                                    <th>ESTATUS SAP</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                            <tfoot>
+                                <tr>                            
+                                      <td colspan="11" style="text-align:center;">
+                                        <button class="btn btn-success" id="data_refresch">
+                                            <i class="glyphicon glyphicon-refresh"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+            </div>
+        </div>
+    </div>
+    <!-- /.box-body -->
+</div>
+@Html.Partial("_ModalSapGeneral")
+@section scripts {
+
+@Scripts.Render("~/bundles/ScriptSalesB2B")
+
+}
+

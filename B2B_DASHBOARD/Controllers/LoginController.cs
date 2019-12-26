@@ -49,19 +49,18 @@ namespace B2B_DASHBOARD.Controllers
                     }
                   
                     Response.Cookies.Add(cookie);
-
-                    return Json(login);
+                    return Json(new {  login, ok = true });
                 }
                 else
                 {
                     ViewBag.Message = "Usuario O Clave Incorrectos";
-                    return Json(new { });
+                    return Json(new { ok = false});
                 }   
             }
             else
             {
                 ViewBag.Message = "Escriba un Usuario y Clave";
-                return Json(new { });
+                return Json(new { ok = false });
             }
         }
 
